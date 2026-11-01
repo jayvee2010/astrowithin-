@@ -1,0 +1,34 @@
+[
+  {
+    "id": "icas",
+    "name": "Indian Council of Astrological Sciences",
+    "abbreviation": "ICAS",
+    "description": "Founded by Dr. B.V. Raman, upholding rigorous examination standards and classical Jyotish scholarship across India.",
+    "founded": "1984",
+    "badgeText": "ICAS Certified"
+  },
+  {
+    "id": "bvb",
+    "name": "Bharatiya Vidya Bhavan",
+    "abbreviation": "BVB Jyotish",
+    "description": "Institute of Astrology, guided by classical Parashari research, systematic empirical testing, and Vedic lineage.",
+    "founded": "1938",
+    "badgeText": "BVB Research Lineage"
+  },
+  {
+    "id": "aifas",
+    "name": "All India Federation of Astrologers Societies",
+    "abbreviation": "AIFAS",
+    "description": "Premier national apex council fostering traditional Vedic astrological education and ethical consultation charters.",
+    "founded": "2001",
+    "badgeText": "AIFAS Accredited"
+  },
+  {
+    "id": "asi",
+    "name": "Astronomical Society of India",
+    "abbreviation": "ASI",
+    "description": "Professional body of astronomical researchers advancing ephemeris calculations and celestial coordinate accuracy.",
+    "founded": "1972",
+    "badgeText": "Ephemeris Verified"
+  }
+]

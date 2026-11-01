@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --chakra-glow: #E07A2E;
+  --bg-gradient: radial-gradient(ellipse at 50% 20%, #3B2A3F 0%, #120E18 100%);
+  color: #F6ECDD;
+  background-color: #120E18;
+}
+
+.light {
+  --chakra-glow: #E07A2E;
+  --bg-gradient: radial-gradient(ellipse at 50% 20%, #F6ECDD 0%, #F4A883 100%);
+  color: #1E293B;
+  background-color: #F6ECDD;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #120E18;
+  color: #F6ECDD;
+  transition: background-color 0.8s cubic-bezier(0.16, 1, 0.3, 1), color 0.8s ease;
+  overflow-x: hidden;
+}
+
+/* Custom Jyotish Ornamental Border using Golden Ochre #CFAF83 */
+.jyotish-border {
+  border: 1px solid rgba(207, 175, 131, 0.35);
+  box-shadow: 0 0 15px rgba(207, 175, 131, 0.15), inset 0 0 10px rgba(207, 175, 131, 0.08);
+  position: relative;
+}
+
+.jyotish-border::before,
+.jyotish-border::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-color: #CFAF83;
+  pointer-events: none;
+}
+
+.jyotish-border::before {
+  top: -2px;
+  left: -2px;
+  border-top: 2px solid #CFAF83;
+  border-left: 2px solid #CFAF83;
+}
+
+.jyotish-border::after {
+  bottom: -2px;
+  right: -2px;
+  border-bottom: 2px solid #CFAF83;
+  border-right: 2px solid #CFAF83;
+}
+
+/* Gold leaf text styling with Solar Flare & Golden Ochre */
+.text-gold-leaf {
+  background: linear-gradient(135deg, #F6ECDD 0%, #CFAF83 40%, #E07A2E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #120E18;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(207, 175, 131, 0.4);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #E07A2E;
+}
+
+/* Astrolabe Cursor */
+@media (hover: hover) and (pointer: fine) {
+  .custom-cursor-none {
+    cursor: none !important;
+  }
+}
