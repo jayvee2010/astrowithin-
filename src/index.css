@@ -79,9 +79,7 @@ body {
   background: #E07A2E;
 }
 
-/* Astrolabe Cursor */
-@media (hover: hover) and (pointer: fine) {
-  .custom-cursor-none {
-    cursor: none !important;
-  }
+/* Native Cursor Guaranteed */
+html, body {
+  cursor: auto !important;
 }
