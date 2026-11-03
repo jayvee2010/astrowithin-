@@ -5,60 +5,64 @@ export const ReviewsSection: React.FC = () => {
   return (
     <section
       id="reviews"
-      aria-label="Astrowithin Reviews"
-      className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 border-b border-[#CFAF83]/15"
+      aria-label="Astrowithin Verified Reviews"
+      className="px-6 sm:px-12 py-20 border-b border-[#E2DDD4] dark:border-white/10 transition-colors"
     >
-      <div className="max-w-7xl mx-auto w-full">
+      <div className="max-w-7xl mx-auto">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1F1C18] border border-[#CFAF83]/30 text-[#CFAF83] text-xs font-serif uppercase tracking-wider mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#E07A2E]" />
-            <span>Real Consultations</span>
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[#E2DDD4] dark:border-white/10">
+          <div>
+            <span className="text-[10px] uppercase tracking-[0.3em] font-cinzel opacity-60 block mb-2">
+              05 · Verified Seeker Experiences
+            </span>
+            <h2 className="font-cormorant text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight">
+              Relationships we <br />
+              <span className="italic text-[#1E3A5F] dark:text-[#E5B869] transition-colors">
+                played a part in.
+              </span>
+            </h2>
           </div>
-
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#F7F4EE] tracking-tight">
-            Relationships we <span className="italic font-normal text-[#E07A2E]">played a part</span>
-          </h2>
-
-          <p className="mt-4 text-[#F7F4EE]/75 text-sm sm:text-base font-light">
-            Verified experiences from users navigating marriage timing, partnership compatibility, and career transitions.
+          <p className="text-xs max-w-sm opacity-75 font-light mt-4 md:mt-0 leading-relaxed">
+            Verified experiences from seekers navigating marriage timing, partnership compatibility, and career transitions with classical Parashari guidance.
           </p>
         </div>
 
-        {/* Editorial Reviews Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {REVIEWS.map((rev) => (
-            <div
-              key={rev.id}
-              className="rounded-3xl bg-[#1A1714] border border-[#CFAF83]/20 p-6 sm:p-8 flex flex-col justify-between hover:border-[#E07A2E]/50 transition-all duration-300"
-            >
+        {/* Open 3-Column Editorial Blockquotes (Zero Boxed Cards) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
+          {REVIEWS.slice(0, 6).map((rev) => (
+            <blockquote key={rev.id} className="flex flex-col justify-between pt-6 border-t border-[#E2DDD4] dark:border-white/10">
               <div>
+                {/* Topic & Rating (No Emojis) */}
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-[10px] px-2.5 py-1 rounded-full bg-[#25211D] text-[#E07A2E] font-serif uppercase tracking-wider">
+                  <span className="text-[10px] uppercase tracking-widest font-cinzel text-[#D4AF37] font-semibold">
                     {rev.topic}
                   </span>
-                  <div className="flex text-[#E07A2E] text-xs">
+                  <div className="flex items-center gap-1 text-[#D4AF37]">
                     {[...Array(rev.rating)].map((_, i) => (
-                      <span key={i}>★</span>
+                      <svg key={i} viewBox="0 0 24 24" className="w-2.5 h-2.5" fill="currentColor">
+                        <path d="M12 0L14 9L23 12L14 15L12 24L10 15L1 12L10 9Z"/>
+                      </svg>
                     ))}
                   </div>
                 </div>
 
-                <p className="text-xs sm:text-sm text-[#F7F4EE]/85 font-light leading-relaxed mb-6">
-                  "{rev.text}"
+                {/* Italic Quote */}
+                <p className="font-cormorant text-lg sm:text-xl italic opacity-90 leading-relaxed mb-6">
+                  “{rev.text}”
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-[#CFAF83]/15 flex items-center justify-between text-xs">
-                <span className="font-serif font-medium text-[#F7F4EE]">
+              {/* Reviewer Details */}
+              <footer className="pt-4 border-t border-[#E2DDD4]/40 dark:border-white/5 flex items-center justify-between text-xs font-cinzel uppercase tracking-widest opacity-70">
+                <span className="font-semibold text-current">
                   {rev.name}
                 </span>
-                <span className="text-[#A69E94]">
+                <span>
                   {rev.city}
                 </span>
-              </div>
-            </div>
+              </footer>
+            </blockquote>
           ))}
         </div>
 

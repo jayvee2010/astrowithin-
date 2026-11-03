@@ -1,274 +1,217 @@
 import React, { useState } from 'react';
-import { FEATURE_TABS, REVIEWS } from '../data/contentData';
+import { REVIEWS } from '../data/contentData';
+
+interface PillarTab {
+  id: string;
+  num: string;
+  title: string;
+  kicker: string;
+  heading: string;
+  body: string;
+  correspondence: string;
+  color: string;
+}
+
+const PILLARS: PillarTab[] = [
+  {
+    id: 'horoscope',
+    num: 'I',
+    title: 'Horoscope',
+    kicker: 'Vishuddha & Chandra Resonance · Subconscious Currents',
+    heading: 'Track your day-to-day emotional currents through your Moon sign (Rashi).',
+    body: 'The Moon governs the subconscious, inner serenity, and daily relational rhythms. Discover how current lunar transits trigger specific houses in your natal chart, revealing auspicious windows for conversation, reflection, and decision-making.',
+    correspondence: 'Elemental Principle: Jala (Water) · Moon Ruler',
+    color: '#1E3A5F',
+  },
+  {
+    id: 'kundli',
+    num: 'II',
+    title: 'Janam Kundli',
+    kicker: 'Manipura & Solar Kendra · Natal Cosmic Blueprint',
+    heading: 'Your Janam Kundli is cast at the exact minute and coordinates of your arrival.',
+    body: 'Explore the 12 Bhavas (houses), planetary dignities, Shadbala strengths, and key divisional charts including the Navamsa (D9) and Dasamsa (D10). Understand the foundational yogas and karmic patterns shaping your life trajectory.',
+    correspondence: 'Elemental Principle: Agni (Fire) · Sun Ruler',
+    color: '#D9822B',
+  },
+  {
+    id: 'partner',
+    num: 'III',
+    title: 'Partner & Navamsa',
+    kicker: 'Anahata Heart Center & Navamsa (D9) · Sacred Partnership',
+    heading: 'Examine the 7th house, Venus, Jupiter, and intricate marital dynamics.',
+    body: 'Through authentic Ashtakoota Guna Milan and planetary compatibility analysis, decode emotional harmony, physical attraction, shared values, and potential karmic challenges between two souls before marital commitment.',
+    correspondence: 'Elemental Principle: Vayu (Air) · Venus & Jupiter',
+    color: '#1E4334',
+  },
+  {
+    id: 'dasha',
+    num: 'IV',
+    title: 'Vimshottari Dasha',
+    kicker: 'Sahasrara & Akasha Temporal Cycles · 120-Year Timeline',
+    heading: 'Time is cyclical in Parashari Jyotish. Journey through the 120-year cycle.',
+    body: 'Unveil which celestial forces are active right now, when major turning points in career and marriage unfold, and when quiet periods of preparation and reflection are warranted.',
+    correspondence: 'Elemental Principle: Akasha (Ether) · All 9 Grahas',
+    color: '#48284A',
+  },
+  {
+    id: 'past-events',
+    num: 'V',
+    title: 'Past Chronology',
+    kicker: 'Muladhara Earth Grounding · Chronological Validation',
+    heading: 'Validate the precision of classical Parashari astrology through your personal history.',
+    body: 'Cross-reference major life milestones—graduations, relocations, career breakthroughs, and past relationships—against the planetary periods and Gochara (transits) that presided over them, building deep trust in your upcoming forecast.',
+    correspondence: 'Elemental Principle: Prithvi (Earth) · Saturn & Mars',
+    color: '#9E2A2B',
+  },
+];
 
 export const FreeFeaturesSection: React.FC = () => {
-  const [activeTabId, setActiveTabId] = useState('horoscope');
-  const activeTab = FEATURE_TABS.find((t) => t.id === activeTabId) || FEATURE_TABS[0];
-  const activeIndex = FEATURE_TABS.findIndex((t) => t.id === activeTabId);
-
-  // Featured testimonial from REVIEWS
+  const [activeTabIdx, setActiveTabIdx] = useState(0);
+  const activePillar = PILLARS[activeTabIdx];
   const featuredReview = REVIEWS.find((r) => r.id === 'rev-5') || REVIEWS[0];
 
   return (
     <section
-      id="features"
-      aria-label="Astrowithin Free Features"
-      className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 border-b border-[#CFAF83]/15"
+      id="pillars"
+      aria-label="Five Pillars of Classical Jyotish"
+      className="px-6 sm:px-12 py-20 border-b border-[#E2DDD4] dark:border-white/10 transition-colors"
     >
-      <div className="max-w-7xl mx-auto w-full">
+      <div className="max-w-7xl mx-auto">
         
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1F1C18] border border-[#CFAF83]/30 text-[#CFAF83] text-xs font-serif uppercase tracking-wider mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#E07A2E]" />
-            <span>Essential Tools For Everyday Living</span>
-          </div>
-
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#F7F4EE] tracking-tight">
-            available for free: <span className="italic font-normal text-[#E07A2E]">Clarity for love, timing, and life</span>
+        {/* Section Header (Open Editorial Pacing) */}
+        <div className="mb-14 pb-6 border-b border-[#E2DDD4] dark:border-white/10">
+          <span className="text-[10px] uppercase tracking-[0.3em] font-cinzel opacity-60 block mb-2">
+            02 · Five Pillars of Classical Jyotish
+          </span>
+          <h2 className="font-cormorant text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight">
+            available for free: <br />
+            <span className="italic text-[#1E3A5F] dark:text-[#E5B869] transition-colors">
+              Clarity for love, timing, and life.
+            </span>
           </h2>
-          <p className="mt-4 text-[#F7F4EE]/75 text-sm sm:text-base font-light">
-            Everyday Parashari insights cast with mathematical precision—available at no cost.
+          <p className="mt-4 text-xs sm:text-sm opacity-75 font-light max-w-xl leading-relaxed">
+            Five dimensions of your birth chart. Everyday Parashari insights cast with mathematical precision—available at no cost.
           </p>
         </div>
 
-        {/* Tab Rail Navigation */}
-        <div className="flex items-center justify-center gap-2 sm:gap-3 flex-wrap mb-12">
-          {FEATURE_TABS.map((tab, idx) => {
-            const isActive = tab.id === activeTabId;
+        {/* Horizontal Editorial Chapter Rail (Clean Underlines, Zero Boxes) */}
+        <div className="flex items-center gap-6 sm:gap-10 overflow-x-auto border-b border-[#E2DDD4] dark:border-white/10 pb-3 mb-14 text-xs uppercase tracking-[0.2em] font-cinzel whitespace-nowrap">
+          {PILLARS.map((pillar, idx) => {
+            const isActive = idx === activeTabIdx;
             return (
               <button
-                key={tab.id}
-                onClick={() => setActiveTabId(tab.id)}
-                className={`px-5 py-2.5 rounded-full text-xs font-serif uppercase tracking-wider transition-all duration-200 ${
+                key={pillar.id}
+                onClick={() => setActiveTabIdx(idx)}
+                className={`pb-3 border-b-2 transition-all cursor-pointer flex items-center gap-2 ${
                   isActive
-                    ? 'bg-[#E07A2E] text-[#141210] font-semibold shadow-md'
-                    : 'bg-[#1A1714] border border-[#CFAF83]/20 text-[#F7F4EE]/80 hover:text-[#F7F4EE] hover:border-[#CFAF83]/50'
+                    ? 'font-bold opacity-100'
+                    : 'border-transparent opacity-50 hover:opacity-90'
                 }`}
+                style={{
+                  borderColor: isActive ? pillar.color : 'transparent',
+                  color: isActive ? pillar.color : 'inherit',
+                }}
               >
-                <span>{`0${idx + 1}. `}</span>
-                <span>{tab.name}</span>
+                <span className="text-[10px] opacity-60">{pillar.num}.</span>
+                <span>{pillar.title}</span>
               </button>
             );
           })}
         </div>
 
-        {/* Two-Column Feature Showcase */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center max-w-6xl mx-auto bg-[#1A1714] border border-[#CFAF83]/20 rounded-3xl p-8 sm:p-12 shadow-xl mb-16">
+        {/* Active Chapter Reading Layout (Two-Column Open Broadsheet) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start mb-16">
           
-          {/* Left Column: Verbatim Content from content/tabs.md */}
-          <div className="lg:col-span-6 flex flex-col justify-between">
-            <div>
-              <div className="flex items-center gap-2 text-xs font-serif uppercase tracking-widest text-[#E07A2E] mb-3">
-                <span>Feature 0{activeIndex + 1}</span>
-                <span>·</span>
-                <span>{activeTab.name}</span>
-              </div>
-
-              <h3 className="font-serif text-2xl sm:text-3xl font-semibold text-[#F7F4EE] leading-snug mb-5">
-                {activeTab.title}
-              </h3>
-
-              <p className="text-sm sm:text-base text-[#F7F4EE]/80 font-light leading-relaxed mb-6">
-                {activeTab.body}
-              </p>
+          {/* Left Column: Chapter Essay (Exact Verbatim Text from content/tabs.md) */}
+          <div className="lg:col-span-7">
+            <div 
+              className="text-[10px] uppercase tracking-[0.25em] font-cinzel font-semibold mb-3 transition-colors"
+              style={{ color: activePillar.color }}
+            >
+              {activePillar.kicker}
             </div>
 
-            <div className="pt-6 border-t border-[#CFAF83]/15 flex items-center gap-4 text-xs font-serif text-[#CFAF83]">
-              <span className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#E07A2E]" />
-                Free on iOS & Android
-              </span>
-              <span>·</span>
-              <span>No credit card required</span>
+            <h3 className="font-cormorant text-2xl sm:text-3xl font-semibold mb-6 leading-tight">
+              {activePillar.heading}
+            </h3>
+
+            <p className="text-sm sm:text-base opacity-80 font-light leading-relaxed mb-8">
+              {activePillar.body}
+            </p>
+
+            <div className="pt-6 border-t border-[#E2DDD4] dark:border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-cinzel opacity-75">
+              <span>{activePillar.correspondence}</span>
+              <span>Lahiri (Chitra Paksha) Ayanamsa · Swiss Ephemeris</span>
             </div>
           </div>
 
-          {/* Right Column: Product Feature Preview Screen */}
-          <div className="lg:col-span-6 flex justify-center">
-            <div className="w-full max-w-md rounded-2xl bg-[#141210] border border-[#CFAF83]/25 p-6 shadow-inner">
-              
-              {/* Feature 1: Horoscope Preview */}
-              {activeTab.id === 'horoscope' && (
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between pb-3 border-b border-[#CFAF83]/15">
-                    <div>
-                      <div className="text-[10px] uppercase font-serif text-[#A69E94]">Daily Moon Sign (Rashi)</div>
-                      <div className="text-base font-serif font-semibold text-[#F7F4EE]">Taurus (Vrishabha)</div>
-                    </div>
-                    <span className="px-2.5 py-1 rounded-full bg-[#E07A2E]/20 text-[#E07A2E] text-xs font-serif">
-                      Waxing Gibbous ☽
-                    </span>
-                  </div>
+          {/* Right Column: Ephemeris & Gochara Transits Table */}
+          <div className="lg:col-span-5 border-l border-[#E2DDD4] dark:border-white/10 pl-8 lg:pl-12">
+            <span className="text-[10px] uppercase tracking-[0.25em] font-cinzel opacity-60 block mb-6">
+              Active Gochara (Planetary Ephemeris)
+            </span>
 
-                  <div className="p-3.5 rounded-xl bg-[#1F1C18] border border-[#CFAF83]/15">
-                    <div className="text-xs font-semibold text-[#F7F4EE] mb-1">Subconscious & Relational Flow</div>
-                    <p className="text-xs text-[#F7F4EE]/70 font-light leading-relaxed">
-                      Chandra is transiting your 2nd house of speech and resources. Auspicious window between 11:30 AM and 2:15 PM for diplomatic dialogues.
-                    </p>
-                  </div>
+            <div className="space-y-4 text-xs font-mono">
+              <div className="flex justify-between py-2 border-b border-[#E2DDD4]/50 dark:border-white/5">
+                <span className="font-serif text-sm flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-[#1E3A5F]"></span>
+                  Chandra (Moon)
+                </span>
+                <span>Rohini · 14° Taurus (Exalted)</span>
+              </div>
 
-                  <div className="grid grid-cols-3 gap-2 text-center text-xs font-serif">
-                    <div className="p-2 rounded-lg bg-[#1F1C18]">
-                      <div className="text-[10px] text-[#A69E94]">Nakshatra</div>
-                      <div className="text-[#F7F4EE] font-medium mt-0.5">Rohini</div>
-                    </div>
-                    <div className="p-2 rounded-lg bg-[#1F1C18]">
-                      <div className="text-[10px] text-[#A69E94]">Lord</div>
-                      <div className="text-[#F7F4EE] font-medium mt-0.5">Venus (Shukra)</div>
-                    </div>
-                    <div className="p-2 rounded-lg bg-[#1F1C18]">
-                      <div className="text-[10px] text-[#A69E94]">Auspicious Color</div>
-                      <div className="text-[#E07A2E] font-medium mt-0.5">Ivory Gold</div>
-                    </div>
-                  </div>
-                </div>
-              )}
+              <div className="flex justify-between py-2 border-b border-[#E2DDD4]/50 dark:border-white/5">
+                <span className="font-serif text-sm flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-[#D9822B]"></span>
+                  Surya (Sun)
+                </span>
+                <span>Swati · 17° Libra</span>
+              </div>
 
-              {/* Feature 2: Kundli Preview */}
-              {activeTab.id === 'kundli' && (
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between pb-3 border-b border-[#CFAF83]/15">
-                    <div>
-                      <div className="text-[10px] uppercase font-serif text-[#A69E94]">Janam Kundli</div>
-                      <div className="text-base font-serif font-semibold text-[#F7F4EE]">Lagna & Divisional (D9)</div>
-                    </div>
-                    <span className="text-xs font-serif text-[#CFAF83]">12 Bhavas Cast</span>
-                  </div>
+              <div className="flex justify-between py-2 border-b border-[#E2DDD4]/50 dark:border-white/5">
+                <span className="font-serif text-sm flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-[#1E4334]"></span>
+                  Guru (Jupiter)
+                </span>
+                <span>Mrigashira · 20° Gemini</span>
+              </div>
 
-                  <div className="w-full aspect-[16/10] rounded-xl border border-[#CFAF83]/25 flex items-center justify-center bg-[#171412] relative">
-                    <svg viewBox="0 0 100 100" className="w-full h-full text-[#CFAF83]/40 p-2">
-                      <rect x="0" y="0" width="100" height="100" fill="none" stroke="currentColor" strokeWidth="1" />
-                      <line x1="0" y1="0" x2="100" y2="100" stroke="currentColor" strokeWidth="0.8" />
-                      <line x1="100" y1="0" x2="0" y2="100" stroke="currentColor" strokeWidth="0.8" />
-                      <polygon points="50,0 100,50 50,100 0,50" fill="none" stroke="currentColor" strokeWidth="1" />
-                      <text x="50" y="32" fill="#E07A2E" fontSize="7" textAnchor="middle" fontFamily="serif">1 (Asc)</text>
-                      <text x="50" y="70" fill="#F4A883" fontSize="7" textAnchor="middle" fontFamily="serif">7 (Ve)</text>
-                      <text x="25" y="52" fill="#CFAF83" fontSize="7" textAnchor="middle" fontFamily="serif">4 (Ju)</text>
-                      <text x="75" y="52" fill="#CFAF83" fontSize="7" textAnchor="middle" fontFamily="serif">10 (Sa)</text>
-                    </svg>
-                  </div>
+              <div className="flex justify-between py-2 border-b border-[#E2DDD4]/50 dark:border-white/5">
+                <span className="font-serif text-sm flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-[#48284A]"></span>
+                  Shani (Saturn)
+                </span>
+                <span>Shatabhisha · 18° Aquarius</span>
+              </div>
 
-                  <div className="flex items-center justify-between text-xs text-[#A69E94] font-serif">
-                    <span>Shadbala: <strong className="text-[#F7F4EE]">132% Strong</strong></span>
-                    <span>D9 Navamsa: <strong className="text-[#E07A2E]">Pushkara Vargottama</strong></span>
-                  </div>
-                </div>
-              )}
-
-              {/* Feature 3: Partner Preview */}
-              {activeTab.id === 'partner' && (
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between pb-3 border-b border-[#CFAF83]/15">
-                    <div>
-                      <div className="text-[10px] uppercase font-serif text-[#A69E94]">Ashtakoota Milan</div>
-                      <div className="text-base font-serif font-semibold text-[#F7F4EE]">Compatibility Score</div>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-xl font-serif font-bold text-[#E07A2E]">29 / 36</div>
-                      <div className="text-[10px] text-[#CFAF83]">High Compatibility</div>
-                    </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between text-xs p-2 rounded-lg bg-[#1F1C18]">
-                      <span className="text-[#F7F4EE]/80">Nadi Koota (Physiological Harmony)</span>
-                      <span className="font-semibold text-[#E07A2E]">8 / 8</span>
-                    </div>
-                    <div className="flex items-center justify-between text-xs p-2 rounded-lg bg-[#1F1C18]">
-                      <span className="text-[#F7F4EE]/80">Bhakoot Koota (Emotional Depth)</span>
-                      <span className="font-semibold text-[#E07A2E]">7 / 7</span>
-                    </div>
-                    <div className="flex items-center justify-between text-xs p-2 rounded-lg bg-[#1F1C18]">
-                      <span className="text-[#F7F4EE]/80">Gana Koota (Temperament Sync)</span>
-                      <span className="font-semibold text-[#CFAF83]">5 / 6</span>
-                    </div>
-                    <div className="flex items-center justify-between text-xs p-2 rounded-lg bg-[#1F1C18]">
-                      <span className="text-[#F7F4EE]/80">Graha Maitri (Mental Harmony)</span>
-                      <span className="font-semibold text-[#CFAF83]">5 / 5</span>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Feature 4: Dasha Preview */}
-              {activeTab.id === 'dasha' && (
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between pb-3 border-b border-[#CFAF83]/15">
-                    <div>
-                      <div className="text-[10px] uppercase font-serif text-[#A69E94]">Vimshottari Dasha Cycle</div>
-                      <div className="text-base font-serif font-semibold text-[#F7F4EE]">Jupiter — Saturn — Venus</div>
-                    </div>
-                    <span className="text-xs px-2.5 py-1 rounded-full bg-[#E07A2E]/20 text-[#E07A2E] font-serif">
-                      Active Cycle
-                    </span>
-                  </div>
-
-                  <div className="p-3.5 rounded-xl bg-[#1F1C18] border border-[#CFAF83]/15">
-                    <div className="text-xs font-semibold text-[#F7F4EE] mb-1">Upcoming Dasha Turning Point</div>
-                    <p className="text-xs text-[#F7F4EE]/70 font-light leading-relaxed">
-                      Transition from Saturn Antardasha to Mercury Antardasha activates your 5th and 9th trinal lords, favoring education, marital commitments, and financial expansion.
-                    </p>
-                  </div>
-
-                  <div className="space-y-1.5 text-xs font-serif">
-                    <div className="flex justify-between text-[11px] text-[#A69E94]">
-                      <span>Mahadasha Progress</span>
-                      <span>68% completed</span>
-                    </div>
-                    <div className="w-full h-2 rounded-full bg-[#25211D] overflow-hidden">
-                      <div className="h-full bg-gradient-to-r from-[#CFAF83] to-[#E07A2E] w-[68%]" />
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Feature 5: Past Events Preview */}
-              {activeTab.id === 'past-events' && (
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between pb-3 border-b border-[#CFAF83]/15">
-                    <div>
-                      <div className="text-[10px] uppercase font-serif text-[#A69E94]">Milestone Correlation</div>
-                      <div className="text-base font-serif font-semibold text-[#F7F4EE]">Historical Accuracy Audit</div>
-                    </div>
-                    <span className="text-xs text-[#E07A2E] font-serif">Verified</span>
-                  </div>
-
-                  <div className="space-y-2.5">
-                    <div className="p-2.5 rounded-xl bg-[#1F1C18] border-l-2 border-[#E07A2E] text-xs">
-                      <div className="font-semibold text-[#F7F4EE]">2019 · Relocation & Career Shift</div>
-                      <div className="text-[11px] text-[#A69E94]">Triggered by Rahu-Venus dasha & Saturn transit in 9th house</div>
-                    </div>
-                    <div className="p-2.5 rounded-xl bg-[#1F1C18] border-l-2 border-[#CFAF83] text-xs">
-                      <div className="font-semibold text-[#F7F4EE]">2022 · Marriage Alliance Finalized</div>
-                      <div className="text-[11px] text-[#A69E94]">Dual transit of Jupiter in 7th & Venus dasha activation</div>
-                    </div>
-                  </div>
-                </div>
-              )}
-
+              <div className="flex justify-between py-2 border-b border-[#E2DDD4]/50 dark:border-white/5">
+                <span className="font-serif text-sm flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-[#9E2A2B]"></span>
+                  Mangala (Mars)
+                </span>
+                <span>Punarvasu · 05° Cancer</span>
+              </div>
             </div>
+
+            <p className="text-[11px] opacity-60 mt-6 leading-relaxed font-sans-ui">
+              Live sidereal longitude computed via NASA JPL ephemerides without predictive exaggeration.
+            </p>
           </div>
 
         </div>
 
-        {/* Featured Testimonial Beneath */}
-        <div className="max-w-3xl mx-auto p-6 sm:p-8 rounded-2xl bg-[#1A1714] border border-[#CFAF83]/20 flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
-          <div className="w-14 h-14 rounded-full bg-[#E07A2E]/20 text-[#E07A2E] flex items-center justify-center font-serif text-2xl font-bold flex-shrink-0">
-            “
-          </div>
-          <div>
-            <div className="flex justify-center sm:justify-start text-[#E07A2E] text-xs mb-2">
-              {[...Array(5)].map((_, i) => (
-                <span key={i}>★</span>
-              ))}
-            </div>
-            <p className="text-sm text-[#F7F4EE]/85 font-light italic leading-relaxed">
+        {/* Verified User Quote underneath (Open Editorial Quote) */}
+        <div className="pt-10 border-t border-[#E2DDD4] dark:border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div className="flex-1">
+            <span className="text-[10px] uppercase tracking-widest font-cinzel text-[#D4AF37] block mb-1">
+              Verified Seeker Reflection
+            </span>
+            <p className="font-cormorant text-lg sm:text-xl italic opacity-90">
               "{featuredReview.text}"
             </p>
-            <div className="text-xs font-serif text-[#CFAF83] mt-2 font-medium">
-              {featuredReview.name} · {featuredReview.city}
-            </div>
+          </div>
+          <div className="text-xs font-cinzel uppercase tracking-widest opacity-60 md:text-right flex-shrink-0">
+            {featuredReview.name} · {featuredReview.city}
           </div>
         </div>
 

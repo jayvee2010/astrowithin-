@@ -3,191 +3,203 @@ import { Link } from 'react-router-dom';
 import { useTheme } from '../utils/ThemeContext';
 
 export const Header: React.FC = () => {
-  const { theme, toggleTheme } = useTheme();
+  const { isDark, toggleTheme } = useTheme();
   const [showQr, setShowQr] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 left-0 right-0 z-50 bg-[#141210]/90 dark:bg-[#141210]/90 backdrop-blur-md border-b border-[#CFAF83]/15 transition-all duration-300">
+    <header className="sticky top-0 left-0 right-0 z-50 transition-colors duration-300 border-b bg-[#FAF7F2]/95 dark:bg-[#111217]/95 backdrop-blur-md border-[#E2DDD4] dark:border-white/10 text-[#181614] dark:text-[#F6ECDD]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         
-        {/* Left: Refined Typographic Brand Wordmark */}
+        {/* Left: Brand Wordmark with Gold Astrolabe Emblem */}
         <Link
           to="/"
           className="group flex items-center gap-3 transition-opacity hover:opacity-90"
         >
-          {/* Subtle Vedic Diamond Yantra Emblem */}
-          <div className="w-8 h-8 rounded-full border border-[#CFAF83]/50 flex items-center justify-center bg-[#1F1C18] group-hover:border-[#E07A2E] transition-colors">
-            <svg viewBox="0 0 24 24" className="w-4 h-4 text-[#CFAF83] group-hover:text-[#E07A2E] transition-colors">
-              <polygon points="12,2 22,12 12,22 2,12" fill="none" stroke="currentColor" strokeWidth="1.5" />
-              <circle cx="12" cy="12" r="2.5" fill="currentColor" />
+          <div className="w-9 h-9 border border-[#D4AF37] flex items-center justify-center p-1.5 bg-[#FAF7F2] dark:bg-[#161720] shadow-xs transition-colors">
+            <svg viewBox="0 0 100 100" className="w-full h-full text-[#D4AF37]" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <circle cx="50" cy="50" r="45" strokeDasharray="2 2" opacity="0.8" />
+              <polygon points="50,10 90,80 10,80" stroke="#D4AF37" strokeWidth="2.5" />
+              <polygon points="50,90 90,20 10,20" stroke="#D4AF37" strokeWidth="2.5" />
+              <circle cx="50" cy="50" r="14" stroke="#1E3A5F" strokeWidth="2.5" fill="#1E3A5F" fillOpacity="0.1" />
+              <circle cx="50" cy="50" r="4" fill="#D9822B" />
             </svg>
           </div>
-          <span className="font-serif text-xl sm:text-2xl tracking-[0.2em] font-semibold text-[#F7F4EE] group-hover:text-[#E07A2E] transition-colors">
-            ASTROWITHIN
-          </span>
+          <div>
+            <span className="font-cormorant text-2xl sm:text-3xl font-bold tracking-[0.16em] block leading-none">
+              ASTROWITHIN
+            </span>
+            <span className="text-[9px] uppercase tracking-[0.25em] font-cinzel opacity-60 block mt-1">
+              Parashari Jyotish · Classical Vedanga Hora
+            </span>
+          </div>
         </Link>
 
         {/* Center: Editorial Navigation Links */}
         <nav
           aria-label="Main Navigation"
-          className="hidden md:flex items-center gap-8"
+          className="hidden md:flex items-center gap-8 text-xs uppercase tracking-[0.2em] font-cinzel opacity-80"
         >
-          <Link
-            to="/blog"
-            className="text-xs uppercase tracking-[0.2em] font-serif text-[#F7F4EE]/75 hover:text-[#E07A2E] transition-colors"
+          <a
+            href="#chakras"
+            className="hover:opacity-100 hover:text-[#D4AF37] transition-all flex items-center gap-1.5"
           >
-            Blog
-          </Link>
+            <svg viewBox="0 0 24 24" className="w-2.5 h-2.5 text-[#D4AF37]" fill="currentColor">
+              <path d="M12 0L14 9L23 12L14 15L12 24L10 15L1 12L10 9Z"/>
+            </svg>
+            <span>Chakras & Rashis</span>
+          </a>
+          <a
+            href="#consultants"
+            className="hover:opacity-100 hover:text-[#D4AF37] transition-all"
+          >
+            Consultants
+          </a>
+          <a
+            href="#pillars"
+            className="hover:opacity-100 hover:text-[#D4AF37] transition-all"
+          >
+            Five Pillars
+          </a>
           <Link
             to="/tools"
-            className="text-xs uppercase tracking-[0.2em] font-serif text-[#F7F4EE]/75 hover:text-[#E07A2E] transition-colors"
+            className="hover:opacity-100 hover:text-[#D4AF37] transition-all"
           >
-            Tools
+            Classical Tools
           </Link>
           <Link
-            to="/astrology/zodiac-signs"
-            className="text-xs uppercase tracking-[0.2em] font-serif text-[#F7F4EE]/75 hover:text-[#E07A2E] transition-colors"
+            to="/blog"
+            className="hover:opacity-100 hover:text-[#D4AF37] transition-all"
           >
-            Signs
-          </Link>
-          <Link
-            to="/astrology/nakshatras"
-            className="text-xs uppercase tracking-[0.2em] font-serif text-[#F7F4EE]/75 hover:text-[#E07A2E] transition-colors"
-          >
-            Nakshatras
+            Journal
           </Link>
         </nav>
 
-        {/* Right: Actions */}
-        <div className="flex items-center gap-3 sm:gap-4">
-          
-          {/* Theme Switcher */}
+        {/* Right: Theme Toggle & Download CTA */}
+        <div className="flex items-center gap-5">
+          {/* Light / Dark Mode Toggle Button */}
           <button
             onClick={toggleTheme}
-            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-            title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-            className="w-9 h-9 rounded-full border border-[#CFAF83]/25 flex items-center justify-center text-[#CFAF83] hover:text-[#E07A2E] hover:border-[#E07A2E]/50 transition-colors"
+            aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
+            className="flex items-center gap-2 px-3 py-1.5 rounded border border-[#D4AF37]/50 text-xs font-cinzel uppercase tracking-widest hover:border-[#D4AF37] transition-colors bg-black/5 dark:bg-white/5"
           >
-            {theme === 'dark' ? (
-              <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current">
-                <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1-8.313-12.454z"/>
-              </svg>
+            {isDark ? (
+              <>
+                <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-[#D4AF37]" fill="none" stroke="currentColor" strokeWidth="2">
+                  <circle cx="12" cy="12" r="5" />
+                  <line x1="12" y1="1" x2="12" y2="3" />
+                  <line x1="12" y1="21" x2="12" y2="23" />
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                  <line x1="1" y1="12" x2="3" y2="12" />
+                  <line x1="21" y1="12" x2="23" y2="12" />
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                </svg>
+                <span className="text-[10px] hidden sm:inline">Light</span>
+              </>
             ) : (
-              <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="12" cy="12" r="5" />
-                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
-              </svg>
+              <>
+                <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-[#1E3A5F]" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                </svg>
+                <span className="text-[10px] hidden sm:inline">Dark</span>
+              </>
             )}
           </button>
 
-          {/* QR Code Popover */}
-          <div className="relative hidden lg:block">
-            <button
-              onClick={() => setShowQr(!showQr)}
-              className="text-xs uppercase tracking-wider font-serif text-[#CFAF83] hover:text-[#F7F4EE] px-3 py-1.5 rounded-full border border-[#CFAF83]/30 hover:border-[#CFAF83]/70 transition-colors flex items-center gap-1.5"
-            >
-              <span>Scan to download</span>
-              <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <rect x="3" y="3" width="7" height="7" strokeWidth="1.8" />
-                <rect x="14" y="3" width="7" height="7" strokeWidth="1.8" />
-                <rect x="14" y="14" width="7" height="7" strokeWidth="1.8" />
-                <rect x="3" y="14" width="7" height="7" strokeWidth="1.8" />
-              </svg>
-            </button>
-
-            {showQr && (
-              <div className="absolute right-0 top-11 w-52 p-4 rounded-2xl bg-[#1C1916] border border-[#CFAF83]/30 shadow-2xl z-50 text-center animate-in fade-in duration-200">
-                <p className="text-xs font-serif text-[#F7F4EE] mb-2 font-medium">
-                  Scan to install app
-                </p>
-                <div className="p-2.5 bg-white rounded-xl inline-block">
-                  <svg className="w-24 h-24 text-black" viewBox="0 0 100 100">
-                    <rect x="10" y="10" width="25" height="25" fill="black" />
-                    <rect x="15" y="15" width="15" height="15" fill="white" />
-                    <rect x="19" y="19" width="7" height="7" fill="black" />
-                    <rect x="65" y="10" width="25" height="25" fill="black" />
-                    <rect x="70" y="15" width="15" height="15" fill="white" />
-                    <rect x="74" y="19" width="7" height="7" fill="black" />
-                    <rect x="10" y="65" width="25" height="25" fill="black" />
-                    <rect x="15" y="70" width="15" height="15" fill="white" />
-                    <rect x="19" y="74" width="7" height="7" fill="black" />
-                    <circle cx="50" cy="50" r="8" fill="#E07A2E" />
-                    <rect x="42" y="15" width="6" height="20" fill="black" />
-                    <rect x="70" y="65" width="18" height="18" fill="black" />
-                  </svg>
-                </div>
-                <div className="text-[10px] text-[#A69E94] mt-2 font-serif">
-                  iOS & Android
-                </div>
-                <button
-                  onClick={() => setShowQr(false)}
-                  className="mt-2 text-[10px] text-[#CFAF83] hover:underline block mx-auto"
-                >
-                  Dismiss
-                </button>
-              </div>
-            )}
-          </div>
-
-          {/* Primary CTA Button: Download App */}
-          <Link
-            to="/download"
-            className="px-5 py-2.5 rounded-full bg-[#E07A2E] hover:bg-[#E07A2E]/90 text-[#141210] font-semibold text-xs uppercase tracking-wider transition-all duration-200 shadow-sm"
+          {/* Download App CTA */}
+          <button
+            onClick={() => setShowQr(true)}
+            className="text-xs uppercase tracking-[0.2em] font-cinzel font-semibold pb-1 border-b-2 border-[#D4AF37] text-[#D4AF37] hover:opacity-75 transition-opacity"
           >
-            Download app
-          </Link>
+            Download App →
+          </button>
 
           {/* Mobile Menu Hamburger */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-[#F7F4EE] hover:text-[#E07A2E] focus:outline-none"
-            aria-label="Toggle Navigation Menu"
+            className="md:hidden p-2 text-current opacity-80 hover:opacity-100"
+            aria-label="Toggle mobile menu"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {mobileMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
               ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
               )}
             </svg>
           </button>
-
         </div>
 
       </div>
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-[#CFAF83]/15 bg-[#141210] px-6 py-6 space-y-4">
-          <Link
-            to="/blog"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block text-sm uppercase tracking-widest font-serif text-[#F7F4EE]/90 hover:text-[#E07A2E]"
-          >
-            Blog
+        <div className="md:hidden border-t border-[#E2DDD4] dark:border-white/10 px-6 py-6 bg-[#FAF7F2] dark:bg-[#111217] flex flex-col gap-5 text-sm uppercase tracking-[0.18em] font-cinzel">
+          <a href="#chakras" onClick={() => setMobileMenuOpen(false)} className="py-2 border-b border-current/10">
+            Chakras & Rashis
+          </a>
+          <a href="#consultants" onClick={() => setMobileMenuOpen(false)} className="py-2 border-b border-current/10">
+            Consultants
+          </a>
+          <a href="#pillars" onClick={() => setMobileMenuOpen(false)} className="py-2 border-b border-current/10">
+            Five Pillars
+          </a>
+          <Link to="/tools" onClick={() => setMobileMenuOpen(false)} className="py-2 border-b border-current/10">
+            Classical Tools
           </Link>
-          <Link
-            to="/tools"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block text-sm uppercase tracking-widest font-serif text-[#F7F4EE]/90 hover:text-[#E07A2E]"
-          >
-            Tools
+          <Link to="/blog" onClick={() => setMobileMenuOpen(false)} className="py-2 border-b border-current/10">
+            Journal
           </Link>
-          <Link
-            to="/astrology/zodiac-signs"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block text-sm uppercase tracking-widest font-serif text-[#F7F4EE]/90 hover:text-[#E07A2E]"
+          <button
+            onClick={() => {
+              setMobileMenuOpen(false);
+              setShowQr(true);
+            }}
+            className="py-3 px-4 bg-[#1E3A5F] text-white text-center font-bold tracking-widest mt-2"
           >
-            Signs
-          </Link>
-          <Link
-            to="/astrology/nakshatras"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block text-sm uppercase tracking-widest font-serif text-[#F7F4EE]/90 hover:text-[#E07A2E]"
+            Download Application →
+          </button>
+        </div>
+      )}
+
+      {/* QR Code Modal */}
+      {showQr && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4"
+          onClick={() => setShowQr(false)}
+        >
+          <div 
+            className="bg-[#FAF7F2] dark:bg-[#161720] border-2 border-[#D4AF37] max-w-sm w-full p-8 text-center relative shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
           >
-            Nakshatras
-          </Link>
+            <button
+              onClick={() => setShowQr(false)}
+              className="absolute top-4 right-4 text-xs font-mono opacity-60 hover:opacity-100"
+            >
+              ✕ CLOSE
+            </button>
+            <div className="w-12 h-12 mx-auto mb-4 border border-[#D4AF37] flex items-center justify-center p-2">
+              <svg viewBox="0 0 24 24" className="w-6 h-6 text-[#D4AF37]" fill="currentColor">
+                <path d="M12 0L14 9L23 12L14 15L12 24L10 15L1 12L10 9Z"/>
+              </svg>
+            </div>
+            <h3 className="font-cormorant text-2xl font-bold mb-2">Scan to Download</h3>
+            <p className="text-xs opacity-75 font-light mb-6">
+              Access your Janam Kundli, Vimshottari Dashas, and classical consultations on iOS and Android.
+            </p>
+            <div className="bg-white p-4 inline-block border border-[#D4AF37]/50 shadow-inner">
+              <img
+                src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://astrowithin.com/download"
+                alt="Astrowithin App QR Code"
+                className="w-40 h-40"
+              />
+            </div>
+            <div className="mt-6 text-[10px] font-cinzel uppercase tracking-widest opacity-60">
+              Compatible with iOS 16+ & Android 12+
+            </div>
+          </div>
         </div>
       )}
     </header>

@@ -7,7 +7,36 @@ export default {
   darkMode: 'class',
   theme: {
     extend: {
+      fontFamily: {
+        cormorant: ['Cormorant Garamond', 'Georgia', 'serif'],
+        cinzel: ['Cinzel', 'serif'],
+        'sans-ui': ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+      },
       colors: {
+        // Palette 3: Deep Forest Emerald & Sunburst Brass
+        forest: {
+          canvas: '#0D1713',    // Deep velvet botanical slate
+          surface: '#121F1A',   // Rich dark moss
+          card: '#162720',      // Elevated forest slate
+          border: 'rgba(229, 184, 105, 0.22)',
+          highlight: '#1F342B',
+        },
+        brass: {
+          DEFAULT: '#E5B869',   // Sunburst Antique Brass Gold
+          light: '#F3D8A2',
+          dark: '#C89D56',
+        },
+        vermilion: {
+          DEFAULT: '#C84B31',   // Spiced Kumkum Vermilion
+          hover: '#D95A3F',
+          dark: '#A63821',
+        },
+        sage: {
+          mist: '#F1F5F2',      // Pale Sage Mist text
+          muted: '#9CB3A5',     // Soft Lichen secondary text
+          dim: '#657B6F',
+        },
+        // Legacy fallbacks
         // Palette 1: Cosmic Ember
         cosmic: {
           void: '#120E18',      // Velvet Void
