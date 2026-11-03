@@ -10,21 +10,24 @@ export const ReviewsSection: React.FC = () => {
     >
       <div className="max-w-7xl mx-auto">
         
-        {/* Section Header */}
+        {/* Section Header (Exact Vaya Headline & Subtitle) */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[#E2DDD4] dark:border-white/10">
           <div>
-            <span className="text-[10px] uppercase tracking-[0.3em] font-cinzel opacity-60 block mb-2">
-              05 · Verified Seeker Experiences
-            </span>
+            <div className="text-[10px] uppercase tracking-[0.3em] font-cinzel opacity-70 mb-2 flex items-center gap-2">
+              <svg viewBox="0 0 24 24" className="w-3 h-3 text-[#D4AF37]" fill="currentColor">
+                <path d="M12 0L14 9L23 12L14 15L12 24L10 15L1 12L10 9Z"/>
+              </svg>
+              <span>Ajna · Third Eye Perception · Verified Seeker Chronicles</span>
+            </div>
             <h2 className="font-cormorant text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight">
-              Relationships we <br />
+              Relationships we <br className="hidden sm:inline" />
               <span className="italic text-[#1E3A5F] dark:text-[#E5B869] transition-colors">
-                played a part in.
+                played a part.
               </span>
             </h2>
           </div>
           <p className="text-xs max-w-sm opacity-75 font-light mt-4 md:mt-0 leading-relaxed">
-            Verified experiences from seekers navigating marriage timing, partnership compatibility, and career transitions with classical Parashari guidance.
+            Reviews drift as celestial reflections across life's chapters. Authentic testimonials on marriage timing, compatibility, and milestones.
           </p>
         </div>
 

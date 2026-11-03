@@ -17,7 +17,7 @@ export const FinalCtaSection: React.FC = () => {
           <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-[#D4AF37]" fill="currentColor">
             <path d="M12 0L14 9L23 12L14 15L12 24L10 15L1 12L10 9Z"/>
           </svg>
-          <span>Begin Your Lineage Consultation</span>
+          <span>Marriage · Sahasrara Crown Crossroads</span>
         </div>
 
         {/* Monumental Headline (Exact Vaya Copy) */}
@@ -29,7 +29,7 @@ export const FinalCtaSection: React.FC = () => {
         </h2>
 
         <p className="opacity-80 max-w-xl text-sm sm:text-base font-light mb-12 leading-relaxed">
-          Select the inquiry closest to your heart to connect with a classically trained Parashari master.
+          Stand at the cosmic crossroads. Select the question weighing on your heart to resolve your astrological path.
         </p>
 
         {/* The Two Choice Paths (Open Architectural Selection) */}
@@ -53,7 +53,7 @@ export const FinalCtaSection: React.FC = () => {
               Analyzed through Vimshottari Mahadasha, Jupiter-Saturn double transit, and 7th lord activation.
             </p>
             <div className="text-xs font-cinzel uppercase tracking-widest font-semibold text-[#D4AF37] flex items-center gap-1.5">
-              <span>{selectedPath === 'timing' ? 'Selected Path' : 'Select Inquiry'}</span>
+              <span>{selectedPath === 'timing' ? '✓ Path Selected' : 'Choose Path'}</span>
               <span>→</span>
             </div>
           </button>
@@ -67,31 +67,39 @@ export const FinalCtaSection: React.FC = () => {
             }`}
           >
             <div className="text-[10px] font-cinzel uppercase tracking-widest text-[#1E3A5F] dark:text-[#60A5FA] mb-2 font-semibold">
-              Path of the Person (Swaroopa) · Darakaraka
+              Path of Synastry (Sambandha) · Navamsa
             </div>
             <h3 className="font-cormorant text-2xl font-bold mb-3">
-              Who is my ideal partner?
+              Is this the right person?
             </h3>
             <p className="text-xs opacity-75 font-light leading-relaxed mb-6">
               Decoded via Jaimini Darakaraka, Venus dignity, and Navamsa (D9) ascendant traits.
             </p>
             <div className="text-xs font-cinzel uppercase tracking-widest font-semibold text-[#D4AF37] flex items-center gap-1.5">
-              <span>{selectedPath === 'person' ? 'Selected Path' : 'Select Inquiry'}</span>
+              <span>{selectedPath === 'person' ? '✓ Path Selected' : 'Choose Path'}</span>
               <span>→</span>
             </div>
           </button>
 
         </div>
 
-        {/* Primary Download / Consultation CTA */}
+        {/* Primary Download / Consultation CTA (Exact Vaya Text: Consult On Astrowithin) */}
         <Link
           to="/download"
-          className="px-10 py-5 bg-[#1E3A5F] dark:bg-[#D4AF37] text-white dark:text-[#111217] font-semibold text-xs uppercase tracking-[0.2em] font-cinzel shadow-xl hover:opacity-90 transition-all border border-[#D4AF37]"
+          className="px-10 py-5 bg-[#1E3A5F] dark:bg-[#D4AF37] text-white dark:text-[#111217] font-semibold text-xs uppercase tracking-[0.2em] font-cinzel shadow-xl hover:opacity-90 transition-all border border-[#D4AF37] flex items-center gap-3"
         >
-          Begin Classical Consultation →
+          <span>Consult On Astrowithin</span>
+          <svg className="w-4 h-4 text-[#D4AF37] dark:text-[#111217]" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+          </svg>
         </Link>
 
-        <span className="text-[10px] uppercase tracking-widest font-cinzel opacity-60 mt-6 block">
+        {/* Subtext (Exact Vaya Subtext) */}
+        <p className="mt-6 text-xs font-cinzel opacity-75 max-w-md">
+          Our classically trained masters will analyze your D9 Navamsa and Vimshottari period directly on the app.
+        </p>
+
+        <span className="text-[10px] uppercase tracking-widest font-cinzel opacity-50 mt-4 block">
           Available on iOS App Store & Google Play Store · 10L+ Consultations Completed
         </span>
 

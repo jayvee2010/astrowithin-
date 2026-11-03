@@ -28,65 +28,67 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* Column 1: Astrology */}
+        {/* Column 1: Astrology (Exact Vaya Directory Links) */}
         <div>
           <h4 className="font-cinzel font-semibold text-xs uppercase tracking-widest text-[#D4AF37] mb-4">
-            Astrology Disciplines
+            Astrology
           </h4>
           <ul className="space-y-2.5 text-xs opacity-75 font-light">
-            <li><Link to="/blog" className="hover:text-[#D4AF37] transition-colors">Journal & Blog</Link></li>
-            <li><Link to="/astrology/houses" className="hover:text-[#D4AF37] transition-colors">Houses (12 Bhavas)</Link></li>
+            <li><Link to="/blog" className="hover:text-[#D4AF37] transition-colors">Blog</Link></li>
+            <li><Link to="/astrology/houses" className="hover:text-[#D4AF37] transition-colors">Houses (Bhavas)</Link></li>
             <li><Link to="/astrology/planets" className="hover:text-[#D4AF37] transition-colors">Planets (Navagrahas)</Link></li>
             <li><Link to="/astrology/transits" className="hover:text-[#D4AF37] transition-colors">Transits (Gochara)</Link></li>
-            <li><Link to="/astrology/nakshatras" className="hover:text-[#D4AF37] transition-colors">Nakshatras (27 Lunar Mansions)</Link></li>
+            <li><Link to="/astrology/nakshatras" className="hover:text-[#D4AF37] transition-colors">Nakshatras (27 Stars)</Link></li>
             <li><Link to="/astrology/zodiac-signs" className="hover:text-[#D4AF37] transition-colors">Signs (12 Rashis)</Link></li>
-            <li><Link to="/astrology/yogas" className="hover:text-[#D4AF37] transition-colors">Yogas (Planetary Combinations)</Link></li>
+            <li><Link to="/astrology/yogas" className="hover:text-[#D4AF37] transition-colors">Yogas (Auspicious Combinations)</Link></li>
+            <li><Link to="/wiki" className="hover:text-[#D4AF37] transition-colors">Wiki & Knowledgebase</Link></li>
           </ul>
         </div>
 
-        {/* Column 2: Popular Calculators */}
+        {/* Column 2: Popular Tools (Exact Vaya Directory Links) */}
         <div>
           <h4 className="font-cinzel font-semibold text-xs uppercase tracking-widest text-[#D4AF37] mb-4">
-            Classical Tools
+            Popular Tools
           </h4>
           <ul className="space-y-2.5 text-xs opacity-75 font-light">
             <li><Link to="/tools/marriage-prediction" className="hover:text-[#D4AF37] transition-colors">Marriage Prediction</Link></li>
-            <li><Link to="/tools/kundli-matching" className="hover:text-[#D4AF37] transition-colors">Ashtakoota Kundli Matching</Link></li>
-            <li><Link to="/tools/premium-kundli" className="hover:text-[#D4AF37] transition-colors">Birth Chart (Janam Kundli)</Link></li>
-            <li><Link to="/tools/dasha-calculator" className="hover:text-[#D4AF37] transition-colors">Vimshottari Dasha</Link></li>
+            <li><Link to="/tools/kundli-matching" className="hover:text-[#D4AF37] transition-colors">Kundli Matching</Link></li>
+            <li><Link to="/tools/premium-kundli" className="hover:text-[#D4AF37] transition-colors">Birth Chart</Link></li>
+            <li><Link to="/tools/dasha-calculator" className="hover:text-[#D4AF37] transition-colors">Dasha Calculator</Link></li>
             <li><Link to="/tools/navamsa" className="hover:text-[#D4AF37] transition-colors">Navamsa (D9)</Link></li>
-            <li><Link to="/tools/career-prediction" className="hover:text-[#D4AF37] transition-colors">Dashamsha (D10) Career</Link></li>
-            <li><Link to="/tools/rashi-calculator" className="hover:text-[#D4AF37] transition-colors">Moon Sign & Nakshatra</Link></li>
+            <li><Link to="/tools/atmakaraka-darakaraka-calculator" className="hover:text-[#D4AF37] transition-colors">Darakaraka</Link></li>
+            <li><Link to="/tools/panchang" className="hover:text-[#D4AF37] transition-colors">Panchang</Link></li>
           </ul>
         </div>
 
-        {/* Column 3: Company & Ethics */}
+        {/* Column 3: Company (Exact Vaya Directory Links) */}
         <div>
           <h4 className="font-cinzel font-semibold text-xs uppercase tracking-widest text-[#D4AF37] mb-4">
-            Parampara & Trust
+            Company
           </h4>
           <ul className="space-y-2.5 text-xs opacity-75 font-light">
-            <li><Link to="/about" className="hover:text-[#D4AF37] transition-colors">About Astrowithin</Link></li>
-            <li><Link to="/experts" className="hover:text-[#D4AF37] transition-colors">Verified Astrologers</Link></li>
-            <li><Link to="/ethics" className="hover:text-[#D4AF37] transition-colors">Consultation Ethics</Link></li>
-            <li><Link to="/careers" className="hover:text-[#D4AF37] transition-colors">Join as Scholar</Link></li>
-            <li><Link to="/contact" className="hover:text-[#D4AF37] transition-colors">Contact Support</Link></li>
-            <li><Link to="/privacy" className="hover:text-[#D4AF37] transition-colors">Privacy Policy</Link></li>
+            <li><Link to="/experts" className="hover:text-[#D4AF37] transition-colors">Experts</Link></li>
+            <li><Link to="/contact" className="hover:text-[#D4AF37] transition-colors">Contact</Link></li>
+            <li><Link to="/press" className="hover:text-[#D4AF37] transition-colors">Press</Link></li>
+            <li><Link to="/contact" className="hover:text-[#D4AF37] transition-colors">Hiring</Link></li>
             <li><Link to="/terms" className="hover:text-[#D4AF37] transition-colors">Terms of Service</Link></li>
+            <li><Link to="/privacy" className="hover:text-[#D4AF37] transition-colors">Privacy Policy</Link></li>
+            <li><Link to="/refund-policy" className="hover:text-[#D4AF37] transition-colors">Refund Policy</Link></li>
           </ul>
         </div>
 
       </div>
 
-      {/* Bottom Copyright */}
-      <div className="max-w-7xl mx-auto pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-cinzel uppercase tracking-[0.2em] opacity-60">
+      {/* Bottom Copyright & App Store Links (Exact Vaya Footer Elements) */}
+      <div className="max-w-7xl mx-auto pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-cinzel opacity-70">
         <div>
-          © 2026 ASTROWITHIN · Classical Parashari Jyotish Parampara
+          © 2026 Astrowithin. All rights reserved. Classically grounded in Parashara Hora.
         </div>
-        <div className="flex items-center gap-6">
-          <a href="#privacy" className="hover:opacity-100">Privacy</a>
-          <a href="#terms" className="hover:opacity-100">Terms</a>
-          <a href="#ethics" className="hover:opacity-100">Academic Ethics</a>
+        <div className="flex items-center gap-6 text-[#D4AF37]">
+          <Link to="/download" className="hover:underline">App Store</Link>
+          <Link to="/download" className="hover:underline">Google Play</Link>
+          <a href="https://x.com" target="_blank" rel="noreferrer" className="hover:underline">Twitter/X</a>
+          <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:underline">Instagram</a>
         </div>
       </div>
     </footer>

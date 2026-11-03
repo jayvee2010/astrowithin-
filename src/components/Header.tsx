@@ -35,53 +35,57 @@ export const Header: React.FC = () => {
           </div>
         </Link>
 
-        {/* Center: Editorial Navigation Links */}
+        {/* Center: Inked Astrolabe Celestial Navigation Tabs (Exact Vaya Tabs: Blog, Tools, Signs, Nakshatras) */}
         <nav
           aria-label="Main Navigation"
-          className="hidden md:flex items-center gap-8 text-xs uppercase tracking-[0.2em] font-cinzel opacity-80"
+          className="hidden md:flex items-center gap-7 text-xs uppercase tracking-[0.2em] font-cinzel opacity-80"
         >
-          <a
-            href="#chakras"
+          <Link
+            to="/blog"
             className="hover:opacity-100 hover:text-[#D4AF37] transition-all flex items-center gap-1.5"
           >
             <svg viewBox="0 0 24 24" className="w-2.5 h-2.5 text-[#D4AF37]" fill="currentColor">
               <path d="M12 0L14 9L23 12L14 15L12 24L10 15L1 12L10 9Z"/>
             </svg>
-            <span>Chakras & Rashis</span>
-          </a>
-          <a
-            href="#consultants"
-            className="hover:opacity-100 hover:text-[#D4AF37] transition-all"
-          >
-            Consultants
-          </a>
-          <a
-            href="#pillars"
-            className="hover:opacity-100 hover:text-[#D4AF37] transition-all"
-          >
-            Five Pillars
-          </a>
+            <span>Blog</span>
+          </Link>
+
+          <span className="text-[#D4AF37]/40 text-xs select-none">·</span>
+
           <Link
             to="/tools"
-            className="hover:opacity-100 hover:text-[#D4AF37] transition-all"
+            className="hover:opacity-100 hover:text-[#D4AF37] transition-all flex items-center gap-1.5"
           >
-            Classical Tools
+            <span>Tools</span>
           </Link>
+
+          <span className="text-[#D4AF37]/40 text-xs select-none">·</span>
+
           <Link
-            to="/blog"
-            className="hover:opacity-100 hover:text-[#D4AF37] transition-all"
+            to="/astrology/zodiac-signs"
+            className="hover:opacity-100 hover:text-[#D4AF37] transition-all flex items-center gap-1.5"
           >
-            Journal
+            <span>Signs</span>
+          </Link>
+
+          <span className="text-[#D4AF37]/40 text-xs select-none">·</span>
+
+          <Link
+            to="/astrology/nakshatras"
+            className="hover:opacity-100 hover:text-[#D4AF37] transition-all flex items-center gap-1.5"
+          >
+            <span>Nakshatras</span>
           </Link>
         </nav>
 
-        {/* Right: Theme Toggle & Download CTA */}
-        <div className="flex items-center gap-5">
+        {/* Right: Theme Toggle, Scan to Download QR, and Download CTA */}
+        <div className="flex items-center gap-4 sm:gap-6">
           {/* Light / Dark Mode Toggle Button */}
           <button
             onClick={toggleTheme}
             aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
-            className="flex items-center gap-2 px-3 py-1.5 rounded border border-[#D4AF37]/50 text-xs font-cinzel uppercase tracking-widest hover:border-[#D4AF37] transition-colors bg-black/5 dark:bg-white/5"
+            title={`Switch to ${isDark ? 'light' : 'dark'} mode`}
+            className="flex items-center gap-2 px-3 py-1.5 border border-[#D4AF37]/50 text-xs font-cinzel uppercase tracking-widest hover:border-[#D4AF37] transition-colors bg-black/5 dark:bg-white/5"
           >
             {isDark ? (
               <>
@@ -108,13 +112,28 @@ export const Header: React.FC = () => {
             )}
           </button>
 
-          {/* Download App CTA */}
+          {/* "Scan to download" QR Capsule with Popover (Exact Vaya Feature) */}
           <button
-            onClick={() => setShowQr(true)}
-            className="text-xs uppercase tracking-[0.2em] font-cinzel font-semibold pb-1 border-b-2 border-[#D4AF37] text-[#D4AF37] hover:opacity-75 transition-opacity"
+            onClick={() => setShowQr(!showQr)}
+            className="hidden sm:flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-cinzel opacity-75 hover:opacity-100 hover:text-[#D4AF37] transition-all"
           >
-            Download App →
+            <span>Scan to download</span>
+            <svg className="w-3.5 h-3.5 text-[#D4AF37]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <rect x="3" y="3" width="7" height="7" strokeWidth="1.8" />
+              <rect x="14" y="3" width="7" height="7" strokeWidth="1.8" />
+              <rect x="14" y="14" width="7" height="7" strokeWidth="1.8" />
+              <rect x="3" y="14" width="7" height="7" strokeWidth="1.8" />
+            </svg>
           </button>
+
+          {/* Download App CTA (Exact Vaya Text: Download) */}
+          <Link
+            to="/download"
+            className="px-5 py-2.5 bg-[#1E3A5F] dark:bg-[#D4AF37] text-white dark:text-[#111217] text-xs uppercase tracking-[0.2em] font-cinzel font-semibold hover:opacity-90 transition-all shadow-sm border border-[#D4AF37] flex items-center gap-1.5"
+          >
+            <span>Download</span>
+            <span className="text-[#D4AF37] dark:text-[#111217]">↓</span>
+          </Link>
 
           {/* Mobile Menu Hamburger */}
           <button
@@ -134,33 +153,28 @@ export const Header: React.FC = () => {
 
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Drawer (Exact Vaya Tabs: Blog, Tools, Signs, Nakshatras) */}
       {mobileMenuOpen && (
         <div className="md:hidden border-t border-[#E2DDD4] dark:border-white/10 px-6 py-6 bg-[#FAF7F2] dark:bg-[#111217] flex flex-col gap-5 text-sm uppercase tracking-[0.18em] font-cinzel">
-          <a href="#chakras" onClick={() => setMobileMenuOpen(false)} className="py-2 border-b border-current/10">
-            Chakras & Rashis
-          </a>
-          <a href="#consultants" onClick={() => setMobileMenuOpen(false)} className="py-2 border-b border-current/10">
-            Consultants
-          </a>
-          <a href="#pillars" onClick={() => setMobileMenuOpen(false)} className="py-2 border-b border-current/10">
-            Five Pillars
-          </a>
-          <Link to="/tools" onClick={() => setMobileMenuOpen(false)} className="py-2 border-b border-current/10">
-            Classical Tools
-          </Link>
           <Link to="/blog" onClick={() => setMobileMenuOpen(false)} className="py-2 border-b border-current/10">
-            Journal
+            Blog
           </Link>
-          <button
-            onClick={() => {
-              setMobileMenuOpen(false);
-              setShowQr(true);
-            }}
-            className="py-3 px-4 bg-[#1E3A5F] text-white text-center font-bold tracking-widest mt-2"
+          <Link to="/tools" onClick={() => setMobileMenuOpen(false)} className="py-2 border-b border-current/10">
+            Tools
+          </Link>
+          <Link to="/astrology/zodiac-signs" onClick={() => setMobileMenuOpen(false)} className="py-2 border-b border-current/10">
+            Signs
+          </Link>
+          <Link to="/astrology/nakshatras" onClick={() => setMobileMenuOpen(false)} className="py-2 border-b border-current/10">
+            Nakshatras
+          </Link>
+          <Link
+            to="/download"
+            onClick={() => setMobileMenuOpen(false)}
+            className="py-3 px-4 bg-[#1E3A5F] dark:bg-[#D4AF37] text-white dark:text-[#111217] text-center font-bold tracking-widest mt-2 border border-[#D4AF37]"
           >
-            Download Application →
-          </button>
+            Download App ↓
+          </Link>
         </div>
       )}
 

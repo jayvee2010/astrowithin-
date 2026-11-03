@@ -13,31 +13,34 @@ export const ExpertsSection: React.FC = () => {
     >
       <div className="max-w-7xl mx-auto">
         
-        {/* Section Header: Open Editorial Pacing (NO CARDS) */}
+        {/* Section Header: Exact Vaya Headline & Pacing (NO CARDS) */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[#E2DDD4] dark:border-white/10">
           <div>
-            <span className="text-[10px] uppercase tracking-[0.3em] font-cinzel opacity-60 block mb-2">
-              01 · Parampara Lineage & Scholarship
-            </span>
+            <div className="text-[10px] uppercase tracking-[0.3em] font-cinzel opacity-70 mb-2 flex items-center gap-2">
+              <svg viewBox="0 0 24 24" className="w-3 h-3 text-[#D4AF37]" fill="currentColor">
+                <path d="M12 0L14 9L23 12L14 15L12 24L10 15L1 12L10 9Z"/>
+              </svg>
+              <span>Svadhisthana · Sacral Resonance · Lineage Astrologers</span>
+            </div>
             <h2 className="font-cormorant text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight">
-              Classically trained scholars. <br />
+              Understand your <br className="hidden sm:inline" />
               <span className="italic text-[#1E3A5F] dark:text-[#E5B869] transition-colors">
-                Understand your married life & timing.
+                married life.
               </span>
             </h2>
           </div>
           <p className="text-xs max-w-sm opacity-75 font-light mt-4 md:mt-0 leading-relaxed">
-            Classically trained astrologers with 15+ years of clinical consultation. Rigorously vetted scholars grounded in Parashari Hora and Jaimini synastry.
+            Vetted scholars with decades of lineage-based practice in Parashari Hora and Jaimini synastry.
           </p>
         </div>
 
         {/* Open 3-Column Roster: Zero Container Boxes */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
-          {EXPERTS.slice(0, 6).map((expert, idx) => {
+          {EXPERTS.map((expert, idx) => {
             const accentColor = jewelAccents[idx % jewelAccents.length];
             return (
               <article key={expert.id} className="flex flex-col group">
-                {/* Duotone Archival Portrait sitting on canvas */}
+                {/* Duotone Archival Portrait sitting directly on canvas */}
                 <div 
                   className="aspect-[4/5] bg-neutral-200 dark:bg-neutral-800 overflow-hidden mb-6 filter grayscale contrast-125 group-hover:grayscale-0 transition-all duration-500 border-b-2"
                   style={{ borderColor: accentColor }}
@@ -51,24 +54,34 @@ export const ExpertsSection: React.FC = () => {
                 </div>
 
                 {/* Lineage & Experience Tag (No Pill Box) */}
-                <span 
-                  className="text-[10px] uppercase tracking-[0.2em] font-cinzel font-semibold mb-1 block"
-                  style={{ color: accentColor }}
-                >
-                  {expert.experience} · {expert.city}
-                </span>
+                <div className="flex items-center justify-between mb-1">
+                  <span 
+                    className="text-[10px] uppercase tracking-[0.2em] font-cinzel font-semibold"
+                    style={{ color: accentColor }}
+                  >
+                    {expert.experience} Experience
+                  </span>
+                  <span className="text-[10px] opacity-60 font-cinzel">
+                    {expert.city}
+                  </span>
+                </div>
 
                 {/* Scholar Name */}
                 <h3 className="font-cormorant text-2xl font-bold tracking-tight mb-1 group-hover:text-[#D4AF37] transition-colors">
                   {expert.name}
                 </h3>
 
-                {/* Institutional Lineage */}
-                <span className="text-[11px] font-cinzel opacity-60 block mb-3">
-                  {expert.lineage}
+                {/* Specialty */}
+                <span className="text-xs italic font-cormorant text-[#D9822B] dark:text-[#E5B869] block mb-1">
+                  {expert.specialty}
                 </span>
 
-                {/* Bio / Specialty */}
+                {/* Lineage Accreditation */}
+                <span className="text-[11px] font-cinzel opacity-60 block mb-3 border-b border-[#E2DDD4]/50 dark:border-white/10 pb-2">
+                  Lineage: {expert.lineage}
+                </span>
+
+                {/* Bio */}
                 <p className="text-xs opacity-75 font-light leading-relaxed mb-6 flex-1">
                   {expert.bio}
                 </p>
@@ -76,10 +89,10 @@ export const ExpertsSection: React.FC = () => {
                 {/* Action Link (Clean Typographic Text Link) */}
                 <Link
                   to={`/experts/${expert.id}`}
-                  className="text-xs uppercase tracking-[0.2em] font-cinzel font-semibold opacity-90 hover:opacity-100 transition-opacity flex items-center gap-1.5 mt-auto pt-4 border-t border-[#E2DDD4]/50 dark:border-white/10"
+                  className="text-xs uppercase tracking-[0.2em] font-cinzel font-semibold opacity-90 hover:opacity-100 transition-opacity flex items-center justify-between mt-auto pt-4 border-t border-[#E2DDD4]/50 dark:border-white/10"
                   style={{ color: accentColor }}
                 >
-                  <span>Consult Scholar</span>
+                  <span>View Consultation Profile</span>
                   <span>→</span>
                 </Link>
               </article>

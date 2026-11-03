@@ -31,7 +31,7 @@ export const HeroSection: React.FC = () => {
     >
       <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         
-        {/* Left Column: Monumental Headline & Narrative */}
+        {/* Left Column: Monumental Headline & Narrative (Exact Vaya Text & Elements) */}
         <div className="lg:col-span-7 flex flex-col items-start text-left">
           
           {/* Unboxed Typographic Kicker with Fine-Line Gold 8-Point Compass Star (NO EMOJIS) */}
@@ -39,38 +39,68 @@ export const HeroSection: React.FC = () => {
             <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-[#D4AF37]" fill="currentColor">
               <path d="M12 0L14 9L23 12L14 15L12 24L10 15L1 12L10 9Z"/>
             </svg>
-            <span>{consultations}L+ Consultations Completed · 4.5 Verified Rating</span>
+            <span>Muladhara · Grounded in Classical Parashara Hora</span>
           </div>
 
-          {/* Monumental Display Headline */}
+          {/* Monumental Display Headline (Exact Vaya Headline) */}
           <h1 className="font-cormorant text-4xl sm:text-5xl md:text-6xl font-normal leading-[1.1] tracking-tight">
-            Consult classically trained <br />
-            <span className="italic font-medium text-[#1E3A5F] dark:text-[#E5B869] transition-colors">
-              Parashari astrologers.
-            </span>
+            Consult <span className="italic font-medium text-[#1E3A5F] dark:text-[#E5B869] transition-colors">Classically trained</span> <br className="hidden sm:inline" />
+            Parashari astrologers
           </h1>
 
-          {/* Scholarly Narrative Paragraph */}
-          <p className="mt-8 text-base sm:text-lg opacity-80 font-light leading-relaxed max-w-xl">
-            Traditional Vedic clarity on marriage, partnership, and life timing—derived from mathematical birth charts and planetary dashas without superstition or algorithmic approximations.
+          {/* Scholarly Narrative Paragraph (Exact Vaya Subtitle) */}
+          <p className="mt-6 text-base sm:text-lg opacity-80 font-light leading-relaxed max-w-xl">
+            Traditional Vedic clarity on marriage, love, career and life timing—derived from genuine birth charts and planetary dashas without superstition.
           </p>
 
-          {/* Direct Non-Boxed Actions */}
-          <div className="mt-10 flex flex-wrap items-center gap-8 text-xs uppercase tracking-[0.2em] font-cinzel">
+          {/* Direct Non-Boxed Actions (Exact Vaya CTAs) */}
+          <div className="mt-8 flex flex-wrap items-center gap-6 text-xs uppercase tracking-[0.2em] font-cinzel">
             <Link
               to="/download"
               className="px-8 py-4 bg-[#1E3A5F] dark:bg-[#D4AF37] text-white dark:text-[#111217] font-semibold hover:opacity-90 transition-all shadow-md flex items-center gap-2.5 border border-[#D4AF37]"
             >
-              <span>Get Free Consultation</span>
-              <span className="text-[#D4AF37] dark:text-[#111217]">→</span>
+              <span>Download app</span>
+              <svg className="w-4 h-4 text-[#D4AF37] dark:text-[#111217]" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/>
+              </svg>
             </Link>
             <a
               href="#consultants"
               className="opacity-75 hover:opacity-100 transition-opacity flex items-center gap-2 border-b border-current pb-1"
             >
-              <span>Explore Lineage</span>
+              <span>Meet the Astrologers</span>
               <span>↓</span>
             </a>
+          </div>
+
+          {/* Dedicated Stats Display (Exact Vaya Dual Stats: 10L+ & 4.5 Stars) */}
+          <div className="mt-12 pt-8 border-t border-[#E2DDD4] dark:border-white/10 grid grid-cols-2 gap-8 w-full max-w-md">
+            <div>
+              <div className="font-cormorant text-3xl sm:text-4xl font-bold text-[#D4AF37]">
+                {consultations}L+
+              </div>
+              <div className="text-[10px] uppercase tracking-widest font-cinzel opacity-70 mt-1">
+                Consultations Completed
+              </div>
+            </div>
+
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="font-cormorant text-3xl sm:text-4xl font-bold text-[#D4AF37]">
+                  4.5
+                </span>
+                <div className="flex text-[#D9822B]">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                    </svg>
+                  ))}
+                </div>
+              </div>
+              <div className="text-[10px] uppercase tracking-widest font-cinzel opacity-70 mt-1">
+                Rating, App Store & Play Store
+              </div>
+            </div>
           </div>
         </div>
 
