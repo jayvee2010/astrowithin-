@@ -67,56 +67,56 @@ export const TrustSection: React.FC = () => {
     <section
       id="trust"
       aria-label="Astrowithin Trust & Accreditations"
-      className="px-6 sm:px-12 py-20 border-b border-[#E2DDD4] dark:border-white/10 transition-colors"
+      className="px-6 sm:px-12 py-24 border-b border-[#EAE6DF] dark:border-white/10 transition-colors"
     >
       <div className="max-w-7xl mx-auto">
         
-        {/* Section Header */}
+        {/* Section Header (Option 1 Vaya Clean Tech Header) */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="text-[10px] uppercase tracking-[0.3em] font-cinzel text-[#D4AF37] mb-3 flex items-center justify-center gap-2">
-            <svg viewBox="0 0 24 24" className="w-3 h-3 text-[#D4AF37]" fill="currentColor">
+          <div className="text-xs uppercase tracking-[0.25em] font-sans font-bold text-[#B88E3E] dark:text-[#E5B869] mb-3 flex items-center justify-center gap-2">
+            <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-[#B88E3E] dark:text-[#E5B869]" fill="currentColor">
               <path d="M12 0L14 9L23 12L14 15L12 24L10 15L1 12L10 9Z"/>
             </svg>
             <span>Vishuddha · Throat Center of Truth & Lineage</span>
           </div>
 
-          <h2 className="font-cormorant text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight">
+          <h2 className="font-cormorant text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
             Built on classical authority, <br />
-            <span className="italic text-[#1E3A5F] dark:text-[#E5B869] transition-colors">
+            <span className="italic font-normal text-[#B88E3E] dark:text-[#E5B869]">
               rigorous scholarship, and verified lineage.
             </span>
           </h2>
 
-          <p className="mt-4 opacity-80 text-sm sm:text-base font-light leading-relaxed">
+          <p className="text-base sm:text-lg text-[#5A5650] dark:text-[#A09D94] font-normal leading-relaxed">
             Every consultation adheres strictly to Brihat Parashara Hora Shastra, Jaimini Sutras, and authenticated ephemeris data.
           </p>
         </div>
 
-        {/* 1. Diverse Specialisation: Interactive Constellations */}
-        <div className="mb-20 pb-16 border-b border-[#E2DDD4] dark:border-white/10">
-          <div className="text-xs uppercase tracking-[0.25em] font-cinzel text-[#D4AF37] text-center mb-10">
+        {/* 1. Diverse Specialisation: Interactive Constellations in Clean White Cards */}
+        <div className="mb-20 pb-16 border-b border-[#EAE6DF] dark:border-white/10">
+          <div className="text-xs uppercase tracking-[0.25em] font-sans font-bold text-[#B88E3E] dark:text-[#E5B869] text-center mb-10">
             Diverse Specialisation
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {specialisations.map((spec) => {
               const isActive = activeConstellation === spec.id;
               return (
                 <div
                   key={spec.id}
                   onClick={() => setActiveConstellation(spec.id)}
-                  className={`cursor-pointer p-6 border transition-all duration-300 flex flex-col items-center text-center ${
+                  className={`cursor-pointer p-7 rounded-2xl bg-white dark:bg-[#1A1C20] border transition-all duration-300 flex flex-col items-center text-center shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 ${
                     isActive
-                      ? 'border-[#D4AF37] bg-[#D4AF37]/10 dark:bg-[#D4AF37]/15 shadow-lg'
-                      : 'border-[#E2DDD4] dark:border-white/10 hover:border-[#D4AF37]/50'
+                      ? 'border-[#B88E3E] ring-2 ring-[#B88E3E]/20'
+                      : 'border-[#EAE6DF] dark:border-white/10 hover:border-[#B88E3E]/60'
                   }`}
                 >
-                  {/* Constellation SVG Diagram with Fine-Line Gold Stars */}
-                  <svg viewBox="0 0 100 100" className="w-24 h-24 text-[#D4AF37] mb-4">
+                  {/* Constellation SVG Diagram with Fine-Line Stars */}
+                  <svg viewBox="0 0 100 100" className="w-24 h-24 text-[#B88E3E] mb-4">
                     <polyline
                       points={spec.stars.map((s) => `${s.x},${s.y}`).join(' ')}
                       fill="none"
-                      stroke={isActive ? '#D4AF37' : 'currentColor'}
+                      stroke={isActive ? '#B88E3E' : 'currentColor'}
                       strokeWidth={isActive ? '1.8' : '1'}
                       strokeDasharray={isActive ? 'none' : '3 3'}
                       opacity={isActive ? 1 : 0.4}
@@ -126,24 +126,19 @@ export const TrustSection: React.FC = () => {
                         key={i}
                         cx={s.x}
                         cy={s.y}
-                        r={isActive ? 3.5 : 2}
-                        fill={spec.accent}
-                        stroke="#D4AF37"
-                        strokeWidth={0.8}
+                        r={isActive ? 3.5 : 2.5}
+                        fill={isActive ? '#B88E3E' : '#827E76'}
                       />
                     ))}
                   </svg>
 
-                  <div 
-                    className="text-[10px] font-cinzel uppercase tracking-widest font-semibold mb-1"
-                    style={{ color: spec.accent }}
-                  >
+                  <div className="text-[10px] font-sans uppercase tracking-widest font-bold text-[#B88E3E] dark:text-[#E5B869] mb-1">
                     {spec.sanskrit}
                   </div>
-                  <h3 className="font-cormorant font-bold text-xl mb-2">
+                  <h3 className="font-cormorant font-bold text-2xl mb-2">
                     {spec.name}
                   </h3>
-                  <p className="text-xs opacity-75 font-light leading-relaxed">
+                  <p className="text-xs text-[#5A5650] dark:text-[#A09D94] font-normal leading-relaxed">
                     {spec.details}
                   </p>
                 </div>
@@ -152,38 +147,38 @@ export const TrustSection: React.FC = () => {
           </div>
         </div>
 
-        {/* 2. Accredited Astrologers: 4 Premier Jyotish Councils */}
-        <div className="mb-20 pb-16 border-b border-[#E2DDD4] dark:border-white/10">
-          <div className="text-xs uppercase tracking-[0.25em] font-cinzel text-[#D4AF37] text-center mb-10">
+        {/* 2. Accredited Astrologers: 4 Premier Jyotish Councils in Clean White Cards */}
+        <div className="mb-20 pb-16 border-b border-[#EAE6DF] dark:border-white/10">
+          <div className="text-xs uppercase tracking-[0.25em] font-sans font-bold text-[#B88E3E] dark:text-[#E5B869] text-center mb-10">
             Accredited Astrologers · Premier Jyotish Councils
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
             {ACCREDITATIONS.map((acc) => (
               <div
                 key={acc.id}
-                className="p-6 border border-[#E2DDD4] dark:border-white/10 flex flex-col items-center justify-between text-center hover:border-[#D4AF37] transition-all"
+                className="p-7 rounded-2xl bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] flex flex-col items-center justify-between text-center hover:border-[#B88E3E] hover:-translate-y-1 transition-all"
               >
                 {/* Astrolabe Circular Stamp */}
-                <div className="w-16 h-16 rounded-full border border-[#D4AF37] flex items-center justify-center p-2 mb-4 bg-[#FAF7F2] dark:bg-[#161720]">
-                  <span className="font-cormorant font-bold text-xl text-[#D4AF37]">
+                <div className="w-16 h-16 rounded-full border border-[#B88E3E] flex items-center justify-center p-2 mb-4 bg-neutral-50 dark:bg-white/5">
+                  <span className="font-cormorant font-bold text-xl text-[#B88E3E] dark:text-[#E5B869]">
                     {acc.abbreviation}
                   </span>
                 </div>
 
-                <div className="text-[10px] font-cinzel uppercase tracking-widest font-semibold text-[#D9822B] mb-1">
+                <div className="text-[10px] font-sans uppercase tracking-widest font-bold text-[#B88E3E] dark:text-[#E5B869] mb-1">
                   {acc.badgeText}
                 </div>
 
-                <h4 className="font-cormorant font-bold text-lg mb-2">
+                <h4 className="font-cormorant font-bold text-xl mb-2">
                   {acc.name}
                 </h4>
 
-                <p className="text-xs opacity-75 font-light leading-relaxed mb-4 flex-1">
+                <p className="text-xs text-[#5A5650] dark:text-[#A09D94] font-normal leading-relaxed mb-4 flex-1">
                   {acc.description}
                 </p>
 
-                <div className="text-[10px] font-cinzel uppercase tracking-widest opacity-60">
+                <div className="text-[11px] font-sans uppercase tracking-widest text-[#827E76] font-semibold">
                   Est. {acc.founded}
                 </div>
               </div>
@@ -191,29 +186,29 @@ export const TrustSection: React.FC = () => {
           </div>
         </div>
 
-        {/* 3. Years of Experience Statistics (Exact Vaya Triple Columns) */}
+        {/* 3. Years of Experience Statistics (Option 1 Vaya Triple Columns) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center max-w-4xl mx-auto">
           
           <div className="flex flex-col items-center">
-            <div className="font-cormorant text-5xl sm:text-6xl font-bold text-[#D4AF37] mb-2 leading-none">
+            <div className="font-cormorant text-5xl sm:text-6xl font-bold text-[#B88E3E] dark:text-[#E5B869] mb-2 leading-none">
               10+ Years
             </div>
-            <div className="font-cinzel text-xs uppercase tracking-widest font-semibold text-[#1E3A5F] dark:text-[#E5B869] mb-2">
+            <div className="font-sans text-xs uppercase tracking-widest font-bold mb-2">
               Minimum Experience Vetting
             </div>
-            <p className="text-xs opacity-75 font-light leading-relaxed">
+            <p className="text-xs text-[#5A5650] dark:text-[#A09D94] font-normal leading-relaxed">
               No amateur practitioners. Every astrologer undergoes rigorous chart audits and live case evaluations before accreditation.
             </p>
           </div>
 
-          <div className="flex flex-col items-center border-y md:border-y-0 md:border-x border-[#E2DDD4] dark:border-white/10 py-6 md:py-0 md:px-8">
+          <div className="flex flex-col items-center border-y md:border-y-0 md:border-x border-[#EAE6DF] dark:border-white/10 py-6 md:py-0 md:px-8">
             <div className="font-cormorant text-2xl sm:text-3xl font-bold mb-2 leading-snug">
               Authors and Journal Editors
             </div>
-            <div className="font-cinzel text-xs uppercase tracking-widest font-semibold text-[#D9822B] mb-2">
+            <div className="font-sans text-xs uppercase tracking-widest font-bold text-[#B88E3E] dark:text-[#E5B869] mb-2">
               Published Scholars
             </div>
-            <p className="text-xs opacity-75 font-light leading-relaxed">
+            <p className="text-xs text-[#5A5650] dark:text-[#A09D94] font-normal leading-relaxed">
               Contributors to leading Jyotish journals and authors of authoritative research texts on Vimshottari timing and marriage synastry.
             </p>
           </div>
@@ -222,10 +217,10 @@ export const TrustSection: React.FC = () => {
             <div className="font-cormorant text-2xl sm:text-3xl font-bold mb-2 leading-snug">
               Lecturers at Prestigious Institutes
             </div>
-            <div className="font-cinzel text-xs uppercase tracking-widest font-semibold text-[#1E4334] dark:text-[#34D399] mb-2">
+            <div className="font-sans text-xs uppercase tracking-widest font-bold text-[#B88E3E] dark:text-[#E5B869] mb-2">
               Academic Faculty
             </div>
-            <p className="text-xs opacity-75 font-light leading-relaxed">
+            <p className="text-xs text-[#5A5650] dark:text-[#A09D94] font-normal leading-relaxed">
               Active teachers instructing post-graduate students at ICAS and Bharatiya Vidya Bhavan in classical Hora disciplines.
             </p>
           </div>

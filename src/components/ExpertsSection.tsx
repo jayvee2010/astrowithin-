@@ -7,104 +7,99 @@ export const ExpertsSection: React.FC = () => {
 
   return (
     <section
-      id="consultants"
+      id="experts"
       aria-label="Astrowithin Scholars"
-      className="px-6 sm:px-12 py-20 border-b border-[#E2DDD4] dark:border-white/10 transition-colors"
+      className="px-6 sm:px-12 py-24 border-b border-[#EAE6DF] dark:border-white/10 transition-colors"
     >
       <div className="max-w-7xl mx-auto">
         
-        {/* Section Header: Exact Vaya Headline & Pacing (NO CARDS) */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[#E2DDD4] dark:border-white/10">
+        {/* Section Header: Exact Vaya Headline & Pacing (Option 1 Clean Consumer Tech) */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[#EAE6DF] dark:border-white/10">
           <div>
-            <div className="text-[10px] uppercase tracking-[0.3em] font-cinzel opacity-70 mb-2 flex items-center gap-2">
-              <svg viewBox="0 0 24 24" className="w-3 h-3 text-[#D4AF37]" fill="currentColor">
+            <div className="text-xs uppercase tracking-[0.25em] font-sans font-bold text-[#B88E3E] dark:text-[#E5B869] mb-3 flex items-center gap-2">
+              <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-[#B88E3E] dark:text-[#E5B869]" fill="currentColor">
                 <path d="M12 0L14 9L23 12L14 15L12 24L10 15L1 12L10 9Z"/>
               </svg>
-              <span>Svadhisthana · Sacral Resonance · Lineage Astrologers</span>
+              <span>01 · Lineage Astrologers</span>
             </div>
-            <h2 className="font-cormorant text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight">
+            <h2 className="font-cormorant text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
               Understand your <br className="hidden sm:inline" />
-              <span className="italic text-[#1E3A5F] dark:text-[#E5B869] transition-colors">
+              <span className="italic font-normal text-[#B88E3E] dark:text-[#E5B869]">
                 married life.
               </span>
             </h2>
           </div>
-          <p className="text-xs max-w-sm opacity-75 font-light mt-4 md:mt-0 leading-relaxed">
+          <p className="text-base text-[#5A5650] dark:text-[#A09D94] font-normal max-w-sm mt-4 md:mt-0 leading-relaxed">
             Vetted scholars with decades of lineage-based practice in Parashari Hora and Jaimini synastry.
           </p>
         </div>
 
-        {/* Open 3-Column Roster: Zero Container Boxes */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
-          {EXPERTS.map((expert, idx) => {
-            const accentColor = jewelAccents[idx % jewelAccents.length];
+        {/* Clean 3-Column Card Grid (Option 1 Vaya Consumer Tech Cards) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {EXPERTS.map((expert) => {
             return (
-              <article key={expert.id} className="flex flex-col group">
-                {/* Duotone Archival Portrait sitting directly on canvas */}
-                <div 
-                  className="aspect-[4/5] bg-neutral-200 dark:bg-neutral-800 overflow-hidden mb-6 filter grayscale contrast-125 group-hover:grayscale-0 transition-all duration-500 border-b-2"
-                  style={{ borderColor: accentColor }}
-                >
+              <article 
+                key={expert.id} 
+                className="bg-white dark:bg-[#1A1C20] rounded-3xl border border-[#EAE6DF] dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] overflow-hidden flex flex-col group hover:-translate-y-1 hover:shadow-md transition-all duration-300"
+              >
+                {/* Duotone Archival Portrait */}
+                <div className="w-full h-72 bg-neutral-100 dark:bg-neutral-800 overflow-hidden relative">
                   <img
                     src={expert.avatar}
                     alt={expert.name}
-                    className="w-full h-full object-cover object-top transform group-hover:scale-105 transition-transform duration-700"
+                    className="w-full h-full object-cover object-top filter grayscale contrast-110 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
                     loading="lazy"
                   />
-                </div>
-
-                {/* Lineage & Experience Tag (No Pill Box) */}
-                <div className="flex items-center justify-between mb-1">
-                  <span 
-                    className="text-[10px] uppercase tracking-[0.2em] font-cinzel font-semibold"
-                    style={{ color: accentColor }}
-                  >
+                  <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/90 dark:bg-black/80 backdrop-blur-md text-[10px] font-sans font-bold uppercase tracking-wider text-[#B88E3E] dark:text-[#E5B869] border border-[#EAE6DF] dark:border-white/10 shadow-xs">
                     {expert.experience} Experience
-                  </span>
-                  <span className="text-[10px] opacity-60 font-cinzel">
-                    {expert.city}
-                  </span>
+                  </div>
                 </div>
 
-                {/* Scholar Name */}
-                <h3 className="font-cormorant text-2xl font-bold tracking-tight mb-1 group-hover:text-[#D4AF37] transition-colors">
-                  {expert.name}
-                </h3>
+                {/* Card Content */}
+                <div className="p-7 flex flex-col flex-1">
+                  <div className="text-[11px] text-[#827E76] font-sans uppercase tracking-wider font-semibold mb-1">
+                    {expert.city}
+                  </div>
 
-                {/* Specialty */}
-                <span className="text-xs italic font-cormorant text-[#D9822B] dark:text-[#E5B869] block mb-1">
-                  {expert.specialty}
-                </span>
+                  {/* Scholar Name */}
+                  <h3 className="font-cormorant text-2xl sm:text-3xl font-bold tracking-tight mb-1 group-hover:text-[#B88E3E] transition-colors">
+                    {expert.name}
+                  </h3>
 
-                {/* Lineage Accreditation */}
-                <span className="text-[11px] font-cinzel opacity-60 block mb-3 border-b border-[#E2DDD4]/50 dark:border-white/10 pb-2">
-                  Lineage: {expert.lineage}
-                </span>
+                  {/* Specialty */}
+                  <span className="text-sm italic font-cormorant text-[#B88E3E] dark:text-[#E5B869] block mb-2">
+                    {expert.specialty}
+                  </span>
 
-                {/* Bio */}
-                <p className="text-xs opacity-75 font-light leading-relaxed mb-6 flex-1">
-                  {expert.bio}
-                </p>
+                  {/* Lineage Accreditation */}
+                  <span className="text-xs text-[#827E76] font-medium block mb-4 border-b border-[#EAE6DF] dark:border-white/10 pb-3">
+                    Lineage: {expert.lineage}
+                  </span>
 
-                {/* Action Link (Clean Typographic Text Link) */}
-                <Link
-                  to={`/experts/${expert.id}`}
-                  className="text-xs uppercase tracking-[0.2em] font-cinzel font-semibold opacity-90 hover:opacity-100 transition-opacity flex items-center justify-between mt-auto pt-4 border-t border-[#E2DDD4]/50 dark:border-white/10"
-                  style={{ color: accentColor }}
-                >
-                  <span>View Consultation Profile</span>
-                  <span>→</span>
-                </Link>
+                  {/* Bio */}
+                  <p className="text-sm text-[#5A5650] dark:text-[#A09D94] font-normal leading-relaxed mb-6 flex-1">
+                    {expert.bio}
+                  </p>
+
+                  {/* Action Link (Clean Typographic Text Link) */}
+                  <Link
+                    to={`/experts/${expert.id}`}
+                    className="text-xs uppercase tracking-[0.16em] font-sans font-bold text-[#181716] dark:text-[#F4F1EA] group-hover:text-[#B88E3E] transition-colors flex items-center justify-between pt-4 border-t border-[#EAE6DF] dark:border-white/10 mt-auto"
+                  >
+                    <span>View Consultation Profile</span>
+                    <span>→</span>
+                  </Link>
+                </div>
               </article>
             );
           })}
         </div>
 
         {/* View All Practitioners Link */}
-        <div className="mt-16 text-center pt-8 border-t border-[#E2DDD4] dark:border-white/10">
+        <div className="mt-16 text-center pt-8 border-t border-[#EAE6DF] dark:border-white/10">
           <Link
             to="/experts"
-            className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] font-cinzel font-semibold hover:text-[#D4AF37] transition-colors opacity-80 hover:opacity-100"
+            className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-sans font-bold hover:text-[#B88E3E] transition-colors opacity-80 hover:opacity-100"
           >
             <span>View All Lineage Astrologers ({EXPERTS.length})</span>
             <span>→</span>

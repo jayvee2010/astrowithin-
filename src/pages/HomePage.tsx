@@ -1,7 +1,6 @@
 import React from 'react';
 import { Header } from '../components/Header';
 import { HeroSection } from '../components/HeroSection';
-import { SacredAxisSection } from '../components/SacredAxisSection';
 import { ExpertsSection } from '../components/ExpertsSection';
 import { FreeFeaturesSection } from '../components/FreeFeaturesSection';
 import { FreeToolsSection } from '../components/FreeToolsSection';
@@ -12,38 +11,35 @@ import { Footer } from '../components/Footer';
 
 export const HomePage: React.FC = () => {
   return (
-    <div className="relative min-h-screen bg-[#FAF7F2] dark:bg-[#111217] text-[#181614] dark:text-[#F6ECDD] font-sans-ui selection:bg-[#D4AF37]/30 selection:text-[#181614] dark:selection:text-[#F6ECDD] transition-colors duration-300">
-      {/* 1. Masthead with Astrolabe & Theme Switcher */}
+    <div className="relative min-h-screen bg-[#FAF8F5] dark:bg-[#121316] text-[#181716] dark:text-[#F4F1EA] font-sans selection:bg-[#B88E3E]/20 selection:text-[#181716] dark:selection:text-[#F4F1EA] transition-colors duration-300">
+      {/* 1. Header with App Download Popover & Theme Switcher */}
       <Header />
 
-      {/* 2. Main Page Content (Zero Cards, Zero Container Boxes, Open Broadsheet) */}
+      {/* 2. Main Page Content - Option 1 Authentic Vaya Consumer Tech Architecture */}
       <main className="relative z-10 flex flex-col">
-        {/* Section 1: Hero - Asymmetric Split with Gold Architectural Kundli */}
+        {/* Hero Section: Consumer Tech Split with Live Smartphone Kundli Mockup & Dual Stats */}
         <HeroSection />
 
-        {/* Section 2: Sacred Energy Axis - 7 Chakras & 12 Handcrafted Gold Rashis */}
-        <SacredAxisSection />
-
-        {/* Section 3: 01 · Practitioners Roster - Lineage Astrologers */}
+        {/* Section 01: Practitioners Roster - Verified Senior Jyotish Scholars (3-Column White Cards) */}
         <ExpertsSection />
 
-        {/* Section 4: 02 · Five Pillars of Classical Jyotish (5 Tabs) */}
+        {/* Section 02: Five Pillars of Classical Jyotish (5 Interactive Tabs: Horoscope, Kundli, Partner, Dasha, Past events) */}
         <FreeFeaturesSection />
 
-        {/* Section 5: 03 · Classical Horary & Divisional Tools Directory */}
+        {/* Section 03: Classical Horary & Divisional Tools Directory (7-Tool Bento Grid) */}
         <FreeToolsSection />
 
-        {/* Section 6: 04 · Institutional Trust & Lineage Accreditations */}
+        {/* Section 04: Institutional Trust & Lineage Accreditations (ICAS, BVB, AIFAS, ASI) */}
         <TrustSection />
 
-        {/* Section 7: 05 · Seeker Testimonials */}
+        {/* Section 05: Seeker Testimonials (3-Column Editorial Quotes) */}
         <ReviewsSection />
 
-        {/* Section 8: Final Inquiry Path CTA */}
+        {/* Section 06: Final Inquiry Path CTA ("When will I get married?" / "Is this the right person?") */}
         <FinalCtaSection />
       </main>
 
-      {/* 3. Editorial Footer */}
+      {/* 3. Global Footer with 4-Column Directory */}
       <Footer />
     </div>
   );

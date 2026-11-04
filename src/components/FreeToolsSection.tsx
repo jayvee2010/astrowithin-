@@ -98,80 +98,80 @@ export const FreeToolsSection: React.FC = () => {
     <section
       id="tools"
       aria-label="Astrowithin Classical Tools"
-      className="px-6 sm:px-12 py-20 border-b border-[#E2DDD4] dark:border-white/10 transition-colors"
+      className="px-6 sm:px-12 py-24 border-b border-[#EAE6DF] dark:border-white/10 transition-colors"
     >
       <div className="max-w-7xl mx-auto">
         
         {/* Section Header (Exact Vaya Headline & Subtitle) */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[#E2DDD4] dark:border-white/10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[#EAE6DF] dark:border-white/10">
           <div>
-            <div className="text-[10px] uppercase tracking-[0.3em] font-cinzel opacity-70 mb-2 flex items-center gap-2">
-              <svg viewBox="0 0 24 24" className="w-3 h-3 text-[#D4AF37]" fill="currentColor">
+            <div className="text-xs uppercase tracking-[0.25em] font-sans font-bold text-[#B88E3E] dark:text-[#E5B869] mb-3 flex items-center gap-2">
+              <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-[#B88E3E] dark:text-[#E5B869]" fill="currentColor">
                 <path d="M12 0L14 9L23 12L14 15L12 24L10 15L1 12L10 9Z"/>
               </svg>
-              <span>Free tools · Anahata Heart Mandala · 7 Petals of Wisdom</span>
+              <span>03 · Authentic Client-Side Engines</span>
             </div>
-            <h2 className="font-cormorant text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight">
+            <h2 className="font-cormorant text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
               Tools for <br className="hidden sm:inline" />
-              <span className="italic text-[#1E3A5F] dark:text-[#E5B869] transition-colors">
+              <span className="italic font-normal text-[#B88E3E] dark:text-[#E5B869]">
                 love, marriage & match.
               </span>
             </h2>
           </div>
-          <p className="text-xs max-w-sm opacity-75 font-light mt-4 md:mt-0 leading-relaxed">
+          <p className="text-base text-[#5A5650] dark:text-[#A09D94] font-normal max-w-sm mt-4 md:mt-0 leading-relaxed">
             Authentic client-side Vedic calculations for relationship clarity, planetary timelines, and karmic charts.
           </p>
         </div>
 
-        {/* Broadsheet Directory List: Divided by Clean 1px Hairlines (Zero Bento Boxes) */}
-        <div className="divide-y divide-[#E2DDD4] dark:divide-white/10">
-          {tools.map((tool) => (
-            <Link
-              key={tool.id}
-              to={tool.route}
-              className="py-7 flex flex-col md:flex-row md:items-center justify-between gap-6 group cursor-pointer hover:opacity-85 transition-opacity"
-            >
-              <div className="flex items-baseline gap-6 sm:gap-8">
-                {/* Number */}
-                <span 
-                  className="text-xs font-mono font-bold transition-colors flex-shrink-0"
-                  style={{ color: tool.accent }}
-                >
-                  {tool.num}
-                </span>
-
-                {/* Content */}
+        {/* Clean Bento Card Grid (Option 1 Vaya Consumer Tech Bento Suite) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {tools.map((tool, idx) => {
+            const isWide = idx === 6; // 7th card spans 2 columns on lg
+            return (
+              <Link
+                key={tool.id}
+                to={tool.route}
+                className={`bg-white dark:bg-[#1A1C20] rounded-2xl p-8 border border-[#EAE6DF] dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] flex flex-col justify-between group hover:border-[#B88E3E] hover:-translate-y-1 transition-all duration-300 ${
+                  isWide ? 'lg:col-span-2' : ''
+                }`}
+              >
                 <div>
-                  <div className="flex flex-wrap items-center gap-3 mb-1">
-                    <h3 className="font-cormorant text-2xl sm:text-3xl font-semibold group-hover:text-[#D4AF37] transition-colors">
-                      {tool.name}
-                    </h3>
-                    <span className="text-[10px] uppercase tracking-widest font-cinzel opacity-50">
-                      {tool.sanskrit} · {tool.tag}
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-xs font-mono font-bold text-[#B88E3E] dark:text-[#E5B869]">
+                      {tool.num} / TOOL
+                    </span>
+                    <span className="text-[11px] font-sans uppercase tracking-widest text-[#827E76] font-semibold">
+                      {tool.tag}
                     </span>
                   </div>
-                  <p className="text-xs sm:text-sm opacity-75 font-light max-w-3xl leading-relaxed">
+
+                  <h3 className="font-cormorant text-2xl sm:text-3xl font-bold group-hover:text-[#B88E3E] transition-colors mb-1">
+                    {tool.name}
+                  </h3>
+
+                  <div className="text-xs font-sans text-[#827E76] mb-3">
+                    {tool.sanskrit}
+                  </div>
+
+                  <p className="text-sm text-[#5A5650] dark:text-[#A09D94] font-normal leading-relaxed mb-6">
                     {tool.description}
                   </p>
                 </div>
-              </div>
 
-              {/* Action */}
-              <span 
-                className="text-xs font-cinzel uppercase tracking-[0.2em] font-semibold whitespace-nowrap md:text-right flex items-center gap-1.5 flex-shrink-0"
-                style={{ color: tool.accent }}
-              >
-                <span>{tool.action}</span>
-              </span>
-            </Link>
-          ))}
+                <div className="pt-4 border-t border-[#EAE6DF] dark:border-white/10 flex items-center justify-between text-xs font-sans font-bold uppercase tracking-wider text-[#181716] dark:text-[#F4F1EA] group-hover:text-[#B88E3E] transition-colors mt-auto">
+                  <span>{tool.action}</span>
+                  <span className="group-hover:translate-x-1 transition-transform">→</span>
+                </div>
+              </Link>
+            );
+          })}
         </div>
 
         {/* Explore All Tools Link (Exact Vaya Text) */}
-        <div className="mt-14 text-center pt-8 border-t border-[#E2DDD4] dark:border-white/10">
+        <div className="mt-14 text-center pt-8 border-t border-[#EAE6DF] dark:border-white/10">
           <Link
             to="/tools"
-            className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] font-cinzel font-semibold hover:text-[#D4AF37] transition-colors opacity-80 hover:opacity-100"
+            className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-sans font-bold hover:text-[#B88E3E] transition-colors opacity-80 hover:opacity-100"
           >
             <span>Explore all tools</span>
             <span>→</span>

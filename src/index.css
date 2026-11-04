@@ -3,34 +3,39 @@
 @tailwind utilities;
 
 :root {
-  /* Sacred Mineral Jewels & 24k Gold Tokens */
-  --color-gold: #D4AF37;
-  --color-gold-hover: #E5B869;
-  --color-lapis: #1E3A5F;
-  --color-saffron: #D9822B;
-  --color-emerald: #1E4334;
-  --color-terracotta: #9E2A2B;
-  --color-amethyst: #48284A;
+  /* Option 1: Authentic Vaya Consumer Tech Tokens */
+  --bg-canvas: #FAF8F5;
+  --bg-surface: #FFFFFF;
+  --border-subtle: #EAE6DF;
+  --text-primary: #181716;
+  --text-secondary: #5A5650;
+  --text-muted: #827E76;
+  --accent-gold: #B88E3E;
+  --accent-primary: #181716;
+  --accent-primary-text: #FFFFFF;
+  --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+  --card-shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.03);
 
-  /* Default Light Mode (Sunlit Antique Linen) */
-  --bg-canvas: #FAF7F2;
-  --text-primary: #181614;
-  --text-secondary: #5A5248;
-  --text-muted: #8C8274;
-  --border-hairline: #E2DDD4;
-  color: #181614;
-  background-color: #FAF7F2;
+  color: #181716;
+  background-color: #FAF8F5;
 }
 
 html.dark {
-  /* Dark Mode (Deep Velvet Midnight Charcoal) */
-  --bg-canvas: #111217;
-  --text-primary: #F6ECDD;
-  --text-secondary: #A69E92;
-  --text-muted: #736B61;
-  --border-hairline: rgba(255, 255, 255, 0.1);
-  color: #F6ECDD;
-  background-color: #111217;
+  /* Option 1 Dark Mode (Deep Velvet Charcoal) */
+  --bg-canvas: #121316;
+  --bg-surface: #1A1C20;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --text-primary: #F4F1EA;
+  --text-secondary: #A09D94;
+  --text-muted: #726F67;
+  --accent-gold: #E5B869;
+  --accent-primary: #F4F1EA;
+  --accent-primary-text: #121316;
+  --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  --card-shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.6);
+
+  color: #F4F1EA;
+  background-color: #121316;
 }
 
 body {
@@ -39,8 +44,10 @@ body {
   padding: 0;
   background-color: var(--bg-canvas);
   color: var(--text-primary);
+  font-size: 17px;
+  line-height: 1.6;
   overflow-x: hidden;
-  transition: background-color 0.4s ease, color 0.4s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Subtle Architectural Tactile Paper Textures */

@@ -175,48 +175,44 @@ export const FreeFeaturesSection: React.FC = () => {
     <section
       id="pillars"
       aria-label="Five Pillars of Classical Jyotish"
-      className="px-6 sm:px-12 py-20 border-b border-[#E2DDD4] dark:border-white/10 transition-colors"
+      className="px-6 sm:px-12 py-24 border-b border-[#EAE6DF] dark:border-white/10 transition-colors"
     >
       <div className="max-w-7xl mx-auto">
         
-        {/* Section Header: Exact Vaya Headline */}
-        <div className="mb-14 pb-6 border-b border-[#E2DDD4] dark:border-white/10">
-          <div className="text-[10px] uppercase tracking-[0.3em] font-cinzel opacity-60 mb-2 flex items-center gap-2">
-            <svg viewBox="0 0 24 24" className="w-3 h-3 text-[#D4AF37]" fill="currentColor">
+        {/* Section Header: Exact Vaya Headline (Option 1 Clean Consumer Tech) */}
+        <div className="mb-14">
+          <div className="text-xs uppercase tracking-[0.25em] font-sans font-bold text-[#B88E3E] dark:text-[#E5B869] mb-3 flex items-center gap-2">
+            <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-[#B88E3E] dark:text-[#E5B869]" fill="currentColor">
               <path d="M12 0L14 9L23 12L14 15L12 24L10 15L1 12L10 9Z"/>
             </svg>
             <span>02 · Essential Tools For Everyday Living</span>
           </div>
-          <h2 className="font-cormorant text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight">
+          <h2 className="font-cormorant text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
             available for free: <br />
-            <span className="italic text-[#1E3A5F] dark:text-[#E5B869] transition-colors">
+            <span className="italic font-normal text-[#B88E3E] dark:text-[#E5B869]">
               Clarity for love, timing, and life.
             </span>
           </h2>
-          <p className="mt-4 text-xs sm:text-sm opacity-75 font-light max-w-xl leading-relaxed">
-            Everyday Parashari insights cast with mathematical precision—available at no cost.
+          <p className="text-lg text-[#5A5650] dark:text-[#A09D94] font-normal max-w-xl leading-relaxed">
+            Track your emotional currents, investigate your natal blueprint, and verify life milestones directly.
           </p>
         </div>
 
-        {/* Horizontal Editorial Chapter Rail (All 5 Vaya Tabs: Horoscope, Kundli, Partner, Dasha, Past events) */}
-        <div className="flex items-center gap-6 sm:gap-10 overflow-x-auto border-b border-[#E2DDD4] dark:border-white/10 pb-3 mb-14 text-xs uppercase tracking-[0.2em] font-cinzel whitespace-nowrap">
+        {/* Horizontal Tab Rail (All 5 Vaya Tabs: Horoscope, Kundli, Partner, Dasha, Past events) */}
+        <div className="flex items-center gap-2 sm:gap-4 overflow-x-auto border-b-2 border-[#EAE6DF] dark:border-white/10 pb-0 mb-12 text-xs sm:text-sm uppercase tracking-[0.15em] font-sans font-bold whitespace-nowrap">
           {PILLARS.map((pillar, idx) => {
             const isActive = idx === activeTabIdx;
             return (
               <button
                 key={pillar.id}
                 onClick={() => setActiveTabIdx(idx)}
-                className={`pb-3 border-b-2 transition-all cursor-pointer flex items-center gap-2 ${
+                className={`py-3.5 px-5 sm:px-6 border-b-[3px] transition-all cursor-pointer flex items-center gap-2.5 -mb-[2px] ${
                   isActive
-                    ? 'font-bold opacity-100'
-                    : 'border-transparent opacity-50 hover:opacity-90'
+                    ? 'border-[#B88E3E] text-[#181716] dark:text-white font-extrabold'
+                    : 'border-transparent text-[#827E76] hover:text-[#181716] dark:hover:text-white'
                 }`}
-                style={{
-                  borderColor: isActive ? pillar.color : 'transparent',
-                  color: isActive ? pillar.color : 'inherit',
-                }}
               >
-                <span className="text-[10px] opacity-60">{`0${idx + 1}.`}</span>
+                <span className="text-xs opacity-60 font-mono">{`0${idx + 1}.`}</span>
                 <span>{pillar.title}</span>
               </button>
             );
@@ -224,116 +220,106 @@ export const FreeFeaturesSection: React.FC = () => {
         </div>
 
         {/* Two-Column Deep Reading & Interactive Vaya Tab Showcase */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-16">
           
           {/* Left Column: Chapter Essay (Exact Verbatim Text from content/tabs.md) */}
           <div className="lg:col-span-6 flex flex-col justify-between">
             <div>
-              <div 
-                className="text-[10px] uppercase tracking-[0.25em] font-cinzel font-semibold mb-3 transition-colors flex items-center gap-2"
-                style={{ color: activePillar.color }}
-              >
-                <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: activePillar.color }}></span>
+              <div className="text-xs uppercase tracking-[0.2em] font-sans font-bold text-[#B88E3E] dark:text-[#E5B869] mb-3 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-[#B88E3E]"></span>
                 <span>{activePillar.kicker}</span>
               </div>
 
-              <h3 className="font-cormorant text-2xl sm:text-3xl font-semibold mb-6 leading-tight">
+              <h3 className="font-cormorant text-3xl sm:text-4xl font-bold mb-6 leading-tight">
                 {activePillar.heading}
               </h3>
 
-              <p className="text-sm sm:text-base opacity-80 font-light leading-relaxed mb-8">
+              <p className="text-lg text-[#5A5650] dark:text-[#A09D94] font-normal leading-relaxed mb-8">
                 {activePillar.body}
               </p>
             </div>
 
-            <div className="pt-6 border-t border-[#E2DDD4] dark:border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-cinzel opacity-75">
+            <div className="pt-6 border-t border-[#EAE6DF] dark:border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-sans uppercase tracking-wider font-semibold text-[#827E76]">
               <span>{activePillar.correspondence}</span>
-              <span>Ruler: {activePillar.planetName} ({activePillar.planetRashi})</span>
+              <span>Ruler: {activePillar.planetName}</span>
             </div>
           </div>
 
-          {/* Right Column: Deep Vaya Live Interactive Tab Card & Metrics Breakdown */}
-          <div className="lg:col-span-6 border-l border-[#E2DDD4] dark:border-white/10 pl-6 sm:pl-10">
-            
-            {/* Top Card Masthead with Status */}
-            <div className="flex items-center justify-between pb-4 border-b border-[#E2DDD4] dark:border-white/10 mb-6">
-              <div>
-                <span 
-                  className="text-[9px] uppercase tracking-widest font-cinzel font-semibold block mb-1"
-                  style={{ color: activePillar.color }}
-                >
-                  {activePillar.vayaCard.badge}
+          {/* Right Column: Clean White Software Card (Option 1 Vaya Consumer Tech Card) */}
+          <div className="lg:col-span-6">
+            <div className="bg-white dark:bg-[#1A1C20] rounded-3xl p-8 sm:p-10 border border-[#EAE6DF] dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] flex flex-col gap-6">
+              
+              {/* Card Header with Status Badge */}
+              <div className="flex items-center justify-between pb-5 border-b border-[#EAE6DF] dark:border-white/10">
+                <div>
+                  <span className="text-xs uppercase tracking-widest font-sans font-bold text-[#B88E3E] dark:text-[#E5B869] block mb-1">
+                    {activePillar.vayaCard.badge}
+                  </span>
+                  <h4 className="font-cormorant text-2xl font-bold">
+                    {activePillar.vayaCard.headline}
+                  </h4>
+                  <p className="text-xs text-[#827E76] font-normal mt-0.5">
+                    {activePillar.vayaCard.subheadline}
+                  </p>
+                </div>
+                <span className="text-xs uppercase tracking-wider font-sans font-bold px-3 py-1.5 rounded-full bg-[#B88E3E]/10 text-[#B88E3E] dark:text-[#E5B869] border border-[#B88E3E]/30 flex-shrink-0">
+                  {activePillar.vayaCard.statusBadge}
                 </span>
-                <h4 className="font-cormorant text-xl font-bold">
-                  {activePillar.vayaCard.headline}
-                </h4>
-                <p className="text-[11px] opacity-60 font-light mt-0.5">
-                  {activePillar.vayaCard.subheadline}
-                </p>
               </div>
-              <span 
-                className="text-[10px] uppercase tracking-widest font-cinzel px-2.5 py-1 border font-semibold flex-shrink-0"
-                style={{ borderColor: activePillar.color, color: activePillar.color }}
-              >
-                {activePillar.vayaCard.statusBadge}
-              </span>
-            </div>
 
-            {/* 3 Detailed Metric Rows */}
-            <div className="space-y-4 mb-6">
-              {activePillar.vayaCard.metrics.map((metric, mIdx) => (
-                <div 
-                  key={mIdx}
-                  className="py-3 border-b border-[#E2DDD4]/50 dark:border-white/5 flex flex-col sm:flex-row sm:items-baseline justify-between gap-1"
-                >
-                  <div>
-                    <span className="text-xs font-cinzel uppercase tracking-wider font-semibold block">
-                      {metric.label}
-                    </span>
-                    <span className="text-[11px] opacity-65 font-light">
-                      {metric.detail}
+              {/* 3 Detailed Metric Rows */}
+              <div className="space-y-3.5">
+                {activePillar.vayaCard.metrics.map((metric, mIdx) => (
+                  <div 
+                    key={mIdx}
+                    className="p-4 rounded-2xl bg-neutral-50/70 dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-2"
+                  >
+                    <div>
+                      <span className="text-xs font-sans uppercase tracking-wider font-bold block">
+                        {metric.label}
+                      </span>
+                      <span className="text-xs text-[#827E76] font-normal">
+                        {metric.detail}
+                      </span>
+                    </div>
+                    <span className="text-xs font-mono font-bold whitespace-nowrap text-[#B88E3E] dark:text-[#E5B869] sm:text-right">
+                      {metric.value}
                     </span>
                   </div>
-                  <span 
-                    className="text-xs font-mono font-bold whitespace-nowrap sm:text-right mt-1 sm:mt-0"
-                    style={{ color: activePillar.color }}
-                  >
-                    {metric.value}
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            {/* In-Depth Astrological Guidance Notes */}
-            <div className="pt-4 border-t border-[#E2DDD4]/60 dark:border-white/10">
-              <span className="text-[9px] uppercase tracking-[0.2em] font-cinzel opacity-60 block mb-2">
-                Classical Interpretation Notes
-              </span>
-              <ul className="space-y-1.5 text-xs opacity-75 font-light">
-                {activePillar.vayaCard.insightNotes.map((note, nIdx) => (
-                  <li key={nIdx} className="flex items-start gap-2">
-                    <span className="text-[#D4AF37] font-bold mt-0.5">·</span>
-                    <span>{note}</span>
-                  </li>
                 ))}
-              </ul>
-            </div>
+              </div>
 
+              {/* In-Depth Astrological Guidance Notes */}
+              <div className="pt-4 border-t border-[#EAE6DF] dark:border-white/10">
+                <span className="text-xs uppercase tracking-wider font-sans font-bold text-[#827E76] block mb-2">
+                  Classical Interpretation Notes
+                </span>
+                <ul className="space-y-1.5 text-xs text-[#5A5650] dark:text-[#A09D94] font-normal leading-relaxed">
+                  {activePillar.vayaCard.insightNotes.map((note, nIdx) => (
+                    <li key={nIdx} className="flex items-start gap-2">
+                      <span className="text-[#B88E3E] font-bold mt-0.5">·</span>
+                      <span>{note}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+            </div>
           </div>
 
         </div>
 
         {/* Featured Testimonial Beneath (Exact Vaya Review: Meera Patel) */}
-        <div className="pt-10 border-t border-[#E2DDD4] dark:border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div className="p-8 sm:p-10 bg-white dark:bg-[#1A1C20] rounded-3xl border border-[#EAE6DF] dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="flex-1">
-            <span className="text-[10px] uppercase tracking-widest font-cinzel text-[#D4AF37] block mb-1">
+            <span className="text-xs uppercase tracking-widest font-sans font-bold text-[#B88E3E] dark:text-[#E5B869] block mb-2">
               Verified Seeker Reflection on Free Features
             </span>
-            <p className="font-cormorant text-lg sm:text-xl italic opacity-90 leading-relaxed">
+            <p className="font-cormorant text-xl sm:text-2xl italic leading-relaxed">
               "{featuredReview.text}"
             </p>
           </div>
-          <div className="text-xs font-cinzel uppercase tracking-widest opacity-60 md:text-right flex-shrink-0">
+          <div className="text-xs font-sans font-bold uppercase tracking-widest text-[#827E76] md:text-right flex-shrink-0">
             {featuredReview.name} · {featuredReview.city}
           </div>
         </div>
