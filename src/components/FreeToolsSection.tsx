@@ -1042,7 +1042,7 @@ export const FreeToolsSection: React.FC = () => {
             to="/tools"
             className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-white dark:bg-[#1A1C20] border-2 border-[#B88E3E] dark:border-[#E5B869] text-[#B88E3E] dark:text-[#E5B869] text-xs uppercase tracking-wider font-bold rounded-full hover:bg-[#B88E3E] hover:text-white dark:hover:text-[#181716] transition-all shadow-xs hover:scale-105 active:scale-95 whitespace-nowrap"
           >
-            <span>Explore All 12 Vedic Calculators in Directory</span>
+            <span>Explore All 45+ Vedic Calculators in Directory</span>
             <span>→</span>
           </Link>
         </div>

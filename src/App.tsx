@@ -147,6 +147,8 @@ export const App: React.FC = () => {
           />
         }
       />
+      <Route path="/tools/muhurat/:muhuratType" element={<ToolCalculatorPage />} />
+      <Route path="/tools/:toolId" element={<ToolCalculatorPage />} />
 
       {/* 3. Astrology Educational Reference Routes */}
       <Route path="/astrology/zodiac-signs" element={<SignsPage />} />
