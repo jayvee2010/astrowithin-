@@ -37,7 +37,7 @@ export const EXPERTS: Expert[] = [
     specialty: "Parashari Marriage Timing & Ashtakoota Milan",
     lineage: "Bharatiya Vidya Bhavan Certified, Parampara Lineage",
     bio: "Specialises in Navamsa (D9) chart rectification, marriage timing through Vimshottari Dasha, and resolution of 7th house afflictions.",
-    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=400"
+    avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&crop=faces&w=800&h=600&q=85"
   },
   {
     id: "vikram-rao",
@@ -47,7 +47,7 @@ export const EXPERTS: Expert[] = [
     specialty: "Jaimini Astrology & Darakaraka Life Partner Profiling",
     lineage: "Banaras Hindu University, ICAS Jyotish Visharad",
     bio: "Deeply versed in Jaimini Chara Dasha and Darakaraka placements to define spouse personality, meeting timing, and post-marital harmony.",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400"
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&crop=faces&w=800&h=600&q=85"
   },
   {
     id: "vikas-mishra",
@@ -57,7 +57,7 @@ export const EXPERTS: Expert[] = [
     specialty: "Career, Wealth Yogas & Muhurta Timing",
     lineage: "Astronomical Society of India Member, D10 Specialist",
     bio: "Combines transit analysis with Dashamsha (D10) examination to identify career promotions, business ventures, and auspicious marriage muhurtas.",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400"
+    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&crop=faces&w=800&h=600&q=85"
   },
   {
     id: "pooja-kapoor",
@@ -67,7 +67,7 @@ export const EXPERTS: Expert[] = [
     specialty: "Relationship Synastry & Manglik Dosha Nuances",
     lineage: "ICAS Jyotish Praveena & Jyotish Visharad",
     bio: "Practical, compassionate consultation addressing marital delays, Kuja dosha cancellations, and emotional reconciliation via Moon-Venus connections.",
-    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400"
+    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&crop=faces&w=800&h=600&q=85"
   },
   {
     id: "sunita-pandey",
@@ -77,7 +77,7 @@ export const EXPERTS: Expert[] = [
     specialty: "Brihat Parashara Hora Shastra & Remedial Gemstones",
     lineage: "Sanskrit Vidyapeeth Scholar, Certified Vedic Astrologer",
     bio: "Master of classical Parashari principles, advising on planetary remedies, mantra japas, and balancing family dharms with modern relationship goals.",
-    avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=400"
+    avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&crop=faces&w=800&h=600&q=85"
   },
   {
     id: "nidhi-raichand",
@@ -87,7 +87,7 @@ export const EXPERTS: Expert[] = [
     specialty: "Family Karma, Progeny & Emotional Synchronicity",
     lineage: "All India Federation of Astrologers Societies (AIFAS)",
     bio: "Guidance on relationship transitions, family dynamics, Saptamsha (D7) evaluations, and navigating difficult Saturn/Rahu Sade Sati cycles.",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400"
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&crop=faces&w=800&h=600&q=85"
   },
   {
     id: "neeraj-sinha",
@@ -97,7 +97,7 @@ export const EXPERTS: Expert[] = [
     specialty: "Tech Career Crossroads & Modern Matchmaking",
     lineage: "ICAS Bengaluru Chapter, B.Tech + Jyotish Acharya",
     bio: "Bridges analytical logic with authentic Vedic timing to help professionals navigate dual-career relationships and overseas relocation.",
-    avatar: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&q=80&w=400"
+    avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&crop=faces&w=800&h=600&q=85"
   }
 ];
 
