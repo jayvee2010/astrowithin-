@@ -175,38 +175,38 @@ export const FreeFeaturesSection: React.FC = () => {
     <section
       id="pillars"
       aria-label="Five Pillars of Classical Jyotish"
-      className="px-6 sm:px-12 py-24 border-b border-[#EAE6DF] dark:border-white/10 transition-colors"
+      className="px-6 sm:px-12 py-14 sm:py-18 border-b border-[#EAE6DF] dark:border-white/10 transition-colors"
     >
       <div className="max-w-7xl mx-auto">
         
         {/* Section Header: Exact Vaya Headline (Option 1 Clean Consumer Tech) */}
-        <div className="mb-14">
-          <div className="text-xs uppercase tracking-[0.25em] font-sans font-bold text-[#B88E3E] dark:text-[#E5B869] mb-3 flex items-center gap-2">
+        <div className="mb-8 sm:mb-10">
+          <div className="text-xs uppercase tracking-[0.25em] font-sans font-bold text-[#B88E3E] dark:text-[#E5B869] mb-2.5 flex items-center gap-2">
             <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-[#B88E3E] dark:text-[#E5B869]" fill="currentColor">
               <path d="M12 0L14 9L23 12L14 15L12 24L10 15L1 12L10 9Z"/>
             </svg>
             <span>02 · Essential Tools For Everyday Living</span>
           </div>
-          <h2 className="font-cormorant text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
+          <h2 className="font-cormorant text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-3">
             available for free: <br />
             <span className="italic font-normal text-[#B88E3E] dark:text-[#E5B869]">
               Clarity for love, timing, and life.
             </span>
           </h2>
-          <p className="text-lg text-[#5A5650] dark:text-[#A09D94] font-normal max-w-xl leading-relaxed">
+          <p className="text-base sm:text-lg text-[#5A5650] dark:text-[#A09D94] font-normal max-w-xl leading-relaxed">
             Track your emotional currents, investigate your natal blueprint, and verify life milestones directly.
           </p>
         </div>
 
         {/* Horizontal Tab Rail (All 5 Vaya Tabs: Horoscope, Kundli, Partner, Dasha, Past events) */}
-        <div className="flex items-center gap-2 sm:gap-4 overflow-x-auto border-b-2 border-[#EAE6DF] dark:border-white/10 pb-0 mb-12 text-xs sm:text-sm uppercase tracking-[0.15em] font-sans font-bold whitespace-nowrap">
+        <div className="flex items-center gap-1.5 sm:gap-3 overflow-x-auto border-b-2 border-[#EAE6DF] dark:border-white/10 pb-0 mb-6 sm:mb-8 text-xs sm:text-sm uppercase tracking-[0.15em] font-sans font-bold whitespace-nowrap">
           {PILLARS.map((pillar, idx) => {
             const isActive = idx === activeTabIdx;
             return (
               <button
                 key={pillar.id}
                 onClick={() => setActiveTabIdx(idx)}
-                className={`py-3.5 px-5 sm:px-6 border-b-[3px] transition-all cursor-pointer flex items-center gap-2.5 -mb-[2px] ${
+                className={`py-3 px-4 sm:px-5 border-b-[3px] transition-all cursor-pointer flex items-center gap-2 -mb-[2px] ${
                   isActive
                     ? 'border-[#B88E3E] text-[#181716] dark:text-white font-extrabold'
                     : 'border-transparent text-[#827E76] hover:text-[#181716] dark:hover:text-white'
@@ -219,27 +219,27 @@ export const FreeFeaturesSection: React.FC = () => {
           })}
         </div>
 
-        {/* Two-Column Deep Reading & Interactive Vaya Tab Showcase */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-16">
+        {/* Two-Column Deep Reading & Interactive Vaya Tab Showcase - items-start removes top empty void */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mb-10 sm:mb-12">
           
           {/* Left Column: Chapter Essay (Exact Verbatim Text from content/tabs.md) */}
           <div className="lg:col-span-6 flex flex-col justify-between">
             <div>
-              <div className="text-xs uppercase tracking-[0.2em] font-sans font-bold text-[#B88E3E] dark:text-[#E5B869] mb-3 flex items-center gap-2">
+              <div className="text-xs uppercase tracking-[0.2em] font-sans font-bold text-[#B88E3E] dark:text-[#E5B869] mb-2.5 flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-[#B88E3E]"></span>
                 <span>{activePillar.kicker}</span>
               </div>
 
-              <h3 className="font-cormorant text-3xl sm:text-4xl font-bold mb-6 leading-tight">
+              <h3 className="font-cormorant text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 leading-tight">
                 {activePillar.heading}
               </h3>
 
-              <p className="text-lg text-[#5A5650] dark:text-[#A09D94] font-normal leading-relaxed mb-8">
+              <p className="text-base sm:text-lg text-[#5A5650] dark:text-[#A09D94] font-normal leading-relaxed mb-6">
                 {activePillar.body}
               </p>
             </div>
 
-            <div className="pt-6 border-t border-[#EAE6DF] dark:border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-sans uppercase tracking-wider font-semibold text-[#827E76]">
+            <div className="pt-4 border-t border-[#EAE6DF] dark:border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-sans uppercase tracking-wider font-semibold text-[#827E76]">
               <span>{activePillar.correspondence}</span>
               <span>Ruler: {activePillar.planetName}</span>
             </div>
@@ -247,32 +247,32 @@ export const FreeFeaturesSection: React.FC = () => {
 
           {/* Right Column: Clean White Software Card (Option 1 Vaya Consumer Tech Card) */}
           <div className="lg:col-span-6">
-            <div className="bg-white dark:bg-[#1A1C20] rounded-3xl p-8 sm:p-10 border border-[#EAE6DF] dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] flex flex-col gap-6">
+            <div className="bg-white dark:bg-[#1A1C20] rounded-3xl p-6 sm:p-7 border border-[#EAE6DF] dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] flex flex-col gap-5">
               
               {/* Card Header with Status Badge */}
-              <div className="flex items-center justify-between pb-5 border-b border-[#EAE6DF] dark:border-white/10">
+              <div className="flex items-center justify-between pb-4 border-b border-[#EAE6DF] dark:border-white/10">
                 <div>
-                  <span className="text-xs uppercase tracking-widest font-sans font-bold text-[#B88E3E] dark:text-[#E5B869] block mb-1">
+                  <span className="text-[11px] uppercase tracking-widest font-sans font-bold text-[#B88E3E] dark:text-[#E5B869] block mb-1">
                     {activePillar.vayaCard.badge}
                   </span>
-                  <h4 className="font-cormorant text-2xl font-bold">
+                  <h4 className="font-cormorant text-xl sm:text-2xl font-bold">
                     {activePillar.vayaCard.headline}
                   </h4>
                   <p className="text-xs text-[#827E76] font-normal mt-0.5">
                     {activePillar.vayaCard.subheadline}
                   </p>
                 </div>
-                <span className="text-xs uppercase tracking-wider font-sans font-bold px-3 py-1.5 rounded-full bg-[#B88E3E]/10 text-[#B88E3E] dark:text-[#E5B869] border border-[#B88E3E]/30 flex-shrink-0">
+                <span className="text-[11px] uppercase tracking-wider font-sans font-bold px-3 py-1 rounded-full bg-[#B88E3E]/10 text-[#B88E3E] dark:text-[#E5B869] border border-[#B88E3E]/30 flex-shrink-0">
                   {activePillar.vayaCard.statusBadge}
                 </span>
               </div>
 
               {/* 3 Detailed Metric Rows */}
-              <div className="space-y-3.5">
+              <div className="space-y-2.5">
                 {activePillar.vayaCard.metrics.map((metric, mIdx) => (
                   <div 
                     key={mIdx}
-                    className="p-4 rounded-2xl bg-neutral-50/70 dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-2"
+                    className="p-3.5 rounded-2xl bg-neutral-50/70 dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-1.5"
                   >
                     <div>
                       <span className="text-xs font-sans uppercase tracking-wider font-bold block">
@@ -290,11 +290,11 @@ export const FreeFeaturesSection: React.FC = () => {
               </div>
 
               {/* In-Depth Astrological Guidance Notes */}
-              <div className="pt-4 border-t border-[#EAE6DF] dark:border-white/10">
-                <span className="text-xs uppercase tracking-wider font-sans font-bold text-[#827E76] block mb-2">
+              <div className="pt-3.5 border-t border-[#EAE6DF] dark:border-white/10">
+                <span className="text-[11px] uppercase tracking-wider font-sans font-bold text-[#827E76] block mb-2">
                   Classical Interpretation Notes
                 </span>
-                <ul className="space-y-1.5 text-xs text-[#5A5650] dark:text-[#A09D94] font-normal leading-relaxed">
+                <ul className="space-y-1 text-xs text-[#5A5650] dark:text-[#A09D94] font-normal leading-relaxed">
                   {activePillar.vayaCard.insightNotes.map((note, nIdx) => (
                     <li key={nIdx} className="flex items-start gap-2">
                       <span className="text-[#B88E3E] font-bold mt-0.5">·</span>
@@ -310,7 +310,7 @@ export const FreeFeaturesSection: React.FC = () => {
         </div>
 
         {/* Featured Testimonial Beneath (Exact Vaya Review: Meera Patel) */}
-        <div className="p-8 sm:p-10 bg-white dark:bg-[#1A1C20] rounded-3xl border border-[#EAE6DF] dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div className="p-6 sm:p-7 bg-white dark:bg-[#1A1C20] rounded-3xl border border-[#EAE6DF] dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] flex flex-col md:flex-row md:items-center justify-between gap-5">
           <div className="flex-1">
             <span className="text-xs uppercase tracking-widest font-sans font-bold text-[#B88E3E] dark:text-[#E5B869] block mb-2">
               Verified Seeker Reflection on Free Features
