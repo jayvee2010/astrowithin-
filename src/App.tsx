@@ -18,10 +18,13 @@ import {
 } from './pages/CompanyPages';
 import { BlogPage } from './pages/BlogPage';
 import { BlogPostPage } from './pages/BlogPostPage';
+import { ScrollToTop } from './components/ScrollToTop';
 
 export const App: React.FC = () => {
   return (
-    <Routes>
+    <>
+      <ScrollToTop />
+      <Routes>
       {/* 1. Main Home Landing Page */}
       <Route path="/" element={<HomePage />} />
 
@@ -245,6 +248,7 @@ export const App: React.FC = () => {
           />
         }
       />
-    </Routes>
+      </Routes>
+    </>
   );
 };
