@@ -7,6 +7,7 @@ interface PageLayoutProps {
   title: string;
   subtitle?: string;
   badge?: string;
+  maxWidth?: string;
   children: React.ReactNode;
 }
 
@@ -14,6 +15,7 @@ export const PageLayout: React.FC<PageLayoutProps> = ({
   title,
   subtitle,
   badge,
+  maxWidth = 'max-w-5xl',
   children,
 }) => {
   return (
@@ -21,7 +23,7 @@ export const PageLayout: React.FC<PageLayoutProps> = ({
       <CustomCursor />
       <Header />
 
-      <main className="relative z-10 pt-28 pb-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto w-full flex-grow">
+      <main className={`relative z-10 pt-28 pb-20 px-4 sm:px-6 lg:px-8 ${maxWidth} mx-auto w-full flex-grow`}>
         {/* Unboxed Kicker on Top of Header (Consistent with Landing Page Pattern) */}
         {badge && (
           <div className="text-xs uppercase tracking-[0.25em] font-sans font-bold text-[#B88E3E] dark:text-[#E5B869] mb-4 flex items-center gap-2">
