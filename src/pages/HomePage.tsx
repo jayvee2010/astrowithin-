@@ -5,6 +5,7 @@ import { ExpertsSection } from '../components/ExpertsSection';
 import { FreeFeaturesSection } from '../components/FreeFeaturesSection';
 import { FreeToolsSection } from '../components/FreeToolsSection';
 import { TrustSection } from '../components/TrustSection';
+import { BlogSection } from '../components/BlogSection';
 import { ReviewsSection } from '../components/ReviewsSection';
 import { FinalCtaSection } from '../components/FinalCtaSection';
 import { Footer } from '../components/Footer';
@@ -32,7 +33,10 @@ export const HomePage: React.FC = () => {
         {/* Section 04: Institutional Trust & Lineage Accreditations (ICAS, BVB, AIFAS, ASI) */}
         <TrustSection />
 
-        {/* Section 05: Seeker Testimonials (3-Column Editorial Quotes) */}
+        {/* Section 05: Classical Jyotish Journal & Editorial Guides (Cornerstone Guide + 3 Articles) */}
+        <BlogSection />
+
+        {/* Section 06: Seeker Testimonials (3-Column Editorial Quotes) */}
         <ReviewsSection />
 
         {/* Section 06: Final Inquiry Path CTA ("When will I get married?" / "Is this the right person?") */}

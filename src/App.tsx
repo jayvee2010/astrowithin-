@@ -16,6 +16,8 @@ import {
   ExpertDetailPage,
   StaticContentPage,
 } from './pages/CompanyPages';
+import { BlogPage } from './pages/BlogPage';
+import { BlogPostPage } from './pages/BlogPostPage';
 
 export const App: React.FC = () => {
   return (
@@ -129,18 +131,11 @@ export const App: React.FC = () => {
       <Route path="/experts" element={<ExpertsDirectoryPage />} />
       <Route path="/experts/:id" element={<ExpertDetailPage />} />
 
-      {/* 5. Company & Legal Content Routes */}
-      <Route
-        path="/blog"
-        element={
-          <StaticContentPage
-            title="Vedic Astrology Blog"
-            badge="Articles & Classical Commentaries"
-            category="Astrological Insights"
-            body="Explore in-depth articles on Parashara Hora Shastra, Jaimini sutras, marriage compatibility, and planetary transits written by our accredited faculty."
-          />
-        }
-      />
+      {/* 5. Blog & Publications Routes */}
+      <Route path="/blog" element={<BlogPage />} />
+      <Route path="/blog/:slug" element={<BlogPostPage />} />
+
+      {/* 6. Company & Legal Content Routes */}
       <Route
         path="/wiki"
         element={
