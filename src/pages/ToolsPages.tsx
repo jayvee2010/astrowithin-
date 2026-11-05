@@ -112,6 +112,61 @@ const getToolGlyphType = (id: string): string => {
   return 'birth-chart';
 };
 
+// Laurel Wreath Trust Badge (Matches Vaya's editorial trust component)
+const LaurelWreathTrustMetrics: React.FC = () => {
+  return (
+    <dl className="hidden lg:flex items-center gap-8">
+      {/* 10L+ Consultations completed */}
+      <div className="flex items-center gap-2.5">
+        <svg className="h-11 w-7 text-[#B88E3E]/70 dark:text-[#E5B869]/70" viewBox="0 0 37 52" fill="none" aria-hidden="true">
+          <path d="M19.7203 18.717C19.386 23.9533 21.7942 36.4982 35.4309 44.7872C33.7597 43.6731 29.1473 43.2497 24.067 50.4691" stroke="currentColor" strokeWidth="2.67"></path>
+          <path d="M19.829 42.0254C11.3265 45.6222 6.53661 40.9491 4.92894 37.6601C4.77626 37.3478 4.92385 36.9765 5.23899 36.8297C14.0114 32.7428 18.685 37.7095 20.1719 41.2153C20.3062 41.5319 20.1457 41.8914 19.829 42.0254Z" fill="currentColor"></path>
+          <path d="M12.7844 31.3C3.85652 28.9501 2.92153 22.3239 3.65924 18.7382C3.7293 18.3976 4.07301 18.194 4.41217 18.2704C13.8533 20.3972 14.5168 27.1848 13.551 30.8683C13.4637 31.201 13.117 31.3875 12.7844 31.3Z" fill="currentColor"></path>
+          <path d="M13.804 16.2604C5.96376 11.386 7.02123 4.77821 8.78204 1.56862C8.94926 1.26381 9.33768 1.17042 9.63931 1.34329C18.0357 6.15565 16.6712 12.8377 14.6637 16.0736C14.4824 16.3658 14.0961 16.442 13.804 16.2604Z" fill="currentColor"></path>
+        </svg>
+        <div className="flex min-w-[7rem] flex-col text-center">
+          <dd className="order-1 text-3xl font-semibold tracking-tight tabular-nums text-[#181716] dark:text-[#FAF8F5]">
+            10L+
+          </dd>
+          <dt className="order-2 mt-1 text-[0.65rem] font-medium tracking-[0.16em] text-[#827E76] uppercase leading-tight">
+            Consultations<br />completed
+          </dt>
+        </div>
+        <svg className="h-11 w-7 -scale-x-100 text-[#B88E3E]/70 dark:text-[#E5B869]/70" viewBox="0 0 37 52" fill="none" aria-hidden="true">
+          <path d="M19.7203 18.717C19.386 23.9533 21.7942 36.4982 35.4309 44.7872C33.7597 43.6731 29.1473 43.2497 24.067 50.4691" stroke="currentColor" strokeWidth="2.67"></path>
+          <path d="M19.829 42.0254C11.3265 45.6222 6.53661 40.9491 4.92894 37.6601C4.77626 37.3478 4.92385 36.9765 5.23899 36.8297C14.0114 32.7428 18.685 37.7095 20.1719 41.2153C20.3062 41.5319 20.1457 41.8914 19.829 42.0254Z" fill="currentColor"></path>
+          <path d="M12.7844 31.3C3.85652 28.9501 2.92153 22.3239 3.65924 18.7382C3.7293 18.3976 4.07301 18.194 4.41217 18.2704C13.8533 20.3972 14.5168 27.1848 13.551 30.8683C13.4637 31.201 13.117 31.3875 12.7844 31.3Z" fill="currentColor"></path>
+          <path d="M13.804 16.2604C5.96376 11.386 7.02123 4.77821 8.78204 1.56862C8.94926 1.26381 9.33768 1.17042 9.63931 1.34329C18.0357 6.15565 16.6712 12.8377 14.6637 16.0736C14.4824 16.3658 14.0961 16.442 13.804 16.2604Z" fill="currentColor"></path>
+        </svg>
+      </div>
+
+      {/* 4.5 Rating */}
+      <div className="flex items-center gap-2.5">
+        <svg className="h-11 w-7 text-[#B88E3E]/70 dark:text-[#E5B869]/70" viewBox="0 0 37 52" fill="none" aria-hidden="true">
+          <path d="M19.7203 18.717C19.386 23.9533 21.7942 36.4982 35.4309 44.7872C33.7597 43.6731 29.1473 43.2497 24.067 50.4691" stroke="currentColor" strokeWidth="2.67"></path>
+          <path d="M19.829 42.0254C11.3265 45.6222 6.53661 40.9491 4.92894 37.6601C4.77626 37.3478 4.92385 36.9765 5.23899 36.8297C14.0114 32.7428 18.685 37.7095 20.1719 41.2153C20.3062 41.5319 20.1457 41.8914 19.829 42.0254Z" fill="currentColor"></path>
+          <path d="M12.7844 31.3C3.85652 28.9501 2.92153 22.3239 3.65924 18.7382C3.7293 18.3976 4.07301 18.194 4.41217 18.2704C13.8533 20.3972 14.5168 27.1848 13.551 30.8683C13.4637 31.201 13.117 31.3875 12.7844 31.3Z" fill="currentColor"></path>
+          <path d="M13.804 16.2604C5.96376 11.386 7.02123 4.77821 8.78204 1.56862C8.94926 1.26381 9.33768 1.17042 9.63931 1.34329C18.0357 6.15565 16.6712 12.8377 14.6637 16.0736C14.4824 16.3658 14.0961 16.442 13.804 16.2604Z" fill="currentColor"></path>
+        </svg>
+        <div className="flex min-w-[7rem] flex-col text-center">
+          <dd className="order-1 text-3xl font-semibold tracking-tight tabular-nums text-[#181716] dark:text-[#FAF8F5]">
+            4.5 ★
+          </dd>
+          <dt className="order-2 mt-1 text-[0.65rem] font-medium tracking-[0.16em] text-[#827E76] uppercase leading-tight">
+            App Store &amp;<br />Play Store
+          </dt>
+        </div>
+        <svg className="h-11 w-7 -scale-x-100 text-[#B88E3E]/70 dark:text-[#E5B869]/70" viewBox="0 0 37 52" fill="none" aria-hidden="true">
+          <path d="M19.7203 18.717C19.386 23.9533 21.7942 36.4982 35.4309 44.7872C33.7597 43.6731 29.1473 43.2497 24.067 50.4691" stroke="currentColor" strokeWidth="2.67"></path>
+          <path d="M19.829 42.0254C11.3265 45.6222 6.53661 40.9491 4.92894 37.6601C4.77626 37.3478 4.92385 36.9765 5.23899 36.8297C14.0114 32.7428 18.685 37.7095 20.1719 41.2153C20.3062 41.5319 20.1457 41.8914 19.829 42.0254Z" fill="currentColor"></path>
+          <path d="M12.7844 31.3C3.85652 28.9501 2.92153 22.3239 3.65924 18.7382C3.7293 18.3976 4.07301 18.194 4.41217 18.2704C13.8533 20.3972 14.5168 27.1848 13.551 30.8683C13.4637 31.201 13.117 31.3875 12.7844 31.3Z" fill="currentColor"></path>
+          <path d="M13.804 16.2604C5.96376 11.386 7.02123 4.77821 8.78204 1.56862C8.94926 1.26381 9.33768 1.17042 9.63931 1.34329C18.0357 6.15565 16.6712 12.8377 14.6637 16.0736C14.4824 16.3658 14.0961 16.442 13.804 16.2604Z" fill="currentColor"></path>
+        </svg>
+      </div>
+    </dl>
+  );
+};
+
 export const ToolsIndexPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
 
@@ -128,119 +183,46 @@ export const ToolsIndexPage: React.FC = () => {
       })
     : [];
 
-  const scrollToAllTools = () => {
-    const el = document.getElementById('all-tools');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <PageLayout
       maxWidth="max-w-7xl"
-      badge="Parashari & Jaimini Computational Observatory"
-      title="Classical Vedic Astrology Calculators"
-      subtitle="Authentic mathematical formulations from Brihat Parashara Hora Shastra, Jaimini Upadesha Sutras, and Surya Siddhanta calibrated to NASA JPL ephemerides and sidereal Lahiri Ayanamsa (24° 11' 42&quot;)."
+      breadcrumbs={[
+        { label: 'Astrology', href: '/' },
+        { label: 'Tools' },
+      ]}
+      title="Vedic astrology calculators"
+      subtitle="Jyotish tools created with our classically trained Vedic astrologers for birth charts, compatibility, planetary signs, dashas, transits, yogas, and daily panchang."
+      headerBorder={true}
+      rightElement={<LaurelWreathTrustMetrics />}
     >
-      {/* ======================================================== */}
-      {/* 1. SACRED ASTRONOMICAL HORIZON BAR (Fills the Page Top) */}
-      {/* ======================================================== */}
-      <div className="mb-14 p-7 sm:p-8 rounded-3xl bg-white dark:bg-[#1A1C20] border-2 border-[#EAE6DF] dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.03)] relative overflow-hidden">
-        {/* Subtle Armillary Meridian Coordinate Background Watermark */}
-        <div className="absolute -right-20 -top-20 w-72 h-72 rounded-full border border-dashed border-[#B88E3E]/20 pointer-events-none" />
-        <div className="absolute -left-20 -bottom-20 w-72 h-72 rounded-full border border-dashed border-[#B88E3E]/15 pointer-events-none" />
-
-        <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
-          <div className="flex-1">
-            <div className="text-xs font-mono uppercase tracking-[0.25em] text-[#B88E3E] dark:text-[#E5B869] font-bold mb-2 flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#B88E3E] animate-pulse" />
-              <span>Observable Celestial Horizon · Sidereal Lahiri</span>
-            </div>
-            <p className="font-cormorant italic text-2xl sm:text-3xl text-[#181716] dark:text-[#FAF8F5] leading-snug">
-              &ldquo;प्रत्यक्षं ज्योतिषं शास्त्रं चन्द्रार्कौ यत्र साक्षिणौ&rdquo;
-            </p>
-            <span className="text-xs sm:text-sm text-[#827E76] font-sans block mt-1.5">
-              Jyotish is an observable astronomical science, with the Sun and Moon as perpetual cosmic witnesses.
-            </span>
-          </div>
-
-          {/* 4 Live Astrological Coordinate Badges */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs font-sans">
-            <div className="p-4 rounded-2xl bg-neutral-50 dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10">
-              <span className="text-[10px] uppercase font-bold text-[#827E76] block tracking-wider">Ayanamsa</span>
-              <span className="font-mono font-bold text-sm text-[#181716] dark:text-white mt-1 block">Lahiri 24° 11'</span>
-            </div>
-            <div className="p-4 rounded-2xl bg-neutral-50 dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10">
-              <span className="text-[10px] uppercase font-bold text-[#827E76] block tracking-wider">Janma Moon</span>
-              <span className="font-mono font-bold text-sm text-[#B88E3E] dark:text-[#E5B869] mt-1 block">Rohini Pada 4</span>
-            </div>
-            <div className="p-4 rounded-2xl bg-neutral-50 dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10">
-              <span className="text-[10px] uppercase font-bold text-[#827E76] block tracking-wider">Tithi Phase</span>
-              <span className="font-mono font-bold text-sm text-[#181716] dark:text-white mt-1 block">Shukla Navami</span>
-            </div>
-            <div className="p-4 rounded-2xl bg-neutral-50 dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10">
-              <span className="text-[10px] uppercase font-bold text-[#827E76] block tracking-wider">Midday Muhurta</span>
-              <span className="font-mono font-bold text-sm text-emerald-600 dark:text-emerald-400 mt-1 block">Abhijit Active</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* ======================================================== */}
-      {/* 2. SEARCH & ANCHOR NAVIGATION BAR */}
-      {/* ======================================================== */}
-      <div className="mb-16">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-6">
-          <div className="relative flex-1 max-w-2xl">
-            <input
-              type="text"
-              placeholder="Search 45+ classical calculators (Marriage, Navamsa, Dasha, Returns)..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-white dark:bg-[#1A1C20] border-2 border-[#EAE6DF] dark:border-white/10 text-sm font-sans text-[#181716] dark:text-white placeholder-[#827E76] focus:outline-none focus:border-[#B88E3E] transition-colors shadow-xs"
-            />
-            <svg
-              className="absolute left-4 top-4 w-4 h-4 text-[#827E76]"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+      {/* Clean, Minimal Search Input */}
+      <div className="mb-12 max-w-xl">
+        <div className="relative">
+          <input
+            type="text"
+            placeholder="Search all classical calculators (Marriage, Navamsa, Dasha)..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full pl-11 pr-10 py-3 rounded-full bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10 text-sm font-sans text-[#181716] dark:text-white placeholder-[#827E76] focus:outline-none focus:border-[#B88E3E] transition-all shadow-xs"
+          />
+          <svg
+            className="absolute left-4 top-3.5 w-4 h-4 text-[#827E76]"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          {isSearching && (
+            <button
+              type="button"
+              onClick={() => setSearchQuery('')}
+              className="absolute right-3.5 top-2.5 w-6 h-6 rounded-full bg-neutral-100 dark:bg-white/10 flex items-center justify-center text-xs text-[#827E76] hover:text-[#181716] dark:hover:text-white cursor-pointer"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <span className="text-xs font-mono font-bold px-3.5 py-2 rounded-full bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10 text-[#827E76]">
-              {isSearching ? `${searchResults.length} matching engines` : `${ALL_VAYA_TOOLS.length} Astrological Engines`}
-            </span>
-            {!isSearching && (
-              <button
-                type="button"
-                onClick={scrollToAllTools}
-                className="text-xs font-sans font-bold text-[#B88E3E] dark:text-[#E5B869] hover:underline cursor-pointer"
-              >
-                Browse All 9 Domains ↓
-              </button>
-            )}
-          </div>
+              ✕
+            </button>
+          )}
         </div>
-
-        {/* Quick Category Anchors */}
-        {!isSearching && (
-          <div className="flex items-center gap-2.5 overflow-x-auto pb-2 text-xs font-sans font-bold uppercase tracking-wider whitespace-nowrap">
-            {VAYA_TOOL_CATEGORIES.map((cat) => (
-              <button
-                key={cat.id}
-                type="button"
-                onClick={() => {
-                  const el = document.getElementById(cat.id);
-                  if (el) el.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="py-2.5 px-4 rounded-xl bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10 text-[#827E76] hover:text-[#181716] dark:hover:text-white hover:border-[#B88E3E] transition-all cursor-pointer text-[11px]"
-              >
-                {cat.title}
-              </button>
-            ))}
-          </div>
-        )}
       </div>
 
       {/* ======================================================== */}
@@ -294,10 +276,10 @@ export const ToolsIndexPage: React.FC = () => {
             <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-[#EAE6DF] dark:border-white/10 gap-3">
               <div>
                 <span className="text-xs uppercase font-sans font-bold tracking-[0.2em] text-[#B88E3E] dark:text-[#E5B869] block mb-1">
-                  Pillar Calculators · Start Here
+                  Start here
                 </span>
                 <h2 className="font-cormorant text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#181716] dark:text-white">
-                  Most Used Classical Engines
+                  Most used calculators
                 </h2>
               </div>
               <p className="text-xs sm:text-sm text-[#827E76] max-w-md leading-relaxed">
