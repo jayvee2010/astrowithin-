@@ -9,7 +9,7 @@ export const Header: React.FC = () => {
 
   return (
     <header className="sticky top-0 left-0 right-0 z-50 transition-colors duration-300 border-b bg-[#FAF8F5]/90 dark:bg-[#121316]/90 backdrop-blur-md border-[#EAE6DF] dark:border-white/10 text-[#181716] dark:text-[#F4F1EA]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <div className="max-w-7xl 2xl:max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12 h-20 flex items-center justify-between">
         
         {/* Left: Brand Wordmark with Clean Astrolabe Seal */}
         <Link
