@@ -16,118 +16,96 @@ export const SignsPage: React.FC = () => {
         {ZODIAC_SIGNS_DATA.map((s) => (
           <div
             key={s.id}
-            className="group relative flex flex-col rounded-[2.5rem] overflow-hidden border border-[#CFAF83]/35 transition-all duration-500 hover:-translate-y-2 hover:border-[#E07A2E] shadow-[0_15px_40px_rgba(0,0,0,0.6)]"
-            style={{
-              background: 'linear-gradient(180deg, rgba(30, 41, 59, 0.45) 0%, rgba(18, 14, 24, 0.95) 100%)',
-            }}
+            className="group relative flex flex-col rounded-3xl overflow-hidden bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] transition-all duration-300 hover:-translate-y-1 hover:border-[#B88E3E]"
           >
-            {/* Upper Section: Seamless Inked Tarot Placecard Artwork with Atmospheric Blending */}
+            {/* Upper Section: Inked Placecard Artwork */}
             <Link
               to={`/astrology/zodiac-signs/${s.id}`}
-              className="relative w-full h-80 sm:h-96 flex items-center justify-center overflow-hidden bg-[#0A070D] cursor-pointer"
+              className="relative w-full h-80 sm:h-96 flex items-center justify-center overflow-hidden bg-[#FAF8F5] dark:bg-[#15161A] border-b border-[#EAE6DF] dark:border-white/10 cursor-pointer"
             >
-              {/* Radial backdrop glow matching the sign's elemental temperature */}
-              <div
-                className="absolute inset-0 pointer-events-none opacity-40 group-hover:opacity-75 transition-opacity duration-500"
-                style={{
-                  background:
-                    s.element === 'Fire'
-                      ? 'radial-gradient(circle at center, rgba(224, 122, 46, 0.35) 0%, transparent 70%)'
-                      : s.element === 'Water'
-                      ? 'radial-gradient(circle at center, rgba(71, 83, 104, 0.4) 0%, transparent 70%)'
-                      : s.element === 'Air'
-                      ? 'radial-gradient(circle at center, rgba(122, 109, 127, 0.35) 0%, transparent 70%)'
-                      : 'radial-gradient(circle at center, rgba(157, 136, 107, 0.35) 0%, transparent 70%)',
-                }}
-              />
-
               {/* Inked Zodiac Card Image with subtle zoom on hover */}
               <img
                 src={s.image}
                 alt={`${s.westernName} - ${s.name}`}
-                className="h-[88%] w-auto max-w-[85%] object-contain rounded-2xl filter drop-shadow-[0_0_20px_rgba(207,175,131,0.25)] group-hover:drop-shadow-[0_0_30px_rgba(224,122,46,0.45)] group-hover:scale-105 transition-all duration-500 z-10"
+                className="h-[88%] w-auto max-w-[85%] object-contain rounded-2xl drop-shadow-md group-hover:scale-105 transition-all duration-500 z-10"
               />
-
-              {/* Top & Bottom Seamless Vignette Blends */}
-              <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#120E18] to-transparent pointer-events-none z-20" />
-              <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#120E18] via-[#120E18]/80 to-transparent pointer-events-none z-20" />
 
               {/* Rashi & Sign Number Badges */}
               <div className="absolute top-4 left-5 z-30 flex items-center gap-2">
-                <span className="px-3 py-1 rounded-full text-[10px] font-serif uppercase tracking-widest bg-[#120E18]/85 border border-[#CFAF83]/40 text-[#CFAF83] shadow-md backdrop-blur-sm">
+                <span className="px-3 py-1 rounded-full text-[10px] font-sans font-bold uppercase tracking-widest bg-white/90 dark:bg-[#121316]/90 border border-[#EAE6DF] dark:border-white/10 text-[#181716] dark:text-[#F4F1EA] shadow-xs backdrop-blur-sm">
                   Sign {s.signNumber} · {s.sanskrit}
                 </span>
               </div>
 
               <div className="absolute top-4 right-5 z-30">
-                <span className="px-3 py-1 rounded-full text-[10px] font-serif uppercase tracking-widest bg-[#E07A2E]/20 border border-[#E07A2E]/40 text-[#F4A883] shadow-md backdrop-blur-sm">
+                <span className="px-3 py-1 rounded-full text-[10px] font-sans font-bold uppercase tracking-widest bg-[#B88E3E]/15 border border-[#B88E3E]/30 text-[#B88E3E] dark:text-[#E5B869] shadow-xs backdrop-blur-sm">
                   {s.element}
                 </span>
               </div>
             </Link>
 
             {/* Lower Section: Extensive Astrological Write-up beneath the artwork */}
-            <div className="relative p-6 sm:p-8 flex flex-col flex-grow justify-between z-30 bg-[#120E18]/95 border-t border-[#CFAF83]/20">
+            <div className="relative p-6 sm:p-8 flex flex-col flex-grow justify-between z-30 bg-white dark:bg-[#1A1C20]">
               
               <div>
                 {/* Title & Western Nomenclature */}
                 <div className="flex items-baseline justify-between mb-2">
                   <Link
                     to={`/astrology/zodiac-signs/${s.id}`}
-                    className="font-display font-bold text-2xl text-[#F6ECDD] hover:text-[#E07A2E] transition-colors"
+                    className="font-cormorant font-bold text-2xl sm:text-3xl text-[#181716] dark:text-[#F4F1EA] hover:text-[#B88E3E] dark:hover:text-[#E5B869] transition-colors"
                   >
                     {s.name}
                   </Link>
-                  <span className="text-xs font-serif text-[#CFAF83]/80 tracking-wider">
+                  <span className="text-xs font-sans text-[#827E76] dark:text-[#9C9A94] tracking-wider">
                     {s.quality.split(' ')[0]}
                   </span>
                 </div>
 
                 {/* Dates & Governing Lord */}
-                <div className="text-xs text-[#E07A2E] font-serif mb-3">
+                <div className="text-xs text-[#B88E3E] dark:text-[#E5B869] font-sans font-semibold mb-3">
                   {s.dates} · Ruled by {s.lord}
                 </div>
 
                 {/* Rich Specs Bar */}
-                <div className="grid grid-cols-3 gap-2 text-[11px] font-serif border-y border-[#CFAF83]/15 py-3 my-3 text-center">
-                  <div className="text-[#CFAF83]">
-                    <span className="text-[#7A6D7F] block text-[9px] uppercase">Body Limb</span>
-                    <span className="font-semibold text-[#F6ECDD]">{s.bodyPart.split(',')[0]}</span>
+                <div className="grid grid-cols-3 gap-2 text-[11px] font-sans border-y border-[#EAE6DF] dark:border-white/10 py-3 my-3 text-center">
+                  <div>
+                    <span className="text-[#827E76] dark:text-[#9C9A94] block text-[9px] uppercase font-semibold">Body Limb</span>
+                    <span className="font-semibold text-[#181716] dark:text-[#F4F1EA]">{s.bodyPart.split(',')[0]}</span>
                   </div>
-                  <div className="text-[#CFAF83] border-x border-[#CFAF83]/15">
-                    <span className="text-[#7A6D7F] block text-[9px] uppercase">Vedic Gem</span>
-                    <span className="font-semibold text-[#F4A883]">{s.favorableGem.split('/')[0]}</span>
+                  <div className="border-x border-[#EAE6DF] dark:border-white/10">
+                    <span className="text-[#827E76] dark:text-[#9C9A94] block text-[9px] uppercase font-semibold">Vedic Gem</span>
+                    <span className="font-semibold text-[#B88E3E] dark:text-[#E5B869]">{s.favorableGem.split('/')[0]}</span>
                   </div>
-                  <div className="text-[#CFAF83]">
-                    <span className="text-[#7A6D7F] block text-[9px] uppercase">Symbol</span>
-                    <span className="font-semibold text-[#F6ECDD]">{s.symbol.split('(')[0]}</span>
+                  <div>
+                    <span className="text-[#827E76] dark:text-[#9C9A94] block text-[9px] uppercase font-semibold">Symbol</span>
+                    <span className="font-semibold text-[#181716] dark:text-[#F4F1EA]">{s.symbol.split('(')[0]}</span>
                   </div>
                 </div>
 
                 {/* In-depth Parashari Sign Description & Core Nature */}
-                <p className="text-xs sm:text-sm text-[#F6ECDD]/85 font-light leading-relaxed mb-3">
+                <p className="text-sm text-[#5A5650] dark:text-[#A09D94] font-normal leading-relaxed mb-4">
                   {s.overview}
                 </p>
 
                 {/* Key Guna Strengths & Ideal Synastry Preview */}
-                <div className="p-3.5 rounded-2xl bg-[#1E293B]/40 border border-[#CFAF83]/20 mb-4 space-y-1.5 text-xs font-serif">
+                <div className="p-4 rounded-xl bg-neutral-50 dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10 mb-4 space-y-1.5 text-xs font-sans">
                   <div className="flex items-center gap-2">
-                    <span className="text-[#E07A2E] font-bold">Best Love Matches:</span>
-                    <span className="text-[#F6ECDD]">{s.loveAndMarriage.idealMatches.slice(0, 2).join(', ')}</span>
+                    <span className="text-[#B88E3E] dark:text-[#E5B869] font-bold">Best Love Matches:</span>
+                    <span className="text-[#181716] dark:text-[#F4F1EA]">{s.loveAndMarriage.idealMatches.slice(0, 2).join(', ')}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-[#CFAF83] font-bold">Key Vocations:</span>
-                    <span className="text-[#F6ECDD]/80">{s.careerAndWealth.vocations.slice(0, 2).join(', ')}</span>
+                    <span className="text-[#B88E3E] dark:text-[#E5B869] font-bold">Key Vocations:</span>
+                    <span className="text-[#5A5650] dark:text-[#A09D94]">{s.careerAndWealth.vocations.slice(0, 2).join(', ')}</span>
                   </div>
                 </div>
               </div>
 
               {/* Bottom Card Footer Accent: Opens the Dedicated Sign Page */}
-              <div className="pt-4 border-t border-[#CFAF83]/15 flex items-center justify-between text-xs font-serif text-[#CFAF83]">
-                <span className="text-[11px] text-[#7A6D7F]">Sidereal 30° Division</span>
+              <div className="pt-4 border-t border-[#EAE6DF] dark:border-white/10 flex items-center justify-between text-xs font-sans">
+                <span className="text-[11px] text-[#827E76] dark:text-[#9C9A94]">Sidereal 30° Division</span>
                 <Link
                   to={`/astrology/zodiac-signs/${s.id}`}
-                  className="font-bold text-[#E07A2E] hover:text-[#F4A883] flex items-center gap-1.5 transition-all group-hover:translate-x-1"
+                  className="font-bold text-[#181716] dark:text-[#F4F1EA] hover:text-[#B88E3E] dark:hover:text-[#E5B869] flex items-center gap-1.5 transition-all group-hover:translate-x-1"
                 >
                   <span>Read Full Horoscope & Secrets</span>
                   <span>→</span>
