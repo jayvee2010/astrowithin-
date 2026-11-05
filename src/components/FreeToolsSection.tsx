@@ -915,17 +915,13 @@ export const FreeToolsSection: React.FC = () => {
 
         </div>
 
-        {/* Explore All Tools Link (Preserved from Content) */}
-        <div className="mt-12 text-center pt-8 border-t border-[#EAE6DF] dark:border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="text-xs text-[#827E76]">
-            Showing 7 Classical Parashari & Jaimini Computational Engines
-          </div>
-
+        {/* Explore All Tools Link */}
+        <div className="mt-12 text-center pt-8 border-t border-[#EAE6DF] dark:border-white/10 flex justify-center">
           <Link
             to="/tools"
             className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-sans font-bold hover:text-[#B88E3E] transition-colors opacity-80 hover:opacity-100"
           >
-            <span>Explore all tools ({tools.length})</span>
+            <span>Explore all tools</span>
             <span>→</span>
           </Link>
         </div>
