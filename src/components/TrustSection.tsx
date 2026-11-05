@@ -105,21 +105,23 @@ export const TrustSection: React.FC = () => {
                 <div
                   key={spec.id}
                   onClick={() => setActiveConstellation(spec.id)}
-                  className={`cursor-pointer p-7 rounded-2xl bg-white dark:bg-[#1A1C20] border transition-all duration-300 flex flex-col items-center text-center shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 ${
+                  onMouseEnter={() => setActiveConstellation(spec.id)}
+                  className={`group cursor-pointer p-7 rounded-2xl bg-white dark:bg-[#1A1C20] border transition-all duration-300 flex flex-col items-center text-center shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1.5 ${
                     isActive
-                      ? 'border-[#B88E3E] ring-2 ring-[#B88E3E]/20'
-                      : 'border-[#EAE6DF] dark:border-white/10 hover:border-[#B88E3E]/60'
+                      ? 'border-[#B88E3E] dark:border-[#E5B869] ring-2 ring-[#B88E3E]/20 dark:ring-[#E5B869]/20 shadow-[0_8px_30px_rgba(184,142,62,0.12)]'
+                      : 'border-[#EAE6DF] dark:border-white/10 hover:border-[#B88E3E] dark:hover:border-[#E5B869] hover:ring-2 hover:ring-[#B88E3E]/20'
                   }`}
                 >
                   {/* Constellation SVG Diagram with Fine-Line Stars */}
-                  <svg viewBox="0 0 100 100" className="w-24 h-24 text-[#B88E3E] mb-4">
+                  <svg viewBox="0 0 100 100" className="w-24 h-24 mb-4 transition-transform duration-300 group-hover:scale-105">
                     <polyline
                       points={spec.stars.map((s) => `${s.x},${s.y}`).join(' ')}
                       fill="none"
-                      stroke={isActive ? '#B88E3E' : 'currentColor'}
-                      strokeWidth={isActive ? '1.8' : '1'}
-                      strokeDasharray={isActive ? 'none' : '3 3'}
-                      opacity={isActive ? 1 : 0.4}
+                      className={`transition-all duration-300 ${
+                        isActive
+                          ? 'stroke-[#B88E3E] dark:stroke-[#E5B869] opacity-100 stroke-[1.8] [stroke-dasharray:none]'
+                          : 'stroke-[#827E76] opacity-40 stroke-[1.2] [stroke-dasharray:3_3] group-hover:stroke-[#B88E3E] dark:group-hover:stroke-[#E5B869] group-hover:opacity-100 group-hover:stroke-[1.8] group-hover:[stroke-dasharray:none]'
+                      }`}
                     />
                     {spec.stars.map((s, i) => (
                       <circle
@@ -127,7 +129,11 @@ export const TrustSection: React.FC = () => {
                         cx={s.x}
                         cy={s.y}
                         r={isActive ? 3.5 : 2.5}
-                        fill={isActive ? '#B88E3E' : '#827E76'}
+                        className={`transition-all duration-300 ${
+                          isActive
+                            ? 'fill-[#B88E3E] dark:fill-[#E5B869]'
+                            : 'fill-[#827E76] group-hover:fill-[#B88E3E] dark:group-hover:fill-[#E5B869]'
+                        }`}
                       />
                     ))}
                   </svg>
@@ -135,7 +141,7 @@ export const TrustSection: React.FC = () => {
                   <div className="text-[10px] font-sans uppercase tracking-widest font-bold text-[#B88E3E] dark:text-[#E5B869] mb-1">
                     {spec.sanskrit}
                   </div>
-                  <h3 className="font-cormorant font-bold text-2xl mb-2">
+                  <h3 className="font-cormorant font-bold text-2xl mb-2 transition-colors group-hover:text-[#B88E3E] dark:group-hover:text-[#E5B869]">
                     {spec.name}
                   </h3>
                   <p className="text-xs text-[#5A5650] dark:text-[#A09D94] font-normal leading-relaxed">
