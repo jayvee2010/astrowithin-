@@ -1,7 +1,7 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import { PageLayout } from '../components/PageLayout';
 import { Link } from 'react-router-dom';
-import { ALL_NAKSHATRAS, NakshatraItem } from '../data/nakshatrasData';
+import { ALL_NAKSHATRAS } from '../data/nakshatrasData';
 
 // Laurel Wreath Trust Metrics for Astrology Pages
 const LaurelWreathTrustBadge: React.FC = () => {
@@ -60,28 +60,6 @@ export const NakshatrasPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedRuler, setSelectedRuler] = useState<string>('All');
   const [selectedGana, setSelectedGana] = useState<string>('All');
-  const [activeModalNakshatra, setActiveModalNakshatra] = useState<NakshatraItem | null>(null);
-
-  // Handle ESC key and Lock background body scrolling when modal is open
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        setActiveModalNakshatra(null);
-      }
-    };
-
-    if (activeModalNakshatra) {
-      window.addEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'unset';
-    };
-  }, [activeModalNakshatra]);
 
   const rulersList = ['All', 'Sun', 'Moon', 'Mars', 'Rahu', 'Jupiter', 'Saturn', 'Mercury', 'Ketu'];
   const ganasList = ['All', 'Deva', 'Manushya', 'Rakshasa'];
@@ -270,10 +248,10 @@ export const NakshatrasPage: React.FC = () => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 sm:gap-8">
             {filteredNakshatras.map((nak) => (
-              <div
+              <Link
                 key={nak.id}
-                onClick={() => setActiveModalNakshatra(nak)}
-                className="group relative flex flex-col justify-between rounded-3xl bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:border-[#B88E3E] dark:hover:border-[#E5B869] hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer"
+                to={`/astrology/nakshatras/${nak.id}`}
+                className="group relative flex flex-col justify-between rounded-3xl bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:border-[#B88E3E] dark:hover:border-[#E5B869] hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300 overflow-hidden"
               >
                 <div>
                   {/* Aspect 2:1 High-Resolution Artwork Container */}
@@ -357,7 +335,7 @@ export const NakshatrasPage: React.FC = () => {
                     </span>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         )}
@@ -411,213 +389,6 @@ export const NakshatrasPage: React.FC = () => {
           </Link>
         </div>
       </section>
-
-      {/* ======================================================== */}
-      {/* 5. LUXURY NAKSHATRA DOSSIER MODAL (Pinterest Astrological)*/}
-      {/* ======================================================== */}
-      {activeModalNakshatra && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/75 backdrop-blur-md animate-in fade-in duration-200 cursor-pointer"
-          onClick={() => setActiveModalNakshatra(null)}
-        >
-          <div
-            className="relative w-full max-w-3xl max-h-[92vh] overflow-y-auto rounded-3xl bg-[#FAF8F5] dark:bg-[#181A1F] border-2 border-[#B88E3E]/40 shadow-2xl cursor-default"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Prominent High-Contrast Floating Close Button */}
-            <button
-              type="button"
-              onClick={() => setActiveModalNakshatra(null)}
-              className="absolute top-4 right-4 z-30 w-11 h-11 rounded-full bg-white dark:bg-[#181716] text-[#181716] dark:text-white border-2 border-stone-200 dark:border-white/20 shadow-2xl hover:scale-110 active:scale-95 flex items-center justify-center font-bold text-lg cursor-pointer transition-all"
-              title="Close (or press Esc)"
-              aria-label="Close modal"
-            >
-              ✕
-            </button>
-
-            {/* Modal Hero Artwork Banner */}
-            <div className="relative aspect-[2.2/1] overflow-hidden bg-neutral-900">
-              <img
-                src={activeModalNakshatra.image}
-                alt={activeModalNakshatra.name}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#FAF8F5] dark:from-[#181A1F] via-black/40 to-transparent" />
-
-              <div className="absolute bottom-6 left-6 sm:left-8 right-6">
-                <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest bg-[#B88E3E] text-white">
-                  Nakshatra #{activeModalNakshatra.number} · {activeModalNakshatra.sanskrit}
-                </span>
-                <h2 className="font-cormorant font-bold text-4xl sm:text-5xl text-[#181716] dark:text-white mt-2">
-                  {activeModalNakshatra.name}
-                </h2>
-              </div>
-            </div>
-
-            {/* Modal Body Content */}
-            <div className="p-6 sm:p-8 space-y-8">
-              {/* Core Astrological Attribute Badges */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-sans">
-                <div className="p-3.5 rounded-2xl bg-white dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10">
-                  <span className="text-[10px] uppercase font-bold text-[#827E76] block">Ruling Planet</span>
-                  <span className="font-semibold text-sm text-[#B88E3E] dark:text-[#E5B869] mt-0.5 block">
-                    {activeModalNakshatra.ruler}
-                  </span>
-                </div>
-
-                <div className="p-3.5 rounded-2xl bg-white dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10">
-                  <span className="text-[10px] uppercase font-bold text-[#827E76] block">Zodiac Span</span>
-                  <span className="font-mono font-semibold text-xs text-[#181716] dark:text-white mt-0.5 block truncate">
-                    {activeModalNakshatra.span}
-                  </span>
-                </div>
-
-                <div className="p-3.5 rounded-2xl bg-white dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10">
-                  <span className="text-[10px] uppercase font-bold text-[#827E76] block">Temperament</span>
-                  <span className="font-semibold text-sm text-[#181716] dark:text-white mt-0.5 block">
-                    {activeModalNakshatra.gana} Gana
-                  </span>
-                </div>
-
-                <div className="p-3.5 rounded-2xl bg-white dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10">
-                  <span className="text-[10px] uppercase font-bold text-[#827E76] block">Purushartha</span>
-                  <span className="font-semibold text-sm text-[#181716] dark:text-white mt-0.5 block">
-                    {activeModalNakshatra.element}
-                  </span>
-                </div>
-              </div>
-
-              {/* In-depth Astrological Essence */}
-              <div>
-                <h4 className="font-cormorant font-bold text-2xl text-[#181716] dark:text-white mb-2">
-                  Mythological &amp; Psychological Essence
-                </h4>
-                <p className="text-sm sm:text-base text-[#5A5650] dark:text-[#A09D94] leading-relaxed">
-                  {activeModalNakshatra.desc}
-                </p>
-              </div>
-
-              {/* Trait Chips */}
-              <div>
-                <h5 className="text-xs uppercase font-sans font-bold tracking-widest text-[#827E76] mb-3">
-                  Core Archetypal Traits
-                </h5>
-                <div className="flex flex-wrap gap-2">
-                  {activeModalNakshatra.traits.map((t, idx) => (
-                    <span
-                      key={idx}
-                      className="px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-[#B88E3E]/30 text-xs font-sans font-semibold text-[#B88E3E] dark:text-[#E5B869]"
-                    >
-                      ✦ {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* 4 Padas Table */}
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <h4 className="font-cormorant font-bold text-2xl text-[#181716] dark:text-white">
-                    The 4 Padas (Navamsa Harmonic Quarters)
-                  </h4>
-                  <span className="text-xs font-mono text-[#827E76]">3° 20′ each</span>
-                </div>
-
-                <div className="overflow-x-auto rounded-2xl border border-[#EAE6DF] dark:border-white/10 bg-white dark:bg-white/5">
-                  <table className="w-full text-left text-xs font-sans">
-                    <thead>
-                      <tr className="border-b border-[#EAE6DF] dark:border-white/10 text-[10px] uppercase font-bold text-[#827E76] bg-neutral-50 dark:bg-white/5">
-                        <th className="py-2.5 px-4">Pada</th>
-                        <th className="py-2.5 px-4">Arc Span</th>
-                        <th className="py-2.5 px-4">Navamsa Sign</th>
-                        <th className="py-2.5 px-4">Psychological Nature</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-[#EAE6DF] dark:divide-white/5">
-                      {activeModalNakshatra.padas.map((p) => (
-                        <tr key={p.pada} className="hover:bg-[#B88E3E]/5 transition-colors">
-                          <td className="py-2.5 px-4 font-bold text-[#B88E3E] dark:text-[#E5B869]">
-                            Pada {p.pada}
-                          </td>
-                          <td className="py-2.5 px-4 font-mono text-[#827E76]">{p.span}</td>
-                          <td className="py-2.5 px-4 font-semibold text-[#181716] dark:text-white">
-                            {p.navamsa}
-                          </td>
-                          <td className="py-2.5 px-4 text-[#5A5650] dark:text-[#A09D94]">{p.nature}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-
-              {/* Seed Syllables */}
-              <div className="p-5 rounded-2xl bg-amber-500/10 border border-[#B88E3E]/20">
-                <span className="text-[10px] uppercase font-sans font-bold tracking-widest text-[#B88E3E] dark:text-[#E5B869] block mb-1">
-                  Nama Akshara (Sacred Sound Syllables)
-                </span>
-                <p className="text-xs text-[#5A5650] dark:text-[#A09D94] mb-3">
-                  Traditional Vedic syllables for naming babies born under each pada of {activeModalNakshatra.name}:
-                </p>
-                <div className="flex items-center gap-3">
-                  {activeModalNakshatra.syllables.map((syl, i) => (
-                    <div
-                      key={i}
-                      className="px-4 py-2 rounded-xl bg-white dark:bg-[#181A1F] border border-[#B88E3E]/30 text-sm font-mono font-bold text-[#181716] dark:text-white text-center shadow-xs"
-                    >
-                      Pada {i + 1}: <span className="text-[#B88E3E] dark:text-[#E5B869]">{syl}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Career & Marriage Guidance */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="p-6 rounded-2xl bg-white dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10">
-                  <h5 className="font-cormorant font-bold text-xl text-[#181716] dark:text-white mb-2">
-                    Vocational Inclinations
-                  </h5>
-                  <p className="text-xs text-[#5A5650] dark:text-[#A09D94] leading-relaxed">
-                    {activeModalNakshatra.career}
-                  </p>
-                </div>
-
-                <div className="p-6 rounded-2xl bg-white dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10">
-                  <h5 className="font-cormorant font-bold text-xl text-[#181716] dark:text-white mb-2">
-                    Marital &amp; Romantic Dynamics
-                  </h5>
-                  <p className="text-xs text-[#5A5650] dark:text-[#A09D94] leading-relaxed">
-                    {activeModalNakshatra.marriage}
-                  </p>
-                </div>
-              </div>
-
-              {/* Modal Footer Actions */}
-              <div className="pt-4 border-t border-[#EAE6DF] dark:border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <span className="text-xs text-[#827E76]">
-                  Governed by {activeModalNakshatra.deity} · Symbolized by {activeModalNakshatra.symbol}
-                </span>
-
-                <div className="flex items-center gap-3">
-                  <button
-                    type="button"
-                    onClick={() => setActiveModalNakshatra(null)}
-                    className="px-5 py-2.5 rounded-full bg-white dark:bg-[#181716] border border-[#EAE6DF] dark:border-white/20 text-xs font-bold text-[#181716] dark:text-white hover:border-[#B88E3E] cursor-pointer shadow-xs"
-                  >
-                    Close Dossier ✕
-                  </button>
-                  <Link
-                    to={`/astrology/nakshatras/${activeModalNakshatra.id}`}
-                    className="px-6 py-2.5 rounded-full bg-white dark:bg-[#1A1C20] border-2 border-[#B88E3E] text-[#B88E3E] dark:text-[#E5B869] text-xs uppercase tracking-wider font-bold hover:bg-[#B88E3E] hover:text-white transition-all shadow-xs"
-                  >
-                    Open Full Page Guide ↗
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </PageLayout>
   );
 };

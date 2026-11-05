@@ -5,7 +5,7 @@ import { ALL_NAKSHATRAS } from '../data/nakshatrasData';
 
 export const NakshatraDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
-  const nakshatra = ALL_NAKSHATRAS.find((n) => n.id === slug) || ALL_NAKSHATRAS[0];
+  const nakshatra = ALL_NAKSHATRAS.find((n) => n.id.toLowerCase() === slug?.toLowerCase().trim()) || ALL_NAKSHATRAS[0];
 
   const [activeTab, setActiveTab] = useState<'overview' | 'padas' | 'love' | 'career'>('overview');
 
