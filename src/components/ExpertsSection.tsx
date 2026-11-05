@@ -6,7 +6,6 @@ export const ExpertsSection: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const [viewMode, setViewMode] = useState<'3d-carousel' | 'grid'>('3d-carousel');
-  const [isAutoRotating, setIsAutoRotating] = useState(false);
   const [dragStartX, setDragStartX] = useState<number | null>(null);
 
   const featuredExperts = EXPERTS.slice(0, 6);
@@ -34,14 +33,16 @@ export const ExpertsSection: React.FC = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [viewMode, rotateTo]);
 
-  // Optional auto-rotate timer
+  // PERMANENT AUTO-REVOLVE AT EXACT 2 SECONDS TIME GAP
   useEffect(() => {
-    if (!isAutoRotating || isFlipped || viewMode !== '3d-carousel') return;
+    if (viewMode !== '3d-carousel' || isFlipped) return;
+
     const interval = setInterval(() => {
       rotateTo(1);
-    }, 4500);
+    }, 2000);
+
     return () => clearInterval(interval);
-  }, [isAutoRotating, isFlipped, viewMode, rotateTo]);
+  }, [isFlipped, viewMode, rotateTo]);
 
   // Touch and mouse drag handlers for seamless swipe
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -78,7 +79,7 @@ export const ExpertsSection: React.FC = () => {
     // Center Active Card (facing front)
     if (offset === 0) {
       return {
-        transform: 'translate3d(0, 0, 160px) rotateY(0deg) scale(1.05)',
+        transform: 'translate3d(0, 0, 160px) rotateY(0deg) scale(1.04)',
         zIndex: 40,
         opacity: 1,
         pointerEvents: 'auto' as const,
@@ -200,46 +201,35 @@ export const ExpertsSection: React.FC = () => {
         {viewMode === '3d-carousel' && (
           <div className="relative w-full mb-12">
             
-            {/* Top Toolbar: Active Astrologer Index & Auto-Revolve Control */}
+            {/* Top Status Bar: Auto-Revolving Permanent Indicator */}
             <div className="flex items-center justify-between mb-6 pb-3 border-b border-[#EAE6DF]/60 dark:border-white/5 text-xs text-[#827E76]">
               <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#B88E3E] animate-pulse"></span>
-                <span>
-                  Revolving Celestial Cylinder · <strong className="text-[#181716] dark:text-white">0{activeIndex + 1} of 0{totalCards}: {activeExpert.name}</strong>
+                <span className="w-2.5 h-2.5 rounded-full bg-[#B88E3E] animate-pulse"></span>
+                <span className="font-semibold text-[#181716] dark:text-white">
+                  Auto-Revolving (2s) · 0{activeIndex + 1} of 0{totalCards}: {activeExpert.name}
                 </span>
               </div>
 
-              <div className="flex items-center gap-3">
-                <button
-                  type="button"
-                  onClick={() => setIsAutoRotating((prev) => !prev)}
-                  className={`hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#EAE6DF] dark:border-white/10 text-xs transition-colors ${
-                    isAutoRotating
-                      ? 'bg-[#B88E3E] text-white border-[#B88E3E]'
-                      : 'hover:border-[#B88E3E]'
-                  }`}
-                  title="Toggle automatic orbital rotation"
-                >
-                  <span>{isAutoRotating ? '⏸ Pause' : '▶ Auto-Revolve'}</span>
-                </button>
+              <div className="text-[11px] font-mono text-[#827E76]">
+                Sidereal Lahiri · 3D Celestial Cylinder
               </div>
             </div>
 
-            {/* 3D ASTROLABE STAGE CONTAINER (Expanded height, zero cutoffs) */}
+            {/* 3D ASTROLABE STAGE CONTAINER (Clear vertical hierarchy, zero collision) */}
             <div
               onTouchStart={handleTouchStart}
               onTouchEnd={handleTouchEnd}
               onMouseDown={handleMouseDown}
               onMouseUp={handleMouseUp}
-              className="relative w-full min-h-[660px] sm:min-h-[720px] md:min-h-[760px] flex flex-col items-center justify-center select-none perspective-1200 bg-neutral-50/50 dark:bg-white/[0.02] rounded-3xl border border-[#EAE6DF] dark:border-white/10 p-4 sm:p-6 md:p-8 cursor-grab active:cursor-grabbing"
+              className="relative w-full min-h-[760px] sm:min-h-[820px] md:min-h-[860px] flex flex-col items-center justify-between select-none perspective-1200 bg-neutral-50/50 dark:bg-white/[0.02] rounded-3xl border border-[#EAE6DF] dark:border-white/10 pt-8 pb-10 px-4 sm:px-8 cursor-grab active:cursor-grabbing"
             >
               {/* Astrolabe Celestial Brass Meridian Coordinate Rings */}
-              <div className="absolute w-[780px] sm:w-[940px] md:w-[1100px] h-[780px] sm:h-[940px] md:h-[1100px] rounded-full border-2 border-dashed border-[#B88E3E]/20 dark:border-[#B88E3E]/25 pointer-events-none transform -rotate-x-[72deg] -translate-z-[80px]" />
-              <div className="absolute w-[560px] sm:w-[720px] md:w-[840px] h-[560px] sm:h-[720px] md:h-[840px] rounded-full border border-[#B88E3E]/15 dark:border-[#B88E3E]/20 pointer-events-none transform -rotate-x-[72deg] -translate-z-[40px]" />
-              <div className="absolute bottom-16 w-3/4 max-w-2xl h-14 bg-black/10 dark:bg-black/40 blur-2xl rounded-full pointer-events-none" />
+              <div className="absolute w-[800px] sm:w-[960px] md:w-[1120px] h-[800px] sm:h-[960px] md:h-[1120px] rounded-full border-2 border-dashed border-[#B88E3E]/20 dark:border-[#B88E3E]/25 pointer-events-none transform -rotate-x-[72deg] -translate-z-[80px]" />
+              <div className="absolute w-[580px] sm:w-[740px] md:w-[860px] h-[580px] sm:h-[740px] md:h-[860px] rounded-full border border-[#B88E3E]/15 dark:border-[#B88E3E]/20 pointer-events-none transform -rotate-x-[72deg] -translate-z-[40px]" />
+              <div className="absolute bottom-28 w-3/4 max-w-2xl h-14 bg-black/10 dark:bg-black/40 blur-2xl rounded-full pointer-events-none" />
 
-              {/* The Revolving Cylinder Track (Larger Cards: 300px - 350px width, 480px - 530px height) */}
-              <div className="relative w-full h-[500px] sm:h-[540px] flex items-center justify-center preserve-3d scale-[0.84] xs:scale-[0.90] sm:scale-95 md:scale-100 transition-transform duration-300">
+              {/* CARD TRACK: Generous height (580px - 620px) ensuring cards never leak out of the bottom */}
+              <div className="relative w-full h-[580px] sm:h-[620px] flex items-center justify-center preserve-3d scale-[0.84] xs:scale-[0.90] sm:scale-95 md:scale-100 transition-transform duration-300">
                 {featuredExperts.map((expert, index) => {
                   const style = getCardStyle(index);
                   const isCenter = index === activeIndex;
@@ -255,7 +245,7 @@ export const ExpertsSection: React.FC = () => {
                         }
                       }}
                       style={style}
-                      className={`absolute w-[280px] sm:w-[320px] md:w-[350px] h-[480px] sm:h-[520px] md:h-[530px] rounded-3xl transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] preserve-3d ${
+                      className={`absolute w-[280px] sm:w-[320px] md:w-[350px] h-[480px] sm:h-[520px] rounded-3xl transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] preserve-3d ${
                         isCenter
                           ? 'cursor-pointer shadow-[0_24px_50px_rgba(0,0,0,0.12)] dark:shadow-[0_28px_60px_rgba(0,0,0,0.7)]'
                           : 'cursor-pointer shadow-md hover:opacity-100'
@@ -317,7 +307,7 @@ export const ExpertsSection: React.FC = () => {
                               {expert.name}
                             </h3>
 
-                            <span className="text-xs sm:text-sm italic font-cormorant text-[#B88E3E] dark:text-[#E5B869] block mb-2 line-clamp-1">
+                            <span className="text-xs sm:text-sm italic font-cormorant text-[#B88E3E] dark:text-[#E5B869] block mb-1 line-clamp-1">
                               {expert.specialty}
                             </span>
 
@@ -439,7 +429,7 @@ export const ExpertsSection: React.FC = () => {
               <button
                 type="button"
                 onClick={() => rotateTo(-1)}
-                className="absolute left-3 sm:left-6 md:left-8 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white/95 dark:bg-[#1A1C20]/95 backdrop-blur-md border border-[#EAE6DF] dark:border-white/10 flex items-center justify-center text-sm font-bold text-[#181716] dark:text-white hover:border-[#B88E3E] hover:text-[#B88E3E] shadow-xl transition-all z-50 hover:scale-110 active:scale-95"
+                className="absolute left-3 sm:left-6 md:left-8 top-[38%] -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white/95 dark:bg-[#1A1C20]/95 backdrop-blur-md border border-[#EAE6DF] dark:border-white/10 flex items-center justify-center text-sm font-bold text-[#181716] dark:text-white hover:border-[#B88E3E] hover:text-[#B88E3E] shadow-xl transition-all z-50 hover:scale-110 active:scale-95"
                 aria-label="Previous Astrologer"
               >
                 ←
@@ -448,26 +438,26 @@ export const ExpertsSection: React.FC = () => {
               <button
                 type="button"
                 onClick={() => rotateTo(1)}
-                className="absolute right-3 sm:right-6 md:right-8 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white/95 dark:bg-[#1A1C20]/95 backdrop-blur-md border border-[#EAE6DF] dark:border-white/10 flex items-center justify-center text-sm font-bold text-[#181716] dark:text-white hover:border-[#B88E3E] hover:text-[#B88E3E] shadow-xl transition-all z-50 hover:scale-110 active:scale-95"
+                className="absolute right-3 sm:right-6 md:right-8 top-[38%] -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white/95 dark:bg-[#1A1C20]/95 backdrop-blur-md border border-[#EAE6DF] dark:border-white/10 flex items-center justify-center text-sm font-bold text-[#181716] dark:text-white hover:border-[#B88E3E] hover:text-[#B88E3E] shadow-xl transition-all z-50 hover:scale-110 active:scale-95"
                 aria-label="Next Astrologer"
               >
                 →
               </button>
 
-              {/* DEDICATED FLIP BUTTON: POSITIONED RIGHT BELOW THE CARD */}
-              <div className="relative z-50 mt-6 sm:mt-8 flex flex-col items-center">
+              {/* DEDICATED FLIP BUTTON & DOTS: PLACED WELL BELOW THE CARDS WITH ZERO OVERLAP */}
+              <div className="relative z-50 w-full flex flex-col items-center justify-center pt-8 border-t border-[#EAE6DF]/60 dark:border-white/10">
                 <button
                   type="button"
                   onClick={() => setIsFlipped((prev) => !prev)}
-                  className="px-6 py-2.5 rounded-full bg-white dark:bg-[#1A1C20] border-2 border-[#B88E3E] text-[#B88E3E] dark:text-[#E5B869] text-xs font-bold uppercase tracking-wider hover:bg-[#B88E3E] hover:text-white dark:hover:text-[#181716] transition-all shadow-md flex items-center gap-2 hover:scale-105 active:scale-95 cursor-pointer"
+                  className="px-7 py-3 rounded-full bg-white dark:bg-[#1A1C20] border-2 border-[#B88E3E] text-[#B88E3E] dark:text-[#E5B869] text-xs font-bold uppercase tracking-wider hover:bg-[#B88E3E] hover:text-white dark:hover:text-[#181716] transition-all shadow-md flex items-center gap-2 hover:scale-105 active:scale-95 cursor-pointer"
                   title="Flip the card to inspect methodology and booking availability"
                 >
-                  <span className="text-sm">⟲</span>
+                  <span className="text-sm font-bold">⟲</span>
                   <span>{isFlipped ? 'Flip Back to Portrait' : 'Flip Card · View Methodology & Schedule'}</span>
                 </button>
 
                 {/* Astrolabe Circular Dot Indicators */}
-                <div className="flex items-center justify-center gap-2 mt-4">
+                <div className="flex items-center justify-center gap-2 mt-5">
                   {featuredExperts.map((exp, idx) => (
                     <button
                       key={exp.id}
