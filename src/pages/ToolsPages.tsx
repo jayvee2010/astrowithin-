@@ -2,15 +2,102 @@ import React, { useState } from 'react';
 import { PageLayout } from '../components/PageLayout';
 import { Link, useParams } from 'react-router-dom';
 import { VAYA_TOOL_CATEGORIES, ALL_VAYA_TOOLS, ToolItem } from '../data/vayaToolsCatalog';
-import { TECHNICAL_PILLARS, GLOBAL_TOOLS_FAQS } from '../data/toolsData';
+
+// Clean SVG Icons for Tool Cards
+const ToolIcon: React.FC<{ type: string; className?: string }> = ({ type, className = 'w-6 h-6' }) => {
+  switch (type) {
+    case 'marriage':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
+          <circle cx="9" cy="12" r="5" />
+          <circle cx="15" cy="12" r="5" />
+          <path d="M12 7l1.5-2 1.5 2" />
+        </svg>
+      );
+    case 'kundli':
+    case 'chart':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
+          <rect x="3" y="3" width="18" height="18" rx="2" />
+          <line x1="3" y1="3" x2="21" y2="21" />
+          <line x1="21" y1="3" x2="3" y2="21" />
+          <polygon points="12,3 21,12 12,21 3,12" />
+        </svg>
+      );
+    case 'dasha':
+    case 'clock':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
+          <circle cx="12" cy="12" r="9" />
+          <polyline points="12 6 12 12 16 14" />
+        </svg>
+      );
+    case 'transit':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
+          <circle cx="12" cy="12" r="4" />
+          <ellipse cx="12" cy="12" rx="9" ry="4" transform="rotate(-30 12 12)" />
+        </svg>
+      );
+    case 'nakshatra':
+    case 'star':
+      return (
+        <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
+          <path d="M12 0L14 9L23 12L14 15L12 24L10 15L1 12L10 9Z" />
+        </svg>
+      );
+    case 'calendar':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
+          <rect x="3" y="4" width="18" height="18" rx="2" />
+          <line x1="16" y1="2" x2="16" y2="6" />
+          <line x1="8" y1="2" x2="8" y2="6" />
+          <line x1="3" y1="10" x2="21" y2="10" />
+        </svg>
+      );
+    case 'sun':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+        </svg>
+      );
+    case 'moon':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
+      );
+    case 'balance':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
+          <path d="M12 3v18M6 8l6-3 6 3M6 8l-3 6h6L6 8zM18 8l-3 6h6l-3-6z" />
+        </svg>
+      );
+    default:
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
+          <circle cx="12" cy="12" r="8" />
+          <circle cx="12" cy="12" r="3" />
+        </svg>
+      );
+  }
+};
+
+const getToolIconType = (id: string): string => {
+  if (id.includes('marriage') || id.includes('vivah')) return 'marriage';
+  if (id.includes('kundli') || id.includes('matching') || id.includes('synastry')) return 'balance';
+  if (id.includes('dasha') || id.includes('choghadiya') || id.includes('hora')) return 'dasha';
+  if (id.includes('transit') || id.includes('return')) return 'transit';
+  if (id.includes('nakshatra') || id.includes('star')) return 'nakshatra';
+  if (id.includes('panchang') || id.includes('calendar') || id.includes('muhurat')) return 'calendar';
+  if (id.includes('sun') || id.includes('abhijit')) return 'sun';
+  if (id.includes('moon') || id.includes('rashi')) return 'moon';
+  return 'chart';
+};
 
 export const ToolsIndexPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
-
-  const toggleFaq = (idx: number) => {
-    setOpenFaqIndex(openFaqIndex === idx ? null : idx);
-  };
 
   const isSearching = searchQuery.trim().length > 0;
   const searchResults = isSearching
@@ -25,643 +112,236 @@ export const ToolsIndexPage: React.FC = () => {
       })
     : [];
 
-  const scrollToSection = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+  const scrollToAllTools = () => {
+    const el = document.getElementById('all-tools');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
     <PageLayout
       badge="Free Vedic Astrology Calculators"
-      title="Vedic Astrology Calculators"
-      subtitle="Free Vedic Astrology Kundli tools created with Classically Trained Parashari Astrologers. Find out your Marriage Timing, characteristics of your future partner, what dasha is running your life, affecting your current relationships and more."
+      title="Astrology Tools & Calculators"
+      subtitle="Free Vedic Astrology Kundli tools created with Classically Trained Parashari Astrologers. Find out your Marriage Timing, characteristics of your future partner, and active planetary periods."
     >
-      {/* Search Bar & Sticky Sub-Navigation Rail */}
-      <div className="mb-12 pb-6 border-b border-[#EAE6DF] dark:border-white/10">
-        
-        {/* Search Input */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-          <div className="relative w-full sm:w-96">
-            <input
-              type="text"
-              placeholder="Search 45+ Vedic calculators (e.g. Navamsa, Dasha, Marriage, Return)..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 rounded-full bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10 text-xs font-sans text-[#181716] dark:text-white placeholder-[#827E76] focus:outline-none focus:border-[#B88E3E] transition-colors shadow-xs"
-            />
-            <svg
-              className="absolute left-3.5 top-3.5 w-4 h-4 text-[#827E76]"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-          </div>
-
-          <div className="text-xs font-mono text-[#827E76]">
-            {isSearching ? (
-              <span>Found <strong className="text-[#181716] dark:text-white">{searchResults.length}</strong> matching tools</span>
-            ) : (
-              <span><strong>{ALL_VAYA_TOOLS.length}</strong> Classical Calculators Available</span>
-            )}
-          </div>
+      {/* Search Input */}
+      <div className="max-w-xl mx-auto mb-16">
+        <div className="relative">
+          <input
+            type="text"
+            placeholder="Search all 45+ calculators (e.g. Marriage, Dasha, Navamsa)..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full pl-11 pr-4 py-3.5 rounded-full bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10 text-sm font-sans text-[#181716] dark:text-white placeholder-[#827E76] focus:outline-none focus:border-[#B88E3E] transition-colors shadow-xs"
+          />
+          <svg
+            className="absolute left-4 top-4 w-4 h-4 text-[#827E76]"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
         </div>
-
-        {/* Sticky Subnav Anchor Buttons */}
-        {!isSearching && (
-          <div className="flex items-center gap-2 overflow-x-auto pb-2 text-xs font-sans font-bold uppercase tracking-wider whitespace-nowrap">
-            {VAYA_TOOL_CATEGORIES.map((cat) => (
-              <button
-                key={cat.id}
-                type="button"
-                onClick={() => scrollToSection(cat.id)}
-                className="py-2 px-3.5 rounded-full bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10 text-[#827E76] hover:text-[#181716] dark:hover:text-white hover:border-[#B88E3E] transition-all cursor-pointer text-[11px]"
-              >
-                {cat.title}
-              </button>
-            ))}
-          </div>
-        )}
       </div>
 
-      {/* SEARCH RESULTS VIEW (When query active) */}
-      {isSearching && (
+      {/* SEARCH RESULTS VIEW */}
+      {isSearching ? (
         <div className="mb-20">
           <div className="text-xs uppercase font-sans font-bold tracking-widest text-[#B88E3E] dark:text-[#E5B869] mb-4">
-            Search Results for "{searchQuery}"
+            Search Results ({searchResults.length})
           </div>
           {searchResults.length === 0 ? (
             <div className="p-12 text-center rounded-3xl bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10">
-              <p className="text-[#827E76] text-sm">No calculators found matching your search. Try searching for "marriage", "kundli", "dasha", or "navamsa".</p>
+              <p className="text-[#827E76] text-sm">No calculators found matching "{searchQuery}".</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {searchResults.map((tool) => (
                 <Link
                   key={tool.id}
                   to={tool.path}
-                  className="p-6 rounded-3xl bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10 shadow-xs hover:border-[#B88E3E] hover:-translate-y-1 transition-all flex flex-col justify-between group"
+                  className="p-5 rounded-2xl bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10 shadow-xs hover:border-[#B88E3E] hover:-translate-y-1 transition-all flex items-center gap-4 group"
                 >
-                  <div>
-                    <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-[#B88E3E] dark:text-[#E5B869] block mb-1">
-                      {tool.category}
-                    </span>
-                    <h4 className="font-cormorant font-bold text-2xl text-[#181716] dark:text-white group-hover:text-[#B88E3E] transition-colors mb-1">
+                  <div className="w-11 h-11 rounded-xl bg-neutral-100 dark:bg-white/5 flex items-center justify-center flex-shrink-0 text-[#B88E3E]">
+                    <ToolIcon type={getToolIconType(tool.id)} className="w-5 h-5" />
+                  </div>
+                  <div className="min-w-0">
+                    <h4 className="font-cormorant font-bold text-lg text-[#181716] dark:text-white group-hover:text-[#B88E3E] transition-colors truncate">
                       {tool.name}
                     </h4>
-                    <span className="text-xs text-[#827E76] block mb-3 font-sans">{tool.sanskrit}</span>
-                    <p className="text-xs text-[#5A5650] dark:text-[#A09D94] leading-relaxed mb-4">
-                      {tool.desc}
-                    </p>
+                    <span className="text-[11px] text-[#827E76] font-mono block truncate">{tool.sanskrit}</span>
                   </div>
-                  <span className="text-xs font-bold text-[#B88E3E] flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                    <span>Calculate Now</span>
-                    <span>→</span>
-                  </span>
                 </Link>
               ))}
             </div>
           )}
         </div>
-      )}
-
-      {/* FULL VAYA CATEGORIZED VIEW */}
-      {!isSearching && (
-        <div className="space-y-20">
+      ) : (
+        <div>
           
-          {/* SECTION 1: MOST USED CALCULATORS (Featured Hero 6-Card Grid) */}
-          <section id="most-used" className="scroll-mt-24">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-[#EAE6DF] dark:border-white/10 gap-2">
+          {/* ======================================================== */}
+          {/* SECTION 1: MOST USED CALCULATORS (Vaya Hero 6-Card Grid) */}
+          {/* ======================================================== */}
+          <section className="mb-20">
+            <div className="flex items-center justify-between mb-8 pb-3 border-b border-[#EAE6DF] dark:border-white/10">
               <div>
-                <span className="text-xs uppercase font-sans font-bold tracking-widest text-[#B88E3E] dark:text-[#E5B869] block mb-1">
-                  Start Here
-                </span>
-                <h2 className="font-cormorant text-3xl sm:text-4xl font-bold tracking-tight">
+                <p className="text-xs font-bold uppercase tracking-widest text-[#B88E3E] dark:text-[#E5B869] mb-1">
+                  Start here
+                </p>
+                <h2 className="font-cormorant text-2xl sm:text-3xl font-bold tracking-tight text-[#181716] dark:text-white">
                   Most used calculators
                 </h2>
               </div>
-              <p className="text-xs sm:text-sm text-[#827E76] max-w-sm">
-                Our primary classical engines for love, marriage, and natal chart casting.
-              </p>
+              <button
+                type="button"
+                onClick={scrollToAllTools}
+                className="text-xs font-sans font-bold text-[#827E76] hover:text-[#181716] dark:hover:text-white transition-colors cursor-pointer"
+              >
+                Browse all tools ↓
+              </button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {VAYA_TOOL_CATEGORIES[0].tools.map((tool) => (
                 <Link
                   key={tool.id}
                   to={tool.path}
-                  className="p-7 sm:p-8 rounded-3xl bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] hover:border-[#B88E3E] dark:hover:border-[#E5B869] hover:-translate-y-1.5 transition-all flex flex-col justify-between group"
+                  className="group relative p-5 sm:p-6 rounded-3xl bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:border-[#B88E3E] dark:hover:border-[#E5B869] hover:-translate-y-1 hover:shadow-lg transition-all flex flex-col justify-between"
                 >
-                  <div>
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-xs font-mono font-bold text-[#827E76]">{tool.sanskrit}</span>
-                      {tool.badge && (
-                        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-sans font-bold uppercase tracking-wider bg-[#B88E3E]/10 text-[#B88E3E] dark:text-[#E5B869] border border-[#B88E3E]/20">
-                          {tool.badge}
-                        </span>
-                      )}
+                  <div className="flex items-start gap-4">
+                    {/* Icon Medallion */}
+                    <div className="w-13 h-13 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-[#B88E3E] dark:text-[#E5B869] flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                      <ToolIcon type={getToolIconType(tool.id)} className="w-6 h-6" />
                     </div>
 
-                    <h3 className="font-cormorant font-bold text-2xl sm:text-3xl text-[#181716] dark:text-[#F4F1EA] group-hover:text-[#B88E3E] dark:group-hover:text-[#E5B869] transition-colors mb-3 leading-snug">
-                      {tool.name}
-                    </h3>
-
-                    <p className="text-xs sm:text-sm text-[#5A5650] dark:text-[#A09D94] font-normal leading-relaxed mb-6">
-                      {tool.desc}
-                    </p>
-                  </div>
-
-                  <div className="pt-4 border-t border-[#EAE6DF] dark:border-white/10 flex items-center justify-between">
-                    <span className="text-xs font-sans font-bold text-[#B88E3E] dark:text-[#E5B869] group-hover:translate-x-1 transition-transform">
-                      {tool.actionText || 'Open Calculator →'}
-                    </span>
-                    <span className="w-8 h-8 rounded-full border border-[#EAE6DF] dark:border-white/10 flex items-center justify-center text-xs text-[#827E76] group-hover:border-[#B88E3E] group-hover:text-[#B88E3E] transition-colors">
-                      →
-                    </span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </section>
-
-          {/* SECTION 2: TODAY'S TIMINGS FOR YOUR CITY */}
-          <section id="today-timings" className="scroll-mt-24 pt-4 border-t border-[#EAE6DF] dark:border-white/10">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-[#EAE6DF] dark:border-white/10 gap-2">
-              <div>
-                <span className="text-xs uppercase font-sans font-bold tracking-widest text-[#B88E3E] dark:text-[#E5B869] block mb-1">
-                  Daily Almanac
-                </span>
-                <h2 className="font-cormorant text-3xl sm:text-4xl font-bold tracking-tight">
-                  Today's timings for your city
-                </h2>
-              </div>
-              <p className="text-xs sm:text-sm text-[#827E76] max-w-sm">
-                Astronomical panchang, choghadiya, and auspicious muhurtas calibrated to your local coordinates.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-              {VAYA_TOOL_CATEGORIES[1].tools.map((tool) => (
-                <Link
-                  key={tool.id}
-                  to={tool.path}
-                  className="p-5 rounded-2xl bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10 shadow-xs hover:border-[#B88E3E] hover:-translate-y-1 transition-all flex flex-col justify-between group"
-                >
-                  <div>
-                    <span className="text-[10px] font-mono text-[#827E76] block mb-1">{tool.sanskrit}</span>
-                    <h4 className="font-cormorant font-bold text-xl text-[#181716] dark:text-white group-hover:text-[#B88E3E] transition-colors mb-2">
-                      {tool.name}
-                    </h4>
-                    <p className="text-[11px] text-[#5A5650] dark:text-[#A09D94] leading-relaxed">
-                      {tool.desc}
-                    </p>
-                  </div>
-                  <div className="mt-4 pt-3 border-t border-[#EAE6DF] dark:border-white/10 text-xs font-bold text-[#B88E3E] flex items-center justify-between">
-                    <span>View Today</span>
-                    <span>→</span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </section>
-
-          {/* SECTION 3: PICK A DATE FOR WHAT YOU ARE PLANNING (MUHURATS) */}
-          <section id="muhurat" className="scroll-mt-24 pt-4 border-t border-[#EAE6DF] dark:border-white/10">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-[#EAE6DF] dark:border-white/10 gap-2">
-              <div>
-                <span className="text-xs uppercase font-sans font-bold tracking-widest text-[#B88E3E] dark:text-[#E5B869] block mb-1">
-                  Muhurat
-                </span>
-                <h2 className="font-cormorant text-3xl sm:text-4xl font-bold tracking-tight">
-                  Pick a date for what you are planning
-                </h2>
-              </div>
-              <p className="text-xs sm:text-sm text-[#827E76] max-w-sm">
-                Classical auspicious date selection for weddings, housewarming, vehicles, and real estate.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {VAYA_TOOL_CATEGORIES[2].tools.map((tool) => (
-                <Link
-                  key={tool.id}
-                  to={tool.path}
-                  className="p-6 rounded-3xl bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10 shadow-xs hover:border-[#B88E3E] hover:-translate-y-1 transition-all flex flex-col justify-between group"
-                >
-                  <div>
-                    <span className="text-[10px] font-mono text-[#827E76] block mb-1">{tool.sanskrit}</span>
-                    <h4 className="font-cormorant font-bold text-2xl text-[#181716] dark:text-white group-hover:text-[#B88E3E] transition-colors mb-2">
-                      {tool.name}
-                    </h4>
-                    <p className="text-xs text-[#5A5650] dark:text-[#A09D94] leading-relaxed mb-4">
-                      {tool.desc}
-                    </p>
-                  </div>
-                  <div className="pt-3 border-t border-[#EAE6DF] dark:border-white/10 text-xs font-bold text-[#B88E3E] flex items-center justify-between">
-                    <span>Find Dates</span>
-                    <span>→</span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </section>
-
-          {/* SECTION 4: FIND PLANETARY SIGNS */}
-          <section id="planetary-signs" className="scroll-mt-24 pt-4 border-t border-[#EAE6DF] dark:border-white/10">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-[#EAE6DF] dark:border-white/10 gap-2">
-              <div>
-                <span className="text-xs uppercase font-sans font-bold tracking-widest text-[#B88E3E] dark:text-[#E5B869] block mb-1">
-                  Planet Signs
-                </span>
-                <h2 className="font-cormorant text-3xl sm:text-4xl font-bold tracking-tight">
-                  Find planetary signs
-                </h2>
-              </div>
-              <p className="text-xs sm:text-sm text-[#827E76] max-w-sm">
-                Calculate which sidereal zodiac sign each of the 9 sacred Grahas occupies in your chart.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-9 gap-3">
-              {VAYA_TOOL_CATEGORIES[3].tools.map((tool) => (
-                <Link
-                  key={tool.id}
-                  to={tool.path}
-                  className="p-4 rounded-2xl bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10 shadow-xs hover:border-[#B88E3E] hover:-translate-y-1 transition-all text-center group flex flex-col justify-between"
-                >
-                  <div className="w-8 h-8 mx-auto rounded-full bg-[#B88E3E]/10 text-[#B88E3E] dark:text-[#E5B869] flex items-center justify-center font-bold text-xs mb-2">
-                    {tool.name.slice(0, 2)}
-                  </div>
-                  <div>
-                    <h5 className="font-cormorant font-bold text-base text-[#181716] dark:text-white group-hover:text-[#B88E3E] transition-colors">
-                      {tool.name.replace(' Calculator', '').replace(' Sign', '')}
-                    </h5>
-                    <span className="text-[10px] text-[#827E76] font-mono block mt-0.5">{tool.sanskrit}</span>
-                  </div>
-                  <span className="text-[10px] text-[#B88E3E] font-bold mt-2">Find →</span>
-                </Link>
-              ))}
-            </div>
-          </section>
-
-          {/* SECTION 5: BIRTH CHART BASICS */}
-          <section id="birth-chart-basics" className="scroll-mt-24 pt-4 border-t border-[#EAE6DF] dark:border-white/10">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-[#EAE6DF] dark:border-white/10 gap-2">
-              <div>
-                <span className="text-xs uppercase font-sans font-bold tracking-widest text-[#B88E3E] dark:text-[#E5B869] block mb-1">
-                  Foundation
-                </span>
-                <h2 className="font-cormorant text-3xl sm:text-4xl font-bold tracking-tight">
-                  Birth chart basics
-                </h2>
-              </div>
-              <p className="text-xs sm:text-sm text-[#827E76] max-w-sm">
-                Sidereal calculations, lagna degrees, moon signs, and nodes.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {VAYA_TOOL_CATEGORIES[4].tools.map((tool) => (
-                <Link
-                  key={tool.id}
-                  to={tool.path}
-                  className="p-6 rounded-3xl bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10 shadow-xs hover:border-[#B88E3E] hover:-translate-y-1 transition-all flex flex-col justify-between group"
-                >
-                  <div>
-                    <span className="text-[10px] font-mono text-[#827E76] block mb-1">{tool.sanskrit}</span>
-                    <h4 className="font-cormorant font-bold text-2xl text-[#181716] dark:text-white group-hover:text-[#B88E3E] transition-colors mb-2">
-                      {tool.name}
-                    </h4>
-                    <p className="text-xs text-[#5A5650] dark:text-[#A09D94] leading-relaxed mb-4">
-                      {tool.desc}
-                    </p>
-                  </div>
-                  <div className="pt-3 border-t border-[#EAE6DF] dark:border-white/10 text-xs font-bold text-[#B88E3E] flex items-center justify-between">
-                    <span>Calculate</span>
-                    <span>→</span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </section>
-
-          {/* SECTION 6: DIVISIONAL CHARTS AND LAGNAS */}
-          <section id="divisional-charts" className="scroll-mt-24 pt-4 border-t border-[#EAE6DF] dark:border-white/10">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-[#EAE6DF] dark:border-white/10 gap-2">
-              <div>
-                <span className="text-xs uppercase font-sans font-bold tracking-widest text-[#B88E3E] dark:text-[#E5B869] block mb-1">
-                  Deeper Charts
-                </span>
-                <h2 className="font-cormorant text-3xl sm:text-4xl font-bold tracking-tight">
-                  Divisional charts and lagnas
-                </h2>
-              </div>
-              <p className="text-xs sm:text-sm text-[#827E76] max-w-sm">
-                Navamsa (D9), Dashamsha (D10), Arudha Lagna, and Vargottama dignities.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {VAYA_TOOL_CATEGORIES[5].tools.map((tool) => (
-                <Link
-                  key={tool.id}
-                  to={tool.path}
-                  className="p-6 rounded-3xl bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10 shadow-xs hover:border-[#B88E3E] hover:-translate-y-1 transition-all flex flex-col justify-between group"
-                >
-                  <div>
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-[10px] font-mono text-[#827E76]">{tool.sanskrit}</span>
-                      {tool.badge && (
-                        <span className="px-2 py-0.5 rounded-full text-[9px] font-sans font-bold uppercase bg-[#B88E3E]/10 text-[#B88E3E]">
-                          {tool.badge}
-                        </span>
-                      )}
-                    </div>
-                    <h4 className="font-cormorant font-bold text-2xl text-[#181716] dark:text-white group-hover:text-[#B88E3E] transition-colors mb-2">
-                      {tool.name}
-                    </h4>
-                    <p className="text-xs text-[#5A5650] dark:text-[#A09D94] leading-relaxed mb-4">
-                      {tool.desc}
-                    </p>
-                  </div>
-                  <div className="pt-3 border-t border-[#EAE6DF] dark:border-white/10 text-xs font-bold text-[#B88E3E] flex items-center justify-between">
-                    <span>Inspect Chart</span>
-                    <span>→</span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </section>
-
-          {/* SECTION 7: SPECIAL LAGNAS AND SENSITIVE POINTS */}
-          <section id="special-lagnas" className="scroll-mt-24 pt-4 border-t border-[#EAE6DF] dark:border-white/10">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-[#EAE6DF] dark:border-white/10 gap-2">
-              <div>
-                <span className="text-xs uppercase font-sans font-bold tracking-widest text-[#B88E3E] dark:text-[#E5B869] block mb-1">
-                  Jaimini Sphutas
-                </span>
-                <h2 className="font-cormorant text-3xl sm:text-4xl font-bold tracking-tight">
-                  Special lagnas and sensitive points
-                </h2>
-              </div>
-              <p className="text-xs sm:text-sm text-[#827E76] max-w-sm">
-                Classical mathematical points for wealth, authority, vitality, and destiny triggers.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-              {VAYA_TOOL_CATEGORIES[6].tools.map((tool) => (
-                <Link
-                  key={tool.id}
-                  to={tool.path}
-                  className="p-5 rounded-2xl bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10 shadow-xs hover:border-[#B88E3E] hover:-translate-y-1 transition-all flex flex-col justify-between group"
-                >
-                  <div>
-                    <span className="text-[10px] font-mono text-[#827E76] block mb-1">{tool.sanskrit}</span>
-                    <h5 className="font-cormorant font-bold text-lg text-[#181716] dark:text-white group-hover:text-[#B88E3E] transition-colors mb-1.5 leading-snug">
-                      {tool.name}
-                    </h5>
-                    <p className="text-[11px] text-[#5A5650] dark:text-[#A09D94] leading-relaxed">
-                      {tool.desc}
-                    </p>
-                  </div>
-                  <div className="mt-4 pt-2.5 border-t border-[#EAE6DF] dark:border-white/10 text-[11px] font-bold text-[#B88E3E] flex items-center justify-between">
-                    <span>Calculate</span>
-                    <span>→</span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </section>
-
-          {/* SECTION 8: PLANETARY RETURNS */}
-          <section id="planetary-returns" className="scroll-mt-24 pt-4 border-t border-[#EAE6DF] dark:border-white/10">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-[#EAE6DF] dark:border-white/10 gap-2">
-              <div>
-                <span className="text-xs uppercase font-sans font-bold tracking-widest text-[#B88E3E] dark:text-[#E5B869] block mb-1">
-                  Cycles
-                </span>
-                <h2 className="font-cormorant text-3xl sm:text-4xl font-bold tracking-tight">
-                  Planetary returns
-                </h2>
-              </div>
-              <p className="text-xs sm:text-sm text-[#827E76] max-w-sm">
-                Astronomical return cycles of Saturn, Jupiter, and Venus to their exact birth positions.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {VAYA_TOOL_CATEGORIES[7].tools.map((tool) => (
-                <Link
-                  key={tool.id}
-                  to={tool.path}
-                  className="p-6 rounded-3xl bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10 shadow-xs hover:border-[#B88E3E] hover:-translate-y-1 transition-all flex flex-col justify-between group"
-                >
-                  <div>
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-[10px] font-mono text-[#827E76]">{tool.sanskrit}</span>
-                      {tool.badge && (
-                        <span className="px-2 py-0.5 rounded-full text-[9px] font-sans font-bold uppercase bg-[#B88E3E]/10 text-[#B88E3E]">
-                          {tool.badge}
-                        </span>
-                      )}
-                    </div>
-                    <h4 className="font-cormorant font-bold text-2xl text-[#181716] dark:text-white group-hover:text-[#B88E3E] transition-colors mb-2">
-                      {tool.name}
-                    </h4>
-                    <p className="text-xs text-[#5A5650] dark:text-[#A09D94] leading-relaxed mb-4">
-                      {tool.desc}
-                    </p>
-                  </div>
-                  <div className="pt-3 border-t border-[#EAE6DF] dark:border-white/10 text-xs font-bold text-[#B88E3E] flex items-center justify-between">
-                    <span>Calculate Return Date</span>
-                    <span>→</span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </section>
-
-          {/* SECTION 9: PREDICTIONS AND COMPATIBILITY */}
-          <section id="predictions-compatibility" className="scroll-mt-24 pt-4 border-t border-[#EAE6DF] dark:border-white/10">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-[#EAE6DF] dark:border-white/10 gap-2">
-              <div>
-                <span className="text-xs uppercase font-sans font-bold tracking-widest text-[#B88E3E] dark:text-[#E5B869] block mb-1">
-                  Life Questions
-                </span>
-                <h2 className="font-cormorant text-3xl sm:text-4xl font-bold tracking-tight">
-                  Predictions and compatibility
-                </h2>
-              </div>
-              <p className="text-xs sm:text-sm text-[#827E76] max-w-sm">
-                Predictive engines for career breakthroughs, foreign settlement, marriage timing, and doshas.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {VAYA_TOOL_CATEGORIES[8].tools.map((tool) => (
-                <Link
-                  key={tool.id}
-                  to={tool.path}
-                  className="p-6 rounded-3xl bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10 shadow-xs hover:border-[#B88E3E] hover:-translate-y-1 transition-all flex flex-col justify-between group"
-                >
-                  <div>
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-[10px] font-mono text-[#827E76]">{tool.sanskrit}</span>
-                      {tool.badge && (
-                        <span className="px-2 py-0.5 rounded-full text-[9px] font-sans font-bold uppercase bg-[#B88E3E]/10 text-[#B88E3E]">
-                          {tool.badge}
-                        </span>
-                      )}
-                    </div>
-                    <h4 className="font-cormorant font-bold text-2xl text-[#181716] dark:text-white group-hover:text-[#B88E3E] transition-colors mb-2">
-                      {tool.name}
-                    </h4>
-                    <p className="text-xs text-[#5A5650] dark:text-[#A09D94] leading-relaxed mb-4">
-                      {tool.desc}
-                    </p>
-                  </div>
-                  <div className="pt-3 border-t border-[#EAE6DF] dark:border-white/10 text-xs font-bold text-[#B88E3E] flex items-center justify-between">
-                    <span>Explore Prediction</span>
-                    <span>→</span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </section>
-
-          {/* LIFE GUIDANCE CARDS: "When will I get married?" & "Is this the right person?" */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6">
-            <Link
-              to="/tools/marriage-prediction"
-              className="p-8 sm:p-10 rounded-3xl bg-gradient-to-br from-[#181716] to-[#2A2724] text-white shadow-xl hover:scale-[1.01] transition-all flex flex-col justify-between group"
-            >
-              <div>
-                <span className="text-[10px] uppercase font-sans font-bold tracking-widest text-[#E5B869] block mb-2">
-                  Question-Led Timing
-                </span>
-                <h3 className="font-cormorant text-3xl sm:text-4xl font-bold mb-3">
-                  When will I get married?
-                </h3>
-                <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed mb-6">
-                  Calculate the exact dual transit of Jupiter and Saturn activating your natal 7th house and Upapada Lagna.
-                </p>
-              </div>
-              <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#E5B869]">
-                <span>Launch Marriage Engine</span>
-                <span className="group-hover:translate-x-1 transition-transform">→</span>
-              </span>
-            </Link>
-
-            <Link
-              to="/tools/kundli-matching"
-              className="p-8 sm:p-10 rounded-3xl bg-white dark:bg-[#1A1C20] border-2 border-[#B88E3E] text-[#181716] dark:text-white shadow-xl hover:scale-[1.01] transition-all flex flex-col justify-between group"
-            >
-              <div>
-                <span className="text-[10px] uppercase font-sans font-bold tracking-widest text-[#B88E3E] dark:text-[#E5B869] block mb-2">
-                  Synastry & Guna Milan
-                </span>
-                <h3 className="font-cormorant text-3xl sm:text-4xl font-bold mb-3">
-                  Is this the right person?
-                </h3>
-                <p className="text-xs sm:text-sm text-[#5A5650] dark:text-[#A09D94] leading-relaxed mb-6">
-                  Score your 36 Guna Ashtakoota compatibility and inspect emotional, genetic, and long-term values alignment.
-                </p>
-              </div>
-              <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#B88E3E] dark:text-[#E5B869]">
-                <span>Run Compatibility Check</span>
-                <span className="group-hover:translate-x-1 transition-transform">→</span>
-              </span>
-            </Link>
-          </div>
-
-          {/* ======================================================== */}
-          {/* TECHNICAL COMPUTATION PILLARS */}
-          {/* ======================================================== */}
-          <div className="pt-12 pb-16 border-t border-[#EAE6DF] dark:border-white/10">
-            <div className="text-center max-w-2xl mx-auto mb-10">
-              <span className="text-xs uppercase tracking-[0.25em] font-sans font-bold text-[#B88E3E] dark:text-[#E5B869] block mb-2">
-                Computational Rigor
-              </span>
-              <h3 className="font-cormorant text-3xl sm:text-4xl font-bold tracking-tight">
-                Classical Vedic Ephemerides Architecture
-              </h3>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {TECHNICAL_PILLARS.map((pillar, pIdx) => (
-                <div
-                  key={pIdx}
-                  className="p-6 rounded-2xl bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10 shadow-xs flex flex-col justify-between"
-                >
-                  <div>
-                    <div className="text-xs font-mono font-bold text-[#B88E3E] dark:text-[#E5B869] mb-1">
-                      0{pIdx + 1} · {pillar.sanskrit}
-                    </div>
-                    <h4 className="font-cormorant font-bold text-xl text-[#181716] dark:text-white mb-2 leading-snug">
-                      {pillar.title}
-                    </h4>
-                    <p className="text-xs text-[#5A5650] dark:text-[#A09D94] leading-relaxed">
-                      {pillar.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* ======================================================== */}
-          {/* COMPREHENSIVE TOOLS FAQ ACCORDION */}
-          {/* ======================================================== */}
-          <div className="pt-12 pb-8 border-t border-[#EAE6DF] dark:border-white/10">
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
-              <div>
-                <span className="text-xs uppercase tracking-[0.25em] font-sans font-bold text-[#B88E3E] dark:text-[#E5B869] block mb-2">
-                  Frequently Asked Questions
-                </span>
-                <h3 className="font-cormorant text-3xl sm:text-4xl font-bold tracking-tight">
-                  Astrology Calculators & Methodology FAQ
-                </h3>
-              </div>
-              <p className="text-xs sm:text-sm text-[#827E76] max-w-sm">
-                Astronomical accuracy, Lahiri Ayanamsa, and dosha cancellations explained.
-              </p>
-            </div>
-
-            <div className="space-y-3">
-              {GLOBAL_TOOLS_FAQS.map((faq, fIdx) => {
-                const isOpen = openFaqIndex === fIdx;
-                return (
-                  <div
-                    key={fIdx}
-                    className="rounded-2xl bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10 overflow-hidden transition-all"
-                  >
-                    <button
-                      type="button"
-                      onClick={() => toggleFaq(fIdx)}
-                      className="w-full p-5 text-left flex items-center justify-between gap-4 cursor-pointer"
-                    >
-                      <span className="font-cormorant text-lg sm:text-xl font-bold text-[#181716] dark:text-white">
-                        {faq.question}
-                      </span>
-                      <span className={`w-6 h-6 rounded-full flex items-center justify-center border border-[#B88E3E] text-[#B88E3E] dark:text-[#E5B869] text-sm font-bold flex-shrink-0 transition-transform ${isOpen ? 'rotate-45' : ''}`}>
-                        +
-                      </span>
-                    </button>
-
-                    {isOpen && (
-                      <div className="px-5 pb-5 pt-1 border-t border-[#EAE6DF] dark:border-white/10 text-xs sm:text-sm text-[#5A5650] dark:text-[#A09D94] leading-relaxed">
-                        {faq.answer}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-start justify-between gap-2">
+                        <h3 className="font-cormorant font-bold text-xl text-[#181716] dark:text-white group-hover:text-[#B88E3E] dark:group-hover:text-[#E5B869] transition-colors leading-snug">
+                          {tool.name}
+                        </h3>
+                        {tool.badge && (
+                          <span className="px-2 py-0.5 rounded-full text-[10px] font-sans font-bold uppercase tracking-wider bg-[#B88E3E]/10 text-[#B88E3E] dark:text-[#E5B869] flex-shrink-0">
+                            {tool.badge}
+                          </span>
+                        )}
                       </div>
-                    )}
+                      <span className="text-xs text-[#827E76] font-mono block mt-0.5">
+                        {tool.sanskrit}
+                      </span>
+                    </div>
                   </div>
-                );
-              })}
+
+                  <div className="mt-5 pt-3 border-t border-[#EAE6DF] dark:border-white/10 flex items-center justify-between text-xs font-sans font-bold text-[#B88E3E] dark:text-[#E5B869]">
+                    <span>{tool.actionText || 'Calculate →'}</span>
+                    <span className="group-hover:translate-x-1 transition-transform">→</span>
+                  </div>
+                </Link>
+              ))}
             </div>
-          </div>
+          </section>
+
+          {/* ANCHOR TARGET FOR BROWSING */}
+          <div id="all-tools" className="scroll-mt-12" />
+
+          {/* ======================================================== */}
+          {/* CATEGORY SECTIONS (Sections 2 to 9) */}
+          {/* ======================================================== */}
+          {VAYA_TOOL_CATEGORIES.slice(1).map((category) => (
+            <section key={category.id} className="mb-16">
+              
+              {/* Refined Architectural Divider with Floating Tag */}
+              <div className="relative my-10 text-center sm:text-left">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-[#EAE6DF] dark:border-white/10"></div>
+                </div>
+                <div className="relative inline-block bg-[#FAF8F5] dark:bg-[#121316] pr-4">
+                  <span className="text-[11px] font-mono uppercase tracking-[0.2em] font-semibold text-[#827E76]">
+                    {category.kicker}
+                  </span>
+                </div>
+              </div>
+
+              <div className="mb-6">
+                <h2 className="font-cormorant text-2xl sm:text-3xl font-bold tracking-tight text-[#181716] dark:text-white">
+                  {category.title}
+                </h2>
+              </div>
+
+              {/* Rhythmic Tile Grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3.5 sm:gap-4">
+                {category.tools.map((tool) => (
+                  <Link
+                    key={tool.id}
+                    to={tool.path}
+                    className="p-5 rounded-2xl bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10 shadow-xs hover:border-[#B88E3E] dark:hover:border-[#E5B869] hover:-translate-y-1 transition-all flex flex-col items-center justify-center text-center group min-h-[145px]"
+                  >
+                    <div className="w-11 h-11 rounded-full bg-neutral-100 dark:bg-white/5 text-[#B88E3E] dark:text-[#E5B869] flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
+                      <ToolIcon type={getToolIconType(tool.id)} className="w-5 h-5" />
+                    </div>
+
+                    <h4 className="font-cormorant font-bold text-base sm:text-lg text-[#181716] dark:text-white group-hover:text-[#B88E3E] dark:group-hover:text-[#E5B869] transition-colors leading-tight">
+                      {tool.name.replace(' Calculator', '')}
+                    </h4>
+
+                    <span className="text-[10px] text-[#827E76] font-mono mt-1 block">
+                      {tool.sanskrit}
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          ))}
+
+          {/* ======================================================== */}
+          {/* LIFE GUIDANCE CALLOUT CARDS (Matching Vaya) */}
+          {/* ======================================================== */}
+          <section className="pt-10 pb-8 border-t border-[#EAE6DF] dark:border-white/10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              
+              <Link
+                to="/tools/marriage-prediction"
+                className="p-8 sm:p-10 rounded-3xl bg-white dark:bg-[#1A1C20] border-2 border-[#EAE6DF] dark:border-white/10 hover:border-[#B88E3E] dark:hover:border-[#E5B869] shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between group"
+              >
+                <div>
+                  <span className="text-xs uppercase font-sans font-bold tracking-widest text-[#B88E3E] dark:text-[#E5B869] block mb-2">
+                    Timing & Destiny
+                  </span>
+                  <h3 className="font-cormorant text-3xl sm:text-4xl font-bold text-[#181716] dark:text-white mb-3">
+                    When will I get married?
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[#5A5650] dark:text-[#A09D94] leading-relaxed mb-6">
+                    Analyze the dual transit of Jupiter and Saturn activating your natal 7th house and Upapada Lagna.
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#B88E3E] dark:text-[#E5B869] group-hover:translate-x-1 transition-transform">
+                  <span>Predict My Marriage</span>
+                  <span>→</span>
+                </span>
+              </Link>
+
+              <Link
+                to="/tools/kundli-matching"
+                className="p-8 sm:p-10 rounded-3xl bg-white dark:bg-[#1A1C20] border-2 border-[#EAE6DF] dark:border-white/10 hover:border-[#B88E3E] dark:hover:border-[#E5B869] shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between group"
+              >
+                <div>
+                  <span className="text-xs uppercase font-sans font-bold tracking-widest text-[#B88E3E] dark:text-[#E5B869] block mb-2">
+                    Synastry & Guna Milan
+                  </span>
+                  <h3 className="font-cormorant text-3xl sm:text-4xl font-bold text-[#181716] dark:text-white mb-3">
+                    Is this the right person?
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[#5A5650] dark:text-[#A09D94] leading-relaxed mb-6">
+                    Score your 36 Guna Ashtakoota compatibility and inspect emotional, psychological, and longevity factors.
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#B88E3E] dark:text-[#E5B869] group-hover:translate-x-1 transition-transform">
+                  <span>Match My Kundli</span>
+                  <span>→</span>
+                </span>
+              </Link>
+
+            </div>
+          </section>
 
         </div>
       )}
@@ -676,7 +356,6 @@ export const ToolCalculatorPage: React.FC<{
 }> = (props) => {
   const { toolId, muhuratType } = useParams<{ toolId?: string; muhuratType?: string }>();
 
-  // Resolve tool from params or props
   let effectiveId = toolId;
   if (!effectiveId && muhuratType) {
     effectiveId = `muhurat/${muhuratType}`;
@@ -697,7 +376,7 @@ export const ToolCalculatorPage: React.FC<{
   const [time, setTime] = useState('14:30');
   const [city, setCity] = useState('New Delhi, India');
   const [calculated, setCalculated] = useState(false);
-  const [activeResultTab, setActiveResultTab] = useState<'summary' | 'planets' | 'scripture'>('summary');
+  const [activeResultTab, setActiveResultTab] = useState<'summary' | 'planets'>('summary');
 
   const handleCalculate = (e: React.FormEvent) => {
     e.preventDefault();
@@ -724,10 +403,10 @@ export const ToolCalculatorPage: React.FC<{
     >
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-12">
         {/* Form Container */}
-        <div className="lg:col-span-5 p-7 sm:p-8 rounded-3xl bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)]">
+        <div className="lg:col-span-5 p-7 sm:p-8 rounded-3xl bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10 shadow-xs">
           <div className="flex items-center justify-between mb-6 pb-3 border-b border-[#EAE6DF] dark:border-white/10">
             <h2 className="font-cormorant font-bold text-2xl text-[#181716] dark:text-[#F4F1EA]">
-              Enter Birth Parameters
+              Enter Birth Details
             </h2>
             <span className="text-[10px] font-mono uppercase text-[#B88E3E] font-bold">
               Lahiri Ayanamsa
@@ -736,97 +415,81 @@ export const ToolCalculatorPage: React.FC<{
 
           <form onSubmit={handleCalculate} className="space-y-4 text-xs font-sans">
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-[#827E76] dark:text-[#9C9A94] mb-1.5">Full Name</label>
+              <label className="block text-xs font-bold uppercase tracking-wider text-[#827E76] mb-1.5">Full Name</label>
               <input
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl bg-neutral-50 dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10 text-[#181716] dark:text-[#F4F1EA] text-sm focus:border-[#B88E3E] focus:outline-none transition-colors"
+                className="w-full px-4 py-3 rounded-xl bg-neutral-50 dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10 text-sm focus:border-[#B88E3E] focus:outline-none transition-colors"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-[#827E76] dark:text-[#9C9A94] mb-1.5">Date of Birth</label>
+              <label className="block text-xs font-bold uppercase tracking-wider text-[#827E76] mb-1.5">Date of Birth</label>
               <input
                 type="date"
                 value={dob}
                 onChange={(e) => setDob(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl bg-neutral-50 dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10 text-[#181716] dark:text-[#F4F1EA] text-sm focus:border-[#B88E3E] focus:outline-none transition-colors"
+                className="w-full px-4 py-3 rounded-xl bg-neutral-50 dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10 text-sm focus:border-[#B88E3E] focus:outline-none transition-colors"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-[#827E76] dark:text-[#9C9A94] mb-1.5">Time of Birth (24 Hr Precision)</label>
+              <label className="block text-xs font-bold uppercase tracking-wider text-[#827E76] mb-1.5">Time of Birth (24 Hr Precision)</label>
               <input
                 type="time"
                 value={time}
                 onChange={(e) => setTime(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl bg-neutral-50 dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10 text-[#181716] dark:text-[#F4F1EA] text-sm focus:border-[#B88E3E] focus:outline-none transition-colors"
+                className="w-full px-4 py-3 rounded-xl bg-neutral-50 dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10 text-sm focus:border-[#B88E3E] focus:outline-none transition-colors"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-[#827E76] dark:text-[#9C9A94] mb-1.5">Place of Birth (City, Country)</label>
+              <label className="block text-xs font-bold uppercase tracking-wider text-[#827E76] mb-1.5">Place of Birth (City, Country)</label>
               <input
                 type="text"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl bg-neutral-50 dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10 text-[#181716] dark:text-[#F4F1EA] text-sm focus:border-[#B88E3E] focus:outline-none transition-colors"
+                className="w-full px-4 py-3 rounded-xl bg-neutral-50 dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10 text-sm focus:border-[#B88E3E] focus:outline-none transition-colors"
                 required
               />
             </div>
 
             <button
               type="submit"
-              className="w-full py-4 mt-2 rounded-full bg-[#181716] dark:bg-[#F4F1EA] text-white dark:text-[#181716] font-bold text-xs uppercase tracking-wider shadow-md hover:scale-[1.01] active:scale-95 transition-all cursor-pointer"
+              className="w-full py-3.5 mt-2 rounded-full bg-[#181716] dark:bg-white text-white dark:text-[#181716] font-bold text-xs uppercase tracking-wider shadow-sm hover:scale-[1.01] active:scale-95 transition-all cursor-pointer"
             >
               Calculate {displayName} →
             </button>
           </form>
-
-          {/* Classical Method Callout */}
-          <div className="mt-6 p-4 rounded-2xl bg-neutral-50/70 dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10 text-xs text-[#827E76] leading-relaxed">
-            <span className="font-bold text-[#181716] dark:text-white block mb-1">
-              Methodology: {matchedTool?.classicalSource || 'Brihat Parashara Hora Shastra'}
-            </span>
-            Coordinates calculated using sidereal Chitra Paksha Ayanamsa (24° 11' 42") and topocentric altitude corrections.
-          </div>
         </div>
 
         {/* Results Container */}
-        <div className="lg:col-span-7 p-7 sm:p-8 rounded-3xl bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)]">
+        <div className="lg:col-span-7 p-7 sm:p-8 rounded-3xl bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10 shadow-xs">
           {calculated ? (
             <div className="space-y-6 animate-in fade-in">
-              <div className="border-b border-[#EAE6DF] dark:border-white/10 pb-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="border-b border-[#EAE6DF] dark:border-white/10 pb-4 flex items-center justify-between">
                 <div>
-                  <span className="text-xs uppercase tracking-[0.2em] font-sans font-bold text-[#B88E3E] dark:text-[#E5B869]">
-                    Computed Sidereal Horoscope
+                  <span className="text-[10px] uppercase font-mono font-bold text-[#B88E3E] dark:text-[#E5B869]">
+                    Computed Horoscope
                   </span>
-                  <h3 className="font-cormorant font-bold text-3xl text-[#181716] dark:text-[#F4F1EA] mt-1">{name}</h3>
-                  <p className="text-xs text-[#5A5650] dark:text-[#A09D94] mt-0.5 font-sans">
-                    Born {dob} at {time} in {city} (Lahiri Ayanamsa: 24° 11' 42")
-                  </p>
+                  <h3 className="font-cormorant font-bold text-3xl text-[#181716] dark:text-white mt-0.5">{name}</h3>
                 </div>
-
-                <div className="text-right">
-                  <span className="text-[11px] font-mono px-3 py-1 rounded-full bg-[#B88E3E]/10 text-[#B88E3E] dark:text-[#E5B869] font-bold">
-                    Asc: Libra 14° 22'
-                  </span>
-                </div>
+                <span className="text-xs font-mono font-bold px-3 py-1 rounded-full bg-[#B88E3E]/10 text-[#B88E3E]">
+                  Asc: Libra 14° 22'
+                </span>
               </div>
 
-              {/* Result Tabs Switcher */}
-              <div className="flex items-center gap-2 border-b border-[#EAE6DF] dark:border-white/10 pb-2 text-xs font-bold uppercase tracking-wider">
+              {/* Result Tabs */}
+              <div className="flex items-center gap-2 border-b border-[#EAE6DF] dark:border-white/10 pb-2 text-xs font-bold uppercase">
                 <button
                   type="button"
                   onClick={() => setActiveResultTab('summary')}
-                  className={`py-1.5 px-3 rounded-lg transition-colors cursor-pointer ${
-                    activeResultTab === 'summary'
-                      ? 'bg-[#181716] dark:bg-white text-white dark:text-[#181716]'
-                      : 'text-[#827E76] hover:text-[#181716]'
+                  className={`py-1.5 px-3 rounded-lg cursor-pointer ${
+                    activeResultTab === 'summary' ? 'bg-[#181716] text-white dark:bg-white dark:text-[#181716]' : 'text-[#827E76]'
                   }`}
                 >
                   Summary
@@ -834,100 +497,60 @@ export const ToolCalculatorPage: React.FC<{
                 <button
                   type="button"
                   onClick={() => setActiveResultTab('planets')}
-                  className={`py-1.5 px-3 rounded-lg transition-colors cursor-pointer ${
-                    activeResultTab === 'planets'
-                      ? 'bg-[#181716] dark:bg-white text-white dark:text-[#181716]'
-                      : 'text-[#827E76] hover:text-[#181716]'
+                  className={`py-1.5 px-3 rounded-lg cursor-pointer ${
+                    activeResultTab === 'planets' ? 'bg-[#181716] text-white dark:bg-white dark:text-[#181716]' : 'text-[#827E76]'
                   }`}
                 >
-                  Planetary Degrees (9)
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setActiveResultTab('scripture')}
-                  className={`py-1.5 px-3 rounded-lg transition-colors cursor-pointer ${
-                    activeResultTab === 'scripture'
-                      ? 'bg-[#181716] dark:bg-white text-white dark:text-[#181716]'
-                      : 'text-[#827E76] hover:text-[#181716]'
-                  }`}
-                >
-                  Classical Insights
+                  Planetary Degrees
                 </button>
               </div>
 
-              {/* TAB 1: SUMMARY */}
               {activeResultTab === 'summary' && (
-                <div className="space-y-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-                    <div className="p-4 rounded-xl bg-neutral-50 dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10">
-                      <div className="text-[#827E76] dark:text-[#9C9A94] uppercase tracking-wider text-[10px] font-sans font-semibold">Ascendant (Lagna)</div>
-                      <div className="font-cormorant font-bold text-2xl text-[#181716] dark:text-[#F4F1EA] mt-1">Libra (Tula) 14° 22'</div>
-                      <div className="text-[11px] text-[#5A5650] dark:text-[#A09D94] mt-1">Lord: Venus in 9th house (Bhagya)</div>
-                    </div>
-
-                    <div className="p-4 rounded-xl bg-neutral-50 dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10">
-                      <div className="text-[#827E76] dark:text-[#9C9A94] uppercase tracking-wider text-[10px] font-sans font-semibold">Moon Sign (Rashi)</div>
-                      <div className="font-cormorant font-bold text-2xl text-[#181716] dark:text-[#F4F1EA] mt-1">Taurus (Vrishabha) 14° 22'</div>
-                      <div className="text-[11px] text-[#5A5650] dark:text-[#A09D94] mt-1">Nakshatra: Rohini (Pada 2) · Exalted Moon</div>
-                    </div>
-
-                    <div className="p-4 rounded-xl bg-neutral-50 dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10">
-                      <div className="text-[#827E76] dark:text-[#9C9A94] uppercase tracking-wider text-[10px] font-sans font-semibold">Active Vimshottari Mahadasha</div>
-                      <div className="font-cormorant font-bold text-2xl text-emerald-600 dark:text-emerald-400 mt-1">Jupiter – Venus Phase</div>
-                      <div className="text-[11px] text-[#5A5650] dark:text-[#A09D94] mt-1">Auspicious window for relationship & wealth</div>
-                    </div>
-
-                    <div className="p-4 rounded-xl bg-neutral-50 dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10">
-                      <div className="text-[#827E76] dark:text-[#9C9A94] uppercase tracking-wider text-[10px] font-sans font-semibold">Primary Karaka Dignity</div>
-                      <div className="font-cormorant font-bold text-2xl text-[#181716] dark:text-[#F4F1EA] mt-1">Atmakaraka: Sun 28°</div>
-                      <div className="text-[11px] text-[#5A5650] dark:text-[#A09D94] mt-1">Darakaraka: Venus 02° (Artistic, loyal spouse)</div>
-                    </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                  <div className="p-4 rounded-xl bg-neutral-50 dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10">
+                    <div className="text-[#827E76] uppercase tracking-wider text-[10px] font-semibold">Ascendant (Lagna)</div>
+                    <div className="font-cormorant font-bold text-2xl text-[#181716] dark:text-white mt-1">Libra 14° 22'</div>
+                    <div className="text-[11px] text-[#827E76] mt-0.5">Lord: Venus in 9th house</div>
                   </div>
 
-                  {/* North Indian Diamond Kundli SVG */}
-                  <div className="p-5 rounded-2xl bg-neutral-50 dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10 flex flex-col items-center">
-                    <div className="text-xs uppercase tracking-[0.2em] font-sans font-bold text-[#B88E3E] dark:text-[#E5B869] mb-3">
-                      North Indian Diamond Janam Kundli
-                    </div>
-                    <svg viewBox="0 0 160 160" className="w-44 h-44 text-[#B88E3E] dark:text-[#E5B869]">
-                      <rect x="5" y="5" width="150" height="150" fill="none" stroke="currentColor" strokeWidth="1.5" />
-                      <line x1="5" y1="5" x2="155" y2="155" stroke="currentColor" strokeWidth="1" />
-                      <line x1="155" y1="5" x2="5" y2="155" stroke="currentColor" strokeWidth="1" />
-                      <polygon points="80,5 155,80 80,155 5,80" fill="none" stroke="currentColor" strokeWidth="1" />
-                      <text x="80" y="45" textAnchor="middle" fill="currentColor" fontSize="8" fontWeight="bold">Asc (Tula)</text>
-                      <text x="80" y="115" textAnchor="middle" fill="currentColor" fontSize="8" fontWeight="bold">7th (Mesha)</text>
-                      <text x="45" y="80" textAnchor="middle" fill="currentColor" fontSize="8" opacity="0.7">4th (Makar)</text>
-                      <text x="115" y="80" textAnchor="middle" fill="currentColor" fontSize="8" opacity="0.7">10th (Kark)</text>
-                      <text x="80" y="75" textAnchor="middle" fill="currentColor" fontSize="7" opacity="0.9">Guru</text>
-                      <text x="80" y="90" textAnchor="middle" fill="currentColor" fontSize="7" opacity="0.9">Shani</text>
-                    </svg>
+                  <div className="p-4 rounded-xl bg-neutral-50 dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10">
+                    <div className="text-[#827E76] uppercase tracking-wider text-[10px] font-semibold">Moon Sign (Rashi)</div>
+                    <div className="font-cormorant font-bold text-2xl text-[#181716] dark:text-white mt-1">Taurus 14° 22'</div>
+                    <div className="text-[11px] text-[#827E76] mt-0.5">Nakshatra: Rohini (Pada 2)</div>
+                  </div>
+
+                  <div className="p-4 rounded-xl bg-neutral-50 dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10">
+                    <div className="text-[#827E76] uppercase tracking-wider text-[10px] font-semibold">Active Mahadasha</div>
+                    <div className="font-cormorant font-bold text-2xl text-emerald-600 dark:text-emerald-400 mt-1">Jupiter – Venus</div>
+                    <div className="text-[11px] text-[#827E76] mt-0.5">Auspicious window for relationship & assets</div>
+                  </div>
+
+                  <div className="p-4 rounded-xl bg-neutral-50 dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10">
+                    <div className="text-[#827E76] uppercase tracking-wider text-[10px] font-semibold">7th House & Partner</div>
+                    <div className="font-cormorant font-bold text-2xl text-[#181716] dark:text-white mt-1">Aries · Mars</div>
+                    <div className="text-[11px] text-[#827E76] mt-0.5">Kuja dosha cancelled by Jupiter aspect</div>
                   </div>
                 </div>
               )}
 
-              {/* TAB 2: COMPLETE 9 PLANETS DEGREE TABLE */}
               {activeResultTab === 'planets' && (
                 <div className="overflow-x-auto">
                   <table className="w-full text-left text-xs font-sans">
                     <thead>
                       <tr className="border-b border-[#EAE6DF] dark:border-white/10 text-[10px] uppercase font-bold text-[#827E76]">
-                        <th className="py-2.5">Graha (Planet)</th>
-                        <th className="py-2.5">Rashi (Sign)</th>
-                        <th className="py-2.5">Degrees</th>
-                        <th className="py-2.5">Nakshatra</th>
-                        <th className="py-2.5">Dignity</th>
+                        <th className="py-2">Planet</th>
+                        <th className="py-2">Sign</th>
+                        <th className="py-2">Degree</th>
+                        <th className="py-2">Dignity</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-[#EAE6DF] dark:divide-white/5">
                       {samplePlanets.map((p, idx) => (
-                        <tr key={idx} className="hover:bg-neutral-50/50 dark:hover:bg-white/[0.02]">
-                          <td className="py-2.5 font-bold text-[#181716] dark:text-white">
-                            {p.graha} {p.retro && <span className="text-amber-600 font-mono text-[10px]">(R)</span>}
-                          </td>
-                          <td className="py-2.5 text-[#5A5650] dark:text-[#A09D94]">{p.sign}</td>
-                          <td className="py-2.5 font-mono text-[#827E76]">{p.deg}</td>
-                          <td className="py-2.5 text-[#5A5650] dark:text-[#A09D94]">{p.nak}</td>
-                          <td className="py-2.5 font-semibold text-[#B88E3E] dark:text-[#E5B869]">{p.dignity}</td>
+                        <tr key={idx}>
+                          <td className="py-2 font-bold text-[#181716] dark:text-white">{p.graha}</td>
+                          <td className="py-2 text-[#5A5650] dark:text-[#A09D94]">{p.sign}</td>
+                          <td className="py-2 font-mono text-[#827E76]">{p.deg}</td>
+                          <td className="py-2 font-semibold text-[#B88E3E] dark:text-[#E5B869]">{p.dignity}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -935,54 +558,22 @@ export const ToolCalculatorPage: React.FC<{
                 </div>
               )}
 
-              {/* TAB 3: CLASSICAL INSIGHTS */}
-              {activeResultTab === 'scripture' && (
-                <div className="space-y-3 text-xs leading-relaxed">
-                  <div className="p-4 rounded-xl bg-neutral-50 dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10">
-                    <span className="font-bold text-[#181716] dark:text-white block mb-1">
-                      Classical Treatise Formulation ({matchedTool?.classicalSource || 'Brihat Parashara Hora Shastra'})
-                    </span>
-                    <p className="text-[#5A5650] dark:text-[#A09D94]">
-                      {matchedTool?.desc || 'Calculated using authentic sidereal Parashari principles.'}
-                    </p>
-                  </div>
-
-                  <div className="p-4 rounded-xl bg-neutral-50 dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10">
-                    <span className="font-bold text-[#181716] dark:text-white block mb-1">
-                      Recommended Remedial Guidance
-                    </span>
-                    <p className="text-[#5A5650] dark:text-[#A09D94]">
-                      Because Jupiter aspects the 7th house cusp, natural protections are active. For fine-grained Muhurta dates or to examine the D9 Navamsa and D10 Dasamsa harmonics in depth, consult an accredited Astrowithin scholar.
-                    </p>
-                  </div>
-                </div>
-              )}
-
-              {/* Action Link: White background with 2px gold border */}
-              <div className="flex flex-col sm:flex-row items-center justify-between pt-4 border-t border-[#EAE6DF] dark:border-white/10 gap-3">
-                <span className="text-xs text-[#827E76]">
-                  Need a human scholar to synthesize your chart?
-                </span>
+              <div className="pt-4 border-t border-[#EAE6DF] dark:border-white/10 flex justify-end">
                 <Link
                   to="/download"
-                  className="px-6 py-2.5 rounded-full bg-white dark:bg-[#1A1C20] border-2 border-[#B88E3E] dark:border-[#E5B869] text-[#B88E3E] dark:text-[#E5B869] text-xs uppercase tracking-wider font-bold hover:bg-[#B88E3E] hover:text-white dark:hover:text-[#181716] transition-all shadow-xs"
+                  className="px-6 py-2.5 rounded-full bg-white dark:bg-[#1A1C20] border-2 border-[#B88E3E] text-[#B88E3E] dark:text-[#E5B869] text-xs uppercase tracking-wider font-bold hover:bg-[#B88E3E] hover:text-white transition-all shadow-xs"
                 >
-                  Consult Accredited Astrologer →
+                  Consult Astrologer on Astrowithin →
                 </Link>
               </div>
             </div>
           ) : (
-            <div className="h-96 flex flex-col items-center justify-center text-center text-[#827E76] dark:text-[#9C9A94] p-8">
-              <div className="w-14 h-14 rounded-full border-2 border-[#B88E3E] flex items-center justify-center p-3 mb-4 bg-[#B88E3E]/10 text-[#B88E3E]">
-                <svg viewBox="0 0 24 24" className="w-8 h-8 fill-current">
-                  <path d="M12 0L14 9L23 12L14 15L12 24L10 15L1 12L10 9Z"/>
-                </svg>
+            <div className="h-80 flex flex-col items-center justify-center text-center text-[#827E76]">
+              <div className="w-12 h-12 rounded-full border border-[#B88E3E] flex items-center justify-center mb-3 bg-[#B88E3E]/10 text-[#B88E3E]">
+                <ToolIcon type="star" className="w-6 h-6" />
               </div>
-              <h3 className="font-cormorant font-bold text-2xl text-[#181716] dark:text-white mb-2">
-                Awaiting Birth Data
-              </h3>
-              <p className="font-sans text-xs sm:text-sm max-w-sm leading-relaxed">
-                Enter your birth date, exact time, and city on the left to compute high-precision astronomical coordinates for {displayName}.
+              <p className="text-xs max-w-xs">
+                Enter your birth parameters on the left to compute {displayName}.
               </p>
             </div>
           )}
