@@ -117,6 +117,36 @@ export const App: React.FC = () => {
           />
         }
       />
+      <Route
+        path="/tools/upapada-lagna"
+        element={
+          <ToolCalculatorPage
+            toolName="Upapada Lagna (UL)"
+            badge="12th House Arudha & Matrimony"
+            formulaDescription="Calculates the Arudha Pada of the 12th house, determining how your marriage manifests tangibly in society, spouse background, and marital longevity."
+          />
+        }
+      />
+      <Route
+        path="/tools/sade-sati"
+        element={
+          <ToolCalculatorPage
+            toolName="Sade Sati Calculator"
+            badge="7.5-Year Saturn Transit Cycle"
+            formulaDescription="Tracks Saturn's 7.5-year transit through the 12th, 1st, and 2nd houses from your natal Moon, decoding your karmic growth and maturation phases."
+          />
+        }
+      />
+      <Route
+        path="/tools/hora-lagna"
+        element={
+          <ToolCalculatorPage
+            toolName="Hora Lagna (Wealth)"
+            badge="Special Wealth & Asset Ascendant"
+            formulaDescription="Calculates the primary special ascendant for financial prosperity, assets, liquidity, and investment timing according to classical Parashari formulas."
+          />
+        }
+      />
 
       {/* 3. Astrology Educational Reference Routes */}
       <Route path="/astrology/zodiac-signs" element={<SignsPage />} />
