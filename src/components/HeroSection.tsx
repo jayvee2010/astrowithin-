@@ -42,13 +42,13 @@ export const HeroSection: React.FC = () => {
             <span>Muladhara · Grounded in Classical Parashara Hora</span>
           </div>
 
-          {/* Large Commanding Display Headline (64px) */}
-          <h1 className="font-cormorant text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.08] tracking-tight mb-6">
+          {/* Large Commanding Display Headline (Enlarged to match screenshot zoom) */}
+          <h1 className="font-cormorant text-5xl sm:text-6xl lg:text-[4.75rem] font-bold leading-[1.06] tracking-tight mb-6">
             Consult <span className="italic font-normal text-[#B88E3E] dark:text-[#E5B869]">Classically trained</span> <br className="hidden sm:inline" />
             Parashari astrologers.
           </h1>
 
-          {/* Subtitle (18px-20px readable humanist sans) */}
+          {/* Subtitle (Readable humanist sans) */}
           <p className="text-lg sm:text-xl text-[#5A5650] dark:text-[#A09D94] font-normal leading-relaxed max-w-xl mb-10">
             Traditional Vedic clarity on marriage, love, career and life timing—derived from genuine birth charts and planetary dashas without superstition.
           </p>
@@ -57,7 +57,7 @@ export const HeroSection: React.FC = () => {
           <div className="flex flex-wrap items-center gap-6 mb-12">
             <Link
               to="/download"
-              className="px-8 py-4 bg-[#181716] dark:bg-[#F4F1EA] text-white dark:text-[#181716] text-sm font-bold tracking-wide rounded-full hover:scale-105 active:scale-95 transition-all shadow-md flex items-center gap-2.5"
+              className="px-9 py-4 bg-[#181716] dark:bg-[#F4F1EA] text-white dark:text-[#181716] text-base font-bold tracking-wide rounded-full hover:scale-105 active:scale-95 transition-all shadow-md flex items-center gap-3"
             >
               <span>Download app</span>
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
@@ -74,58 +74,58 @@ export const HeroSection: React.FC = () => {
           </div>
 
           {/* Prominent Dual Stats (10L+ & 4.5 Stars) */}
-          <div className="pt-8 border-t border-[#EAE6DF] dark:border-white/10 grid grid-cols-2 gap-8 w-full max-w-md">
+          <div className="pt-8 border-t border-[#EAE6DF] dark:border-white/10 grid grid-cols-2 gap-8 w-full max-w-lg">
             <div>
-              <div className="font-cormorant text-4xl sm:text-5xl font-bold text-[#B88E3E] dark:text-[#E5B869] leading-none mb-1">
+              <div className="font-cormorant text-5xl sm:text-6xl font-bold text-[#B88E3E] dark:text-[#E5B869] leading-none mb-1.5">
                 {consultations}L+
               </div>
-              <div className="text-[11px] uppercase tracking-widest font-sans font-semibold opacity-70">
+              <div className="text-xs uppercase tracking-widest font-sans font-semibold opacity-70">
                 Consultations Completed
               </div>
             </div>
 
             <div>
-              <div className="flex items-center gap-2 mb-1">
-                <span className="font-cormorant text-4xl sm:text-5xl font-bold text-[#B88E3E] dark:text-[#E5B869] leading-none">
+              <div className="flex items-center gap-2 mb-1.5">
+                <span className="font-cormorant text-5xl sm:text-6xl font-bold text-[#B88E3E] dark:text-[#E5B869] leading-none">
                   4.5
                 </span>
                 <div className="flex text-[#B88E3E] dark:text-[#E5B869]">
                   {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                    <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 20 20">
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
                     </svg>
                   ))}
                 </div>
               </div>
-              <div className="text-[11px] uppercase tracking-widest font-sans font-semibold opacity-70">
+              <div className="text-xs uppercase tracking-widest font-sans font-semibold opacity-70">
                 Rating, App Store & Play Store
               </div>
             </div>
           </div>
         </div>
 
-        {/* Right Column: Realistic Flagship Smartphone Mockup (Authentic Vaya Software Showcase) */}
+        {/* Right Column: Realistic Flagship Smartphone Mockup (Enlarged to match screenshot) */}
         <div className="lg:col-span-5 flex justify-center">
-          <div className="w-full max-w-[370px] rounded-[44px] bg-white dark:bg-[#1A1C20] border-[8px] border-[#222120] dark:border-[#383734] shadow-[0_25px_60px_rgba(0,0,0,0.16)] dark:shadow-[0_25px_60px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col">
+          <div className="w-full max-w-[430px] lg:max-w-[460px] rounded-[48px] bg-white dark:bg-[#1A1C20] border-[8px] border-[#222120] dark:border-[#383734] shadow-[0_25px_60px_rgba(0,0,0,0.16)] dark:shadow-[0_25px_60px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col">
             
             {/* Phone Speaker Notch */}
-            <div className="w-24 h-4 bg-[#222120] dark:bg-[#383734] rounded-b-xl mx-auto flex-shrink-0" />
+            <div className="w-28 h-4 bg-[#222120] dark:bg-[#383734] rounded-b-xl mx-auto flex-shrink-0" />
 
-            <div className="p-5 flex flex-col gap-4">
+            <div className="p-6 flex flex-col gap-4">
               {/* App Status Bar */}
-              <div className="flex items-center justify-between pb-3 border-b border-[#EAE6DF] dark:border-white/10">
+              <div className="flex items-center justify-between pb-3.5 border-b border-[#EAE6DF] dark:border-white/10">
                 <div>
-                  <div className="font-sans font-bold text-xs uppercase tracking-wider">Astrowithin App</div>
-                  <div className="text-[10px] text-[#827E76] font-medium">Janam Kundli · Sidereal Lahiri</div>
+                  <div className="font-sans font-bold text-sm uppercase tracking-wider">Astrowithin App</div>
+                  <div className="text-xs text-[#827E76] font-medium">Janam Kundli · Sidereal Lahiri</div>
                 </div>
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#B88E3E]/15 text-[#B88E3E] dark:text-[#E5B869] uppercase tracking-wider">
+                <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-[#B88E3E]/15 text-[#B88E3E] dark:text-[#E5B869] uppercase tracking-wider">
                   Live Gochara
                 </span>
               </div>
 
               {/* Diamond Janam Kundli Blueprint inside Smartphone */}
-              <div className="p-3 bg-neutral-50 dark:bg-white/5 rounded-2xl border border-[#EAE6DF] dark:border-white/10 flex items-center justify-center">
-                <svg viewBox="0 0 200 200" className="w-full h-44" fill="none">
+              <div className="p-4 bg-neutral-50 dark:bg-white/5 rounded-2xl border border-[#EAE6DF] dark:border-white/10 flex items-center justify-center">
+                <svg viewBox="0 0 200 200" className="w-full h-52 sm:h-56" fill="none">
                   <rect x="5" y="5" width="190" height="190" stroke="#B88E3E" strokeWidth="1.4" />
                   <polygon points="100,5 195,100 100,195 5,100" stroke="#B88E3E" strokeWidth="1.2" />
                   <line x1="5" y1="5" x2="195" y2="195" stroke="#B88E3E" strokeWidth="0.8" opacity="0.7" />
@@ -151,23 +151,23 @@ export const HeroSection: React.FC = () => {
               </div>
 
               {/* Today's Moon Transit Card */}
-              <div className="p-3 bg-white dark:bg-[#1A1C20] rounded-xl border border-[#EAE6DF] dark:border-white/10 flex items-center justify-between shadow-xs">
+              <div className="p-3.5 sm:p-4 bg-white dark:bg-[#1A1C20] rounded-xl border border-[#EAE6DF] dark:border-white/10 flex items-center justify-between shadow-xs">
                 <div>
-                  <div className="text-xs font-bold">Moon in Taurus (Rohini)</div>
-                  <div className="text-[11px] text-[#827E76]">Waxing Gibbous · 84% Illumination</div>
+                  <div className="text-sm font-bold">Moon in Taurus (Rohini)</div>
+                  <div className="text-xs text-[#827E76]">Waxing Gibbous · 84% Illumination</div>
                 </div>
-                <span className="text-[11px] font-bold text-emerald-600 dark:text-emerald-400">
+                <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400">
                   Auspicious
                 </span>
               </div>
 
               {/* Shubh Muhurta Card */}
-              <div className="p-3 bg-white dark:bg-[#1A1C20] rounded-xl border border-[#EAE6DF] dark:border-white/10 flex items-center justify-between shadow-xs">
+              <div className="p-3.5 sm:p-4 bg-white dark:bg-[#1A1C20] rounded-xl border border-[#EAE6DF] dark:border-white/10 flex items-center justify-between shadow-xs">
                 <div>
-                  <div className="text-xs font-bold">Shubh Muhurta Window</div>
-                  <div className="text-[11px] text-[#827E76]">10:14 AM – 12:45 PM Today</div>
+                  <div className="text-sm font-bold">Shubh Muhurta Window</div>
+                  <div className="text-xs text-[#827E76]">10:14 AM – 12:45 PM Today</div>
                 </div>
-                <span className="text-[11px] font-bold text-[#B88E3E] dark:text-[#E5B869]">
+                <span className="text-xs font-bold text-[#B88E3E] dark:text-[#E5B869]">
                   Favorable
                 </span>
               </div>
