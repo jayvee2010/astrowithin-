@@ -392,17 +392,17 @@ export const FreeToolsSection: React.FC = () => {
                         </div>
                       </div>
 
-                      {/* State Indicator Badge / Degree Mark */}
+                      {/* Astronomical Degree Mark (Clean, No Pill Capsules) */}
                       <div className="flex items-center gap-2 flex-shrink-0 pl-2">
-                        {isActive ? (
-                          <span className="px-2.5 py-1 rounded-full bg-[#B88E3E]/10 text-[#B88E3E] dark:text-[#E5B869] text-[10px] font-sans font-bold uppercase tracking-wider border border-[#B88E3E]/20">
-                            Active
-                          </span>
-                        ) : (
-                          <span className="text-[11px] font-mono text-[#827E76] opacity-60 group-hover:opacity-100 transition-opacity">
-                            {tool.degreeMark}
-                          </span>
-                        )}
+                        <span
+                          className={`text-[11px] font-mono transition-colors ${
+                            isActive
+                              ? 'text-[#B88E3E] dark:text-[#E5B869] font-bold'
+                              : 'text-[#827E76] opacity-60 group-hover:opacity-100'
+                          }`}
+                        >
+                          {tool.degreeMark}
+                        </span>
                       </div>
                     </button>
                   );
