@@ -15,35 +15,36 @@ export const ExpertsDirectoryPage: React.FC = () => {
         {EXPERTS.map((expert) => (
           <div
             key={expert.id}
-            className="p-6 rounded-3xl bg-vedic-darkVoid/80 border border-vedic-gold/25 hover:border-vedic-gold transition-all duration-300 flex flex-col justify-between group shadow-lg"
+            className="p-8 rounded-3xl bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] hover:border-[#B88E3E] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
           >
             <div>
-              <div className="flex items-center gap-4 mb-4">
+              <div className="flex items-center gap-4 mb-5">
                 <img
                   src={expert.avatar}
                   alt={expert.name}
-                  className="w-16 h-16 rounded-full object-cover border-2 border-vedic-gold/40 group-hover:border-vedic-gold transition-colors"
+                  className="w-16 h-16 rounded-full object-cover border-2 border-[#B88E3E] shadow-sm"
                 />
                 <div>
-                  <h3 className="font-display font-bold text-lg text-slate-100 group-hover:text-vedic-gold transition-colors">
+                  <h3 className="font-cormorant font-bold text-2xl text-[#181716] dark:text-[#F4F1EA] group-hover:text-[#B88E3E] transition-colors">
                     {expert.name}
                   </h3>
-                  <div className="text-xs text-amber-300 font-serif">{expert.experience} Experience</div>
-                  <div className="text-[11px] text-slate-400 font-serif">{expert.city}</div>
+                  <div className="text-xs text-[#B88E3E] dark:text-[#E5B869] font-sans font-semibold">{expert.experience} Experience</div>
+                  <div className="text-xs text-[#827E76] dark:text-[#9C9A94] font-sans">{expert.city}</div>
                 </div>
               </div>
 
-              <div className="text-xs text-vedic-gold font-serif mb-2">{expert.specialty}</div>
-              <p className="text-xs text-slate-300 font-light leading-relaxed mb-4">{expert.bio}</p>
+              <div className="text-xs font-sans uppercase tracking-wider font-bold text-[#B88E3E] dark:text-[#E5B869] mb-2">{expert.specialty}</div>
+              <p className="text-sm text-[#5A5650] dark:text-[#A09D94] font-normal leading-relaxed mb-4">{expert.bio}</p>
             </div>
 
-            <div className="pt-4 border-t border-vedic-gold/15 flex items-center justify-between text-xs font-serif">
-              <span className="text-[10px] text-slate-400">{expert.lineage}</span>
+            <div className="pt-4 border-t border-[#EAE6DF] dark:border-white/10 flex items-center justify-between text-xs font-sans">
+              <span className="text-[11px] text-[#827E76] dark:text-[#9C9A94] font-semibold">{expert.lineage}</span>
               <Link
                 to={`/experts/${expert.id}`}
-                className="text-vedic-gold hover:text-amber-300 font-bold underline underline-offset-4"
+                className="text-[#181716] dark:text-[#F4F1EA] hover:text-[#B88E3E] font-bold flex items-center gap-1"
               >
-                View Profile →
+                <span>View Profile</span>
+                <span>→</span>
               </Link>
             </div>
           </div>
@@ -64,42 +65,42 @@ export const ExpertDetailPage: React.FC = () => {
       title={expert.name}
       subtitle={`${expert.experience} Consultation Experience · ${expert.city}`}
     >
-      <div className="p-8 rounded-3xl bg-vedic-darkVoid/85 border border-vedic-gold/30 shadow-2xl grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+      <div className="p-8 sm:p-10 rounded-3xl bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
         
         <div className="md:col-span-4 flex flex-col items-center text-center">
           <img
             src={expert.avatar}
             alt={expert.name}
-            className="w-44 h-44 rounded-full object-cover border-4 border-vedic-gold/60 shadow-[0_0_30px_rgba(212,175,55,0.3)] mb-4"
+            className="w-44 h-44 rounded-3xl object-cover border-2 border-[#B88E3E] shadow-md mb-4"
           />
           <div className="text-xs font-sans font-bold uppercase tracking-[0.2em] text-[#B88E3E] dark:text-[#E5B869] mt-2">
             {expert.experience} Experience
           </div>
-          <div className="text-xs text-slate-400 font-serif mt-2">{expert.city}</div>
-          <div className="text-xs text-vedic-gold font-serif mt-1 font-semibold">{expert.lineage}</div>
+          <div className="text-xs text-[#827E76] dark:text-[#9C9A94] font-sans mt-1">{expert.city}</div>
+          <div className="text-xs text-[#181716] dark:text-[#F4F1EA] font-sans mt-1 font-semibold">{expert.lineage}</div>
         </div>
 
         <div className="md:col-span-8 flex flex-col items-start space-y-4">
-          <div className="text-xs font-serif text-vedic-gold uppercase tracking-widest">
+          <div className="text-xs font-sans uppercase tracking-[0.2em] font-bold text-[#B88E3E] dark:text-[#E5B869]">
             Specialisation Core
           </div>
-          <h2 className="font-display font-bold text-2xl text-slate-100">
+          <h2 className="font-cormorant font-bold text-3xl text-[#181716] dark:text-[#F4F1EA]">
             {expert.specialty}
           </h2>
-          <p className="text-sm text-slate-300 font-light leading-relaxed">
+          <p className="text-base text-[#5A5650] dark:text-[#A09D94] font-normal leading-relaxed">
             {expert.bio}
           </p>
 
-          <div className="w-full pt-6 border-t border-vedic-gold/20 flex flex-col sm:flex-row items-center gap-4">
+          <div className="w-full pt-6 border-t border-[#EAE6DF] dark:border-white/10 flex flex-col sm:flex-row items-center gap-4">
             <Link
               to="/download"
-              className="px-8 py-3.5 rounded-full bg-gradient-to-r from-vedic-saffron to-amber-500 text-slate-950 font-serif font-bold text-sm tracking-wider uppercase shadow-lg hover:scale-105 active:scale-95 transition-all"
+              className="px-8 py-3.5 rounded-full bg-[#181716] dark:bg-[#F4F1EA] text-white dark:text-[#181716] font-sans font-bold text-xs uppercase tracking-wider shadow-md hover:scale-105 active:scale-95 transition-all"
             >
               Consult {expert.name} on Astrowithin App
             </Link>
             <Link
               to="/experts"
-              className="text-xs font-serif text-vedic-gold hover:underline"
+              className="text-xs font-sans font-semibold text-[#827E76] dark:text-[#9C9A94] hover:text-[#B88E3E] transition-colors"
             >
               ← Back to all astrologers
             </Link>
@@ -120,15 +121,20 @@ export const StaticContentPage: React.FC<{
 }> = ({ title, badge, category, body }) => {
   return (
     <PageLayout badge={badge} title={title}>
-      <div className="p-8 rounded-3xl bg-vedic-darkVoid/80 border border-vedic-gold/25 shadow-xl prose prose-invert max-w-none text-slate-300 font-light leading-relaxed">
-        <div className="text-xs uppercase tracking-widest font-serif text-vedic-gold mb-4">
+      <div className="p-8 sm:p-10 rounded-3xl bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] text-[#181716] dark:text-[#F4F1EA]">
+        <div className="text-xs uppercase tracking-[0.2em] font-sans font-bold text-[#B88E3E] dark:text-[#E5B869] mb-4">
           {category}
         </div>
-        <p className="text-base sm:text-lg mb-6 leading-relaxed">
+        <p className="text-base sm:text-lg text-[#5A5650] dark:text-[#A09D94] leading-relaxed font-normal mb-8">
           {body}
         </p>
-        <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-400">
-          Note: This page contains clearly marked placeholder information for {title} as requested in the creative brief. Official editorial updates and documentation are managed through the central content repository.
+        <div className="pt-6 border-t border-[#EAE6DF] dark:border-white/10 flex items-center justify-between">
+          <Link
+            to="/download"
+            className="px-8 py-3 rounded-full bg-[#181716] dark:bg-[#F4F1EA] text-white dark:text-[#181716] font-sans font-bold text-xs uppercase tracking-wider hover:opacity-90 transition-all shadow-sm"
+          >
+            Download Astrowithin App →
+          </Link>
         </div>
       </div>
     </PageLayout>

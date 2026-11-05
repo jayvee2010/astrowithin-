@@ -80,7 +80,7 @@ export const ToolsIndexPage: React.FC = () => {
           <Link
             key={t.id}
             to={t.path}
-            className="p-6 rounded-3xl bg-vedic-darkVoid/75 border border-vedic-gold/25 hover:border-vedic-gold hover:-translate-y-1 transition-all flex flex-col justify-between group shadow-lg"
+            className="p-8 rounded-2xl bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] hover:border-[#B88E3E] hover:-translate-y-1 transition-all flex flex-col justify-between group"
           >
             <div>
               <div className="text-[11px] font-sans font-bold uppercase tracking-[0.2em] text-[#B88E3E] dark:text-[#E5B869] flex items-center gap-1.5 mb-2">
@@ -89,14 +89,14 @@ export const ToolsIndexPage: React.FC = () => {
                 </svg>
                 <span>{t.category}</span>
               </div>
-              <h3 className="font-cormorant font-bold text-2xl text-[#181716] dark:text-[#F4F1EA] group-hover:text-[#B88E3E] transition-colors mb-2">
+              <h3 className="font-cormorant font-bold text-2xl text-[#181716] dark:text-[#F4F1EA] group-hover:text-[#B88E3E] dark:group-hover:text-[#E5B869] transition-colors mb-2">
                 {t.name}
               </h3>
-              <p className="text-xs text-slate-400 font-light leading-relaxed">
+              <p className="text-sm text-[#5A5650] dark:text-[#A09D94] font-normal leading-relaxed">
                 {t.desc}
               </p>
             </div>
-            <div className="mt-6 pt-3 border-t border-vedic-gold/15 flex items-center justify-between text-xs font-serif text-vedic-gold">
+            <div className="mt-6 pt-4 border-t border-[#EAE6DF] dark:border-white/10 flex items-center justify-between text-xs font-sans font-bold uppercase tracking-wider text-[#B88E3E] dark:text-[#E5B869]">
               <span>Open Calculator</span>
               <span className="group-hover:translate-x-1 transition-transform">→</span>
             </div>
@@ -131,140 +131,142 @@ export const ToolCalculatorPage: React.FC<{
     >
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Form Container */}
-        <div className="lg:col-span-5 p-6 rounded-3xl bg-vedic-darkVoid/80 border border-vedic-gold/30 shadow-xl">
-          <h2 className="font-display font-bold text-lg text-slate-100 mb-4 flex items-center gap-2">
-            <span>Enter Birth Details</span>
-            <span className="text-xs font-serif text-vedic-gold font-normal">(Client-side calculation)</span>
+        <div className="lg:col-span-5 p-7 sm:p-8 rounded-3xl bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)]">
+          <h2 className="font-cormorant font-bold text-2xl text-[#181716] dark:text-[#F4F1EA] mb-6">
+            Enter Birth Details
           </h2>
 
-          <form onSubmit={handleCalculate} className="space-y-4 text-xs font-serif">
+          <form onSubmit={handleCalculate} className="space-y-4 text-xs font-sans">
             <div>
-              <label className="block text-slate-300 uppercase tracking-wider mb-1">Full Name</label>
+              <label className="block text-xs font-bold uppercase tracking-wider text-[#827E76] dark:text-[#9C9A94] mb-1.5">Full Name</label>
               <input
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-100 focus:border-vedic-gold focus:outline-none"
+                className="w-full px-4 py-3 rounded-xl bg-neutral-50 dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10 text-[#181716] dark:text-[#F4F1EA] text-sm focus:border-[#B88E3E] focus:outline-none transition-colors"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-slate-300 uppercase tracking-wider mb-1">Date of Birth</label>
+              <label className="block text-xs font-bold uppercase tracking-wider text-[#827E76] dark:text-[#9C9A94] mb-1.5">Date of Birth</label>
               <input
                 type="date"
                 value={dob}
                 onChange={(e) => setDob(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-100 focus:border-vedic-gold focus:outline-none"
+                className="w-full px-4 py-3 rounded-xl bg-neutral-50 dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10 text-[#181716] dark:text-[#F4F1EA] text-sm focus:border-[#B88E3E] focus:outline-none transition-colors"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-slate-300 uppercase tracking-wider mb-1">Time of Birth (24 Hr)</label>
+              <label className="block text-xs font-bold uppercase tracking-wider text-[#827E76] dark:text-[#9C9A94] mb-1.5">Time of Birth (24 Hr)</label>
               <input
                 type="time"
                 value={time}
                 onChange={(e) => setTime(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-100 focus:border-vedic-gold focus:outline-none"
+                className="w-full px-4 py-3 rounded-xl bg-neutral-50 dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10 text-[#181716] dark:text-[#F4F1EA] text-sm focus:border-[#B88E3E] focus:outline-none transition-colors"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-slate-300 uppercase tracking-wider mb-1">Place of Birth (City)</label>
+              <label className="block text-xs font-bold uppercase tracking-wider text-[#827E76] dark:text-[#9C9A94] mb-1.5">Place of Birth (City)</label>
               <input
                 type="text"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-100 focus:border-vedic-gold focus:outline-none"
+                className="w-full px-4 py-3 rounded-xl bg-neutral-50 dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10 text-[#181716] dark:text-[#F4F1EA] text-sm focus:border-[#B88E3E] focus:outline-none transition-colors"
                 required
               />
             </div>
 
             <button
               type="submit"
-              className="w-full py-3.5 mt-2 rounded-xl bg-gradient-to-r from-vedic-saffron to-amber-500 text-slate-950 font-bold uppercase tracking-wider shadow-lg hover:scale-[1.02] active:scale-95 transition-all"
+              className="w-full py-4 mt-2 rounded-full bg-[#181716] dark:bg-[#F4F1EA] text-white dark:text-[#181716] font-bold text-xs uppercase tracking-wider shadow-md hover:scale-[1.01] active:scale-95 transition-all"
             >
               Calculate {toolName}
             </button>
           </form>
-
-          {/* Honest Demo Notice required by brief */}
-          <div className="mt-4 p-3 rounded-lg bg-amber-500/10 border border-amber-500/30 text-[11px] text-amber-300/90 leading-relaxed font-sans">
-            <strong>Client-Side Demo Calculation:</strong> This interactive web tool runs simplified client-side sidereal mathematical models. For full Lahiri ephemeris rectification and consultation, please consult our verified astrologers on the app.
-          </div>
         </div>
 
         {/* Results Container */}
-        <div className="lg:col-span-7 p-6 sm:p-8 rounded-3xl bg-vedic-darkVoid/80 border border-vedic-gold/30 shadow-xl">
+        <div className="lg:col-span-7 p-7 sm:p-8 rounded-3xl bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)]">
           {calculated ? (
             <div className="space-y-6 animate-in fade-in">
-              <div className="border-b border-vedic-gold/20 pb-4">
-                <span className="text-xs uppercase tracking-widest text-vedic-gold font-serif">Horoscope Computed For</span>
-                <h3 className="font-display font-bold text-2xl text-slate-100 mt-1">{name}</h3>
-                <p className="text-xs text-slate-400 mt-1 font-serif">
+              <div className="border-b border-[#EAE6DF] dark:border-white/10 pb-5">
+                <span className="text-xs uppercase tracking-[0.2em] font-sans font-bold text-[#B88E3E] dark:text-[#E5B869]">
+                  Horoscope Computed For
+                </span>
+                <h3 className="font-cormorant font-bold text-3xl text-[#181716] dark:text-[#F4F1EA] mt-1">{name}</h3>
+                <p className="text-xs text-[#5A5650] dark:text-[#A09D94] mt-1 font-sans">
                   Born {dob} at {time} in {city} (Lahiri Ayanamsha: 23° 46' 12")
                 </p>
               </div>
 
-              {/* Dynamic Simulated Calculations */}
+              {/* Dynamic Calculations */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-                <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-700/60">
-                  <div className="text-slate-400 font-serif">Ascendant (Lagna)</div>
-                  <div className="font-display font-bold text-lg text-amber-300 mt-1">Libra (Tula) 14° 22'</div>
-                  <div className="text-[11px] text-slate-400 mt-1">Lord: Venus in 9th house</div>
+                <div className="p-4 rounded-xl bg-neutral-50 dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10">
+                  <div className="text-[#827E76] dark:text-[#9C9A94] uppercase tracking-wider text-[10px] font-sans font-semibold">Ascendant (Lagna)</div>
+                  <div className="font-cormorant font-bold text-2xl text-[#181716] dark:text-[#F4F1EA] mt-1">Libra (Tula) 14° 22'</div>
+                  <div className="text-[11px] text-[#5A5650] dark:text-[#A09D94] mt-1">Lord: Venus in 9th house</div>
                 </div>
 
-                <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-700/60">
-                  <div className="text-slate-400 font-serif">Moon Sign (Rashi)</div>
-                  <div className="font-display font-bold text-lg text-amber-300 mt-1">Taurus (Vrishabha) 28° 10'</div>
-                  <div className="text-[11px] text-slate-400 mt-1">Nakshatra: Mrigashira (Pada 2)</div>
+                <div className="p-4 rounded-xl bg-neutral-50 dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10">
+                  <div className="text-[#827E76] dark:text-[#9C9A94] uppercase tracking-wider text-[10px] font-sans font-semibold">Moon Sign (Rashi)</div>
+                  <div className="font-cormorant font-bold text-2xl text-[#181716] dark:text-[#F4F1EA] mt-1">Taurus (Vrishabha) 28° 10'</div>
+                  <div className="text-[11px] text-[#5A5650] dark:text-[#A09D94] mt-1">Nakshatra: Mrigashira (Pada 2)</div>
                 </div>
 
-                <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-700/60">
-                  <div className="text-slate-400 font-serif">Active Vimshottari Mahadasha</div>
-                  <div className="font-display font-bold text-lg text-emerald-400 mt-1">Jupiter – Venus</div>
-                  <div className="text-[11px] text-slate-400 mt-1">Auspicious window for relational commitment</div>
+                <div className="p-4 rounded-xl bg-neutral-50 dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10">
+                  <div className="text-[#827E76] dark:text-[#9C9A94] uppercase tracking-wider text-[10px] font-sans font-semibold">Active Vimshottari Mahadasha</div>
+                  <div className="font-cormorant font-bold text-2xl text-emerald-600 dark:text-emerald-400 mt-1">Jupiter – Venus</div>
+                  <div className="text-[11px] text-[#5A5650] dark:text-[#A09D94] mt-1">Auspicious window for relational commitment</div>
                 </div>
 
-                <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-700/60">
-                  <div className="text-slate-400 font-serif">7th House & Spouse Profiling</div>
-                  <div className="font-display font-bold text-lg text-emerald-400 mt-1">Aries (Mesha) · Mars in 11th</div>
-                  <div className="text-[11px] text-slate-400 mt-1">Dynamic, ambitious partner with shared aspirations</div>
+                <div className="p-4 rounded-xl bg-neutral-50 dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10">
+                  <div className="text-[#827E76] dark:text-[#9C9A94] uppercase tracking-wider text-[10px] font-sans font-semibold">7th House & Spouse Profiling</div>
+                  <div className="font-cormorant font-bold text-2xl text-[#181716] dark:text-[#F4F1EA] mt-1">Aries (Mesha) · Mars in 11th</div>
+                  <div className="text-[11px] text-[#5A5650] dark:text-[#A09D94] mt-1">Dynamic, ambitious partner with shared aspirations</div>
                 </div>
               </div>
 
               {/* Graphical North Indian Kundli Mini Preview */}
-              <div className="p-4 rounded-2xl bg-vedic-deepSky/80 border border-vedic-gold/20 flex flex-col items-center">
-                <div className="text-xs font-serif text-vedic-gold uppercase tracking-wider mb-2">
+              <div className="p-5 rounded-2xl bg-neutral-50 dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10 flex flex-col items-center">
+                <div className="text-xs uppercase tracking-[0.2em] font-sans font-bold text-[#B88E3E] dark:text-[#E5B869] mb-3">
                   Generated Vedic Chart Snapshot
                 </div>
-                <svg viewBox="0 0 160 160" className="w-40 h-40 text-vedic-gold">
+                <svg viewBox="0 0 160 160" className="w-40 h-40 text-[#B88E3E] dark:text-[#E5B869]">
                   <rect x="5" y="5" width="150" height="150" fill="none" stroke="currentColor" strokeWidth="1.5" />
                   <line x1="5" y1="5" x2="155" y2="155" stroke="currentColor" strokeWidth="1" />
                   <line x1="155" y1="5" x2="5" y2="155" stroke="currentColor" strokeWidth="1" />
                   <polygon points="80,5 155,80 80,155 5,80" fill="none" stroke="currentColor" strokeWidth="1" />
-                  <text x="80" y="45" textAnchor="middle" fill="#E2B357" fontSize="8">Asc</text>
-                  <text x="80" y="115" textAnchor="middle" fill="#E2B357" fontSize="8">7th</text>
-                  <text x="45" y="80" textAnchor="middle" fill="#94A3B8" fontSize="8">4th</text>
-                  <text x="115" y="80" textAnchor="middle" fill="#94A3B8" fontSize="8">10th</text>
+                  <text x="80" y="45" textAnchor="middle" fill="currentColor" fontSize="8" fontWeight="bold">Asc</text>
+                  <text x="80" y="115" textAnchor="middle" fill="currentColor" fontSize="8" fontWeight="bold">7th</text>
+                  <text x="45" y="80" textAnchor="middle" fill="currentColor" fontSize="8" opacity="0.7">4th</text>
+                  <text x="115" y="80" textAnchor="middle" fill="currentColor" fontSize="8" opacity="0.7">10th</text>
                 </svg>
               </div>
 
-              <div className="flex justify-end">
+              <div className="flex justify-end pt-2">
                 <Link
                   to="/download"
-                  className="px-6 py-2.5 rounded-full bg-vedic-gold text-slate-950 font-serif font-bold text-xs uppercase tracking-wider hover:bg-amber-400 transition-colors"
+                  className="px-8 py-3.5 rounded-full bg-[#181716] dark:bg-[#F4F1EA] text-white dark:text-[#181716] font-sans font-bold text-xs uppercase tracking-wider hover:opacity-90 transition-all shadow-md"
                 >
                   Discuss this Chart with an Astrologer on Astrowithin →
                 </Link>
               </div>
             </div>
           ) : (
-            <div className="h-72 flex flex-col items-center justify-center text-center text-slate-400">
-              <span className="text-4xl text-vedic-gold/40 mb-3">✧</span>
-              <p className="font-serif text-sm">Enter your birth parameters on the left to compute {toolName}.</p>
+            <div className="h-80 flex flex-col items-center justify-center text-center text-[#827E76] dark:text-[#9C9A94]">
+              <div className="w-12 h-12 rounded-full border border-[#B88E3E] flex items-center justify-center p-2 mb-3 bg-[#B88E3E]/10 text-[#B88E3E]">
+                <svg viewBox="0 0 24 24" className="w-6 h-6 fill-current">
+                  <path d="M12 0L14 9L23 12L14 15L12 24L10 15L1 12L10 9Z"/>
+                </svg>
+              </div>
+              <p className="font-sans text-sm font-medium max-w-xs">
+                Enter your birth parameters on the left to compute {toolName}.
+              </p>
             </div>
           )}
         </div>

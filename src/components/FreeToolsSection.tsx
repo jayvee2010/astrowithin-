@@ -109,7 +109,7 @@ export const FreeToolsSection: React.FC = () => {
               <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-[#B88E3E] dark:text-[#E5B869]" fill="currentColor">
                 <path d="M12 0L14 9L23 12L14 15L12 24L10 15L1 12L10 9Z"/>
               </svg>
-              <span>03 · Authentic Client-Side Engines</span>
+              <span>03 · Vedic Astrology Engines</span>
             </div>
             <h2 className="font-cormorant text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
               Tools for <br className="hidden sm:inline" />
@@ -119,7 +119,7 @@ export const FreeToolsSection: React.FC = () => {
             </h2>
           </div>
           <p className="text-base text-[#5A5650] dark:text-[#A09D94] font-normal max-w-sm mt-4 md:mt-0 leading-relaxed">
-            Authentic client-side Vedic calculations for relationship clarity, planetary timelines, and karmic charts.
+            Authentic mathematical Vedic calculations for relationship clarity, planetary timelines, and karmic charts.
           </p>
         </div>
 
