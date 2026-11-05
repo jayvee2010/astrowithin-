@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="border-t border-[#EAE6DF] dark:border-white/10 pt-20 pb-16 px-4 sm:px-8 lg:px-12 bg-white/50 dark:bg-[#121316] transition-colors">
-      <div className="max-w-7xl 2xl:max-w-[1560px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-16 border-b border-[#EAE6DF] dark:border-white/10">
+    <footer className="border-t border-[#EAE6DF] dark:border-white/10 pt-20 pb-16 px-6 sm:px-12 bg-white/50 dark:bg-[#121316] transition-colors">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-16 border-b border-[#EAE6DF] dark:border-white/10">
         
         {/* Brand Column */}
         <div className="flex flex-col items-start">

@@ -8,7 +8,6 @@ interface PageLayoutProps {
   subtitle?: string;
   badge?: string;
   maxWidth?: string;
-  headerRight?: React.ReactNode;
   children: React.ReactNode;
 }
 
@@ -17,7 +16,6 @@ export const PageLayout: React.FC<PageLayoutProps> = ({
   subtitle,
   badge,
   maxWidth = 'max-w-5xl',
-  headerRight,
   children,
 }) => {
   return (
@@ -25,7 +23,7 @@ export const PageLayout: React.FC<PageLayoutProps> = ({
       <CustomCursor />
       <Header />
 
-      <main className={`relative z-10 pt-28 pb-24 px-4 sm:px-8 lg:px-12 ${maxWidth} mx-auto w-full flex-grow`}>
+      <main className={`relative z-10 pt-28 pb-20 px-4 sm:px-6 lg:px-8 ${maxWidth} mx-auto w-full flex-grow`}>
         {/* Unboxed Kicker on Top of Header (Consistent with Landing Page Pattern) */}
         {badge && (
           <div className="text-xs uppercase tracking-[0.25em] font-sans font-bold text-[#B88E3E] dark:text-[#E5B869] mb-4 flex items-center gap-2">
@@ -36,27 +34,17 @@ export const PageLayout: React.FC<PageLayoutProps> = ({
           </div>
         )}
 
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 pb-8 border-b border-[#EAE6DF] dark:border-white/10">
-          <div className="max-w-4xl">
-            <h1 className="font-cormorant text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-[#181716] dark:text-[#F4F1EA] tracking-tight mb-4 leading-[1.05]">
-              {title}
-            </h1>
+        <h1 className="font-cormorant text-4xl sm:text-5xl lg:text-6xl font-bold text-[#181716] dark:text-[#F4F1EA] tracking-tight mb-4">
+          {title}
+        </h1>
 
-            {subtitle && (
-              <p className="text-[#5A5650] dark:text-[#A09D94] text-base sm:text-lg lg:text-xl font-normal max-w-3xl leading-relaxed">
-                {subtitle}
-              </p>
-            )}
-          </div>
+        {subtitle && (
+          <p className="text-[#5A5650] dark:text-[#A09D94] text-base sm:text-lg font-normal mb-10 max-w-3xl sm:max-w-4xl leading-relaxed">
+            {subtitle}
+          </p>
+        )}
 
-          {headerRight && (
-            <div className="flex-shrink-0">
-              {headerRight}
-            </div>
-          )}
-        </div>
-
-        <div>{children}</div>
+        <div className="mt-8">{children}</div>
       </main>
 
       <Footer />
