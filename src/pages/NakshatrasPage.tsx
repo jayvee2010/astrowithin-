@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { PageLayout } from '../components/PageLayout';
 import { Link } from 'react-router-dom';
 import { ALL_NAKSHATRAS, NakshatraItem } from '../data/nakshatrasData';
@@ -61,6 +61,27 @@ export const NakshatrasPage: React.FC = () => {
   const [selectedRuler, setSelectedRuler] = useState<string>('All');
   const [selectedGana, setSelectedGana] = useState<string>('All');
   const [activeModalNakshatra, setActiveModalNakshatra] = useState<NakshatraItem | null>(null);
+
+  // Handle ESC key and Lock background body scrolling when modal is open
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setActiveModalNakshatra(null);
+      }
+    };
+
+    if (activeModalNakshatra) {
+      window.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'unset';
+    };
+  }, [activeModalNakshatra]);
 
   const rulersList = ['All', 'Sun', 'Moon', 'Mars', 'Rahu', 'Jupiter', 'Saturn', 'Mercury', 'Ketu'];
   const ganasList = ['All', 'Deva', 'Manushya', 'Rakshasa'];
@@ -395,16 +416,20 @@ export const NakshatrasPage: React.FC = () => {
       {/* 5. LUXURY NAKSHATRA DOSSIER MODAL (Pinterest Astrological)*/}
       {/* ======================================================== */}
       {activeModalNakshatra && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/75 backdrop-blur-md animate-in fade-in duration-200 cursor-pointer"
+          onClick={() => setActiveModalNakshatra(null)}
+        >
           <div
-            className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-3xl bg-[#FAF8F5] dark:bg-[#181A1F] border-2 border-[#B88E3E]/30 shadow-2xl"
+            className="relative w-full max-w-3xl max-h-[92vh] overflow-y-auto rounded-3xl bg-[#FAF8F5] dark:bg-[#181A1F] border-2 border-[#B88E3E]/40 shadow-2xl cursor-default"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close Button */}
+            {/* Prominent High-Contrast Floating Close Button */}
             <button
               type="button"
               onClick={() => setActiveModalNakshatra(null)}
-              className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-black/60 text-white hover:bg-black flex items-center justify-center text-sm cursor-pointer transition-colors"
+              className="absolute top-4 right-4 z-30 w-11 h-11 rounded-full bg-white dark:bg-[#181716] text-[#181716] dark:text-white border-2 border-stone-200 dark:border-white/20 shadow-2xl hover:scale-110 active:scale-95 flex items-center justify-center font-bold text-lg cursor-pointer transition-all"
+              title="Close (or press Esc)"
               aria-label="Close modal"
             >
               ✕
@@ -577,15 +602,15 @@ export const NakshatrasPage: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setActiveModalNakshatra(null)}
-                    className="px-5 py-2.5 rounded-full border border-[#EAE6DF] dark:border-white/10 text-xs font-bold text-[#827E76] hover:text-[#181716] dark:hover:text-white cursor-pointer"
+                    className="px-5 py-2.5 rounded-full bg-white dark:bg-[#181716] border border-[#EAE6DF] dark:border-white/20 text-xs font-bold text-[#181716] dark:text-white hover:border-[#B88E3E] cursor-pointer shadow-xs"
                   >
-                    Close
+                    Close Dossier ✕
                   </button>
                   <Link
-                    to="/tools/rashi-calculator"
+                    to={`/astrology/nakshatras/${activeModalNakshatra.id}`}
                     className="px-6 py-2.5 rounded-full bg-white dark:bg-[#1A1C20] border-2 border-[#B88E3E] text-[#B88E3E] dark:text-[#E5B869] text-xs uppercase tracking-wider font-bold hover:bg-[#B88E3E] hover:text-white transition-all shadow-xs"
                   >
-                    Calculate My Nakshatra →
+                    Open Full Page Guide ↗
                   </Link>
                 </div>
               </div>

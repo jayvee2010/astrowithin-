@@ -11,6 +11,7 @@ import {
   YogasPage,
 } from './pages/AstrologyPages';
 import { ZodiacSignDetailPage } from './pages/ZodiacSignDetailPage';
+import { NakshatraDetailPage } from './pages/NakshatraDetailPage';
 import {
   ExpertsDirectoryPage,
   ExpertDetailPage,
@@ -157,6 +158,7 @@ export const App: React.FC = () => {
       <Route path="/astrology/zodiac-signs" element={<SignsPage />} />
       <Route path="/astrology/zodiac-signs/:signId" element={<ZodiacSignDetailPage />} />
       <Route path="/astrology/nakshatras" element={<NakshatrasPage />} />
+      <Route path="/astrology/nakshatras/:slug" element={<NakshatraDetailPage />} />
       <Route path="/astrology/houses" element={<HousesPage />} />
       <Route path="/astrology/planets" element={<PlanetsPage />} />
       <Route path="/astrology/transits" element={<TransitsPage />} />
