@@ -83,10 +83,13 @@ export const ToolsIndexPage: React.FC = () => {
             className="p-6 rounded-3xl bg-vedic-darkVoid/75 border border-vedic-gold/25 hover:border-vedic-gold hover:-translate-y-1 transition-all flex flex-col justify-between group shadow-lg"
           >
             <div>
-              <span className="text-[10px] font-serif uppercase tracking-widest text-vedic-gold px-2.5 py-0.5 rounded-full bg-vedic-gold/10 border border-vedic-gold/20">
-                {t.category}
-              </span>
-              <h3 className="font-display font-bold text-xl text-slate-100 group-hover:text-vedic-gold transition-colors mt-3 mb-2">
+              <div className="text-[11px] font-sans font-bold uppercase tracking-[0.2em] text-[#B88E3E] dark:text-[#E5B869] flex items-center gap-1.5 mb-2">
+                <svg viewBox="0 0 24 24" className="w-3 h-3 text-[#B88E3E] dark:text-[#E5B869]" fill="currentColor">
+                  <path d="M12 0L14 9L23 12L14 15L12 24L10 15L1 12L10 9Z"/>
+                </svg>
+                <span>{t.category}</span>
+              </div>
+              <h3 className="font-cormorant font-bold text-2xl text-[#181716] dark:text-[#F4F1EA] group-hover:text-[#B88E3E] transition-colors mb-2">
                 {t.name}
               </h3>
               <p className="text-xs text-slate-400 font-light leading-relaxed">

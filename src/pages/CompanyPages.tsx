@@ -72,9 +72,9 @@ export const ExpertDetailPage: React.FC = () => {
             alt={expert.name}
             className="w-44 h-44 rounded-full object-cover border-4 border-vedic-gold/60 shadow-[0_0_30px_rgba(212,175,55,0.3)] mb-4"
           />
-          <span className="px-3 py-1 rounded-full text-xs font-serif bg-vedic-saffron/20 border border-vedic-saffron/40 text-amber-300">
+          <div className="text-xs font-sans font-bold uppercase tracking-[0.2em] text-[#B88E3E] dark:text-[#E5B869] mt-2">
             {expert.experience} Experience
-          </span>
+          </div>
           <div className="text-xs text-slate-400 font-serif mt-2">{expert.city}</div>
           <div className="text-xs text-vedic-gold font-serif mt-1 font-semibold">{expert.lineage}</div>
         </div>

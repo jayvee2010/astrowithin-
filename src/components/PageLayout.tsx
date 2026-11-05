@@ -22,10 +22,12 @@ export const PageLayout: React.FC<PageLayoutProps> = ({
       <Header />
 
       <main className="relative z-10 pt-28 pb-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto w-full flex-grow">
-        {/* Breadcrumb / Badge */}
+        {/* Unboxed Kicker on Top of Header (Consistent with Landing Page Pattern) */}
         {badge && (
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#B88E3E]/10 border border-[#B88E3E]/30 text-[#B88E3E] dark:text-[#E5B869] text-xs font-sans font-bold uppercase tracking-widest mb-5">
-            <span>◈</span>
+          <div className="text-xs uppercase tracking-[0.25em] font-sans font-bold text-[#B88E3E] dark:text-[#E5B869] mb-4 flex items-center gap-2">
+            <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-[#B88E3E] dark:text-[#E5B869]" fill="currentColor">
+              <path d="M12 0L14 9L23 12L14 15L12 24L10 15L1 12L10 9Z"/>
+            </svg>
             <span>{badge}</span>
           </div>
         )}

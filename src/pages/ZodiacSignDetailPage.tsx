@@ -61,16 +61,11 @@ export const ZodiacSignDetailPage: React.FC = () => {
             {/* Right: Foundational Cosmic Metrics Table */}
             <div className="lg:col-span-7 flex flex-col space-y-6">
               
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="px-3 py-1 rounded-full text-xs font-sans font-bold uppercase tracking-wider bg-[#B88E3E]/15 border border-[#B88E3E]/30 text-[#B88E3E] dark:text-[#E5B869]">
-                  {sign.element} Element
-                </span>
-                <span className="px-3 py-1 rounded-full text-xs font-sans font-medium uppercase tracking-wider bg-neutral-100 dark:bg-white/10 border border-[#EAE6DF] dark:border-white/10 text-[#5A5650] dark:text-[#A09D94]">
-                  {sign.quality}
-                </span>
-                <span className="px-3 py-1 rounded-full text-xs font-sans font-medium uppercase tracking-wider bg-neutral-100 dark:bg-white/10 border border-[#EAE6DF] dark:border-white/10 text-[#5A5650] dark:text-[#A09D94]">
-                  Symbol: {sign.symbol}
-                </span>
+              <div className="text-xs uppercase tracking-[0.25em] font-sans font-bold text-[#B88E3E] dark:text-[#E5B869] flex items-center gap-2">
+                <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-[#B88E3E] dark:text-[#E5B869]" fill="currentColor">
+                  <path d="M12 0L14 9L23 12L14 15L12 24L10 15L1 12L10 9Z"/>
+                </svg>
+                <span>{sign.element} Element · {sign.quality} · Symbol: {sign.symbol}</span>
               </div>
 
               <h2 className="font-cormorant font-bold text-3xl sm:text-4xl text-[#181716] dark:text-[#F4F1EA] leading-tight">
@@ -354,10 +349,13 @@ export const ZodiacSignDetailPage: React.FC = () => {
                 {sign.nakshatrasInvolved.map((nak, i) => (
                   <div key={i} className="p-6 rounded-2xl bg-neutral-50 dark:bg-white/5 border border-[#EAE6DF] dark:border-white/10 flex flex-col justify-between">
                     <div>
-                      <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-[#B88E3E] dark:text-[#E5B869] px-2.5 py-1 rounded-full bg-[#B88E3E]/15">
-                        Nakshatra #{i + 1}
-                      </span>
-                      <h4 className="font-cormorant font-bold text-xl text-[#181716] dark:text-[#F4F1EA] mt-3 mb-1">
+                      <div className="text-[11px] font-sans font-bold uppercase tracking-[0.2em] text-[#B88E3E] dark:text-[#E5B869] flex items-center gap-1.5 mb-2">
+                        <svg viewBox="0 0 24 24" className="w-3 h-3 text-[#B88E3E] dark:text-[#E5B869]" fill="currentColor">
+                          <path d="M12 0L14 9L23 12L14 15L12 24L10 15L1 12L10 9Z"/>
+                        </svg>
+                        <span>Nakshatra #{i + 1}</span>
+                      </div>
+                      <h4 className="font-cormorant font-bold text-xl text-[#181716] dark:text-[#F4F1EA] mb-1">
                         {nak.name}
                       </h4>
                       <div className="text-xs text-[#827E76] dark:text-[#9C9A94] font-sans mb-3">
