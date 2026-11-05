@@ -121,60 +121,7 @@ export const SignsPage: React.FC = () => {
   );
 };
 
-// 2. Nakshatras (27 Lunar Mansions)
-export const NakshatrasPage: React.FC = () => {
-  const nakshatras = [
-    { name: 'Ashwini', lord: 'Ketu', symbol: "Horse's head", deity: 'Ashvini Kumaras', quality: 'Swift healing & initiative' },
-    { name: 'Bharani', lord: 'Venus', symbol: 'Yoni', deity: 'Yama', quality: 'Restraint & transformative rebirth' },
-    { name: 'Krittika', lord: 'Sun', symbol: 'Razor/Flame', deity: 'Agni', quality: 'Purifying fire & discrimination' },
-    { name: 'Rohini', lord: 'Moon', symbol: 'Chariot/Temple', deity: 'Brahma', quality: 'Fertility, artistic beauty, growth' },
-    { name: 'Mrigashira', lord: 'Mars', symbol: "Deer's head", deity: 'Soma', quality: 'The eternal seeker, restless intellect' },
-    { name: 'Ardra', lord: 'Rahu', symbol: 'Teardrop', deity: 'Rudra', quality: 'Storms of transformation, intense emotional purge' },
-    { name: 'Punarvasu', lord: 'Jupiter', symbol: 'Bow and Quiver', deity: 'Aditi', quality: 'Return of the light, renewal, abundance' },
-    { name: 'Pushya', lord: 'Saturn', symbol: "Cow's Udder / Lotus", deity: 'Brihaspati', quality: 'Most auspicious nakshatra, nourishment' },
-    { name: 'Ashlesha', lord: 'Mercury', symbol: 'Coiled Serpent', deity: 'Nagas', quality: 'Kundalini energy, psychological depth' },
-    { name: 'Magha', lord: 'Ketu', symbol: 'Royal Throne', deity: 'Pitris (Ancestors)', quality: 'Lineage blessings, authority, heritage' },
-    { name: 'Purva Phalguni', lord: 'Venus', symbol: 'Front Legs of Bed', deity: 'Bhaga', quality: 'Sensual love, leisure, romantic delight' },
-    { name: 'Uttara Phalguni', lord: 'Sun', symbol: 'Back Legs of Bed', deity: 'Aryaman', quality: 'Marital patron, sacred contracts' },
-    { name: 'Hasta', lord: 'Moon', symbol: 'Open Hand', deity: 'Savitr', quality: 'Artisanal craft, healing touch, dexterity' },
-    { name: 'Chitra', lord: 'Mars', symbol: 'Bright Pearl/Jewel', deity: 'Vishwakarma', quality: 'Divine architect, brilliant aesthetics' },
-    { name: 'Swati', lord: 'Rahu', symbol: 'Shoot of Plant', deity: 'Vayu', quality: 'Independence, balance, wind element' },
-    { name: 'Vishakha', lord: 'Jupiter', symbol: 'Triumphal Arch', deity: 'Indra-Agni', quality: 'Focused ambition, triumph through effort' },
-    { name: 'Anuradha', lord: 'Saturn', symbol: 'Lotus / Staff', deity: 'Mitra', quality: 'Devotion, friendship, resilience in hardship' },
-    { name: 'Jyeshtha', lord: 'Mercury', symbol: 'Circular Amulet', deity: 'Indra', quality: 'Elder seniority, protective wisdom' },
-    { name: 'Mula', lord: 'Ketu', symbol: 'Tied Roots', deity: 'Nirriti', quality: 'Uprooting illusions, core essence' },
-    { name: 'Purva Ashadha', lord: 'Venus', symbol: "Elephant's Tusk", deity: 'Apas (Water)', quality: 'Invincible confidence, deep purification' },
-    { name: 'Uttara Ashadha', lord: 'Sun', symbol: 'Small Bed/Planks', deity: 'Vishwadevas', quality: 'Final permanent victory, leadership' },
-    { name: 'Shravana', lord: 'Moon', symbol: 'Ear / Three Footprints', deity: 'Vishnu', quality: 'Sacred oral listening, knowledge retention' },
-    { name: 'Dhanishta', lord: 'Mars', symbol: 'Drum (Mridanga)', deity: 'Ashta Vasus', quality: 'Cosmic rhythm, wealth, musical aptitude' },
-    { name: 'Shatabhisha', lord: 'Rahu', symbol: 'Empty Circle / 100 Physicians', deity: 'Varuna', quality: 'Veiled mysteries, profound healing' },
-    { name: 'Purva Bhadrapada', lord: 'Jupiter', symbol: 'Front of Funeral Bed', deity: 'Aja Ekapada', quality: 'Ascetic tapas, spiritual fire' },
-    { name: 'Uttara Bhadrapada', lord: 'Saturn', symbol: 'Back of Funeral Bed', deity: 'Ahirbudhnya', quality: 'Deep cosmic kundalini, stillness' },
-    { name: 'Revati', lord: 'Mercury', symbol: 'Pair of Fish', deity: 'Pushan', quality: 'Safe voyages, final liberation, nourishment' },
-  ];
-
-  return (
-    <PageLayout
-      badge="The 27 Lunar Mansions of the Zodiac"
-      title="The 27 Nakshatras"
-      subtitle="The Nakshatras form the heartbeat of Parashari Jyotish. Each span is precisely 13° 20' of the ecliptic, governing deep karmic predispositions, Moon signs, and Vimshottari dasha rulers."
-    >
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {nakshatras.map((n, i) => (
-          <div key={i} className="p-6 rounded-3xl bg-vedic-darkVoid/75 border border-vedic-gold/25 hover:border-vedic-gold transition-colors">
-            <div className="text-xs font-serif text-vedic-gold uppercase tracking-wider mb-1">Nakshatra {i + 1}</div>
-            <h3 className="font-display font-bold text-xl text-slate-100 mb-2">{n.name}</h3>
-            <div className="space-y-1 text-xs text-slate-400 font-serif border-b border-vedic-gold/15 pb-3 mb-3">
-              <div>Planetary Lord: <span className="text-amber-300">{n.lord}</span></div>
-              <div>Deity & Symbol: <span className="text-slate-200">{n.deity} ({n.symbol})</span></div>
-            </div>
-            <p className="text-xs text-slate-300 font-light leading-relaxed">{n.quality}</p>
-          </div>
-        ))}
-      </div>
-    </PageLayout>
-  );
-};
+export { NakshatrasPage } from './NakshatrasPage';
 
 // 3. Houses (12 Bhavas)
 export const HousesPage: React.FC = () => {
