@@ -58,30 +58,21 @@ const LaurelWreathTrustBadge: React.FC = () => {
 
 export const NakshatrasPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [selectedRuler, setSelectedRuler] = useState<string>('All');
-  const [selectedGana, setSelectedGana] = useState<string>('All');
-
-  const rulersList = ['All', 'Sun', 'Moon', 'Mars', 'Rahu', 'Jupiter', 'Saturn', 'Mercury', 'Ketu'];
-  const ganasList = ['All', 'Deva', 'Manushya', 'Rakshasa'];
 
   const filteredNakshatras = useMemo(() => {
+    const q = searchQuery.toLowerCase().trim();
+    if (!q) return ALL_NAKSHATRAS;
     return ALL_NAKSHATRAS.filter((n) => {
-      const q = searchQuery.toLowerCase().trim();
-      const matchesSearch =
-        q === '' ||
+      return (
         n.name.toLowerCase().includes(q) ||
         n.sanskrit.includes(q) ||
         n.symbol.toLowerCase().includes(q) ||
         n.deity.toLowerCase().includes(q) ||
         n.ruler.toLowerCase().includes(q) ||
-        n.zodiacSign.toLowerCase().includes(q);
-
-      const matchesRuler = selectedRuler === 'All' || n.ruler.toLowerCase() === selectedRuler.toLowerCase();
-      const matchesGana = selectedGana === 'All' || n.gana.toLowerCase() === selectedGana.toLowerCase();
-
-      return matchesSearch && matchesRuler && matchesGana;
+        n.zodiacSign.toLowerCase().includes(q)
+      );
     });
-  }, [searchQuery, selectedRuler, selectedGana]);
+  }, [searchQuery]);
 
   return (
     <PageLayout
@@ -138,15 +129,27 @@ export const NakshatrasPage: React.FC = () => {
       </dl>
 
       {/* ======================================================== */}
-      {/* 2. SEARCH & FILTER SUITE (Clean & Uncluttered)          */}
+      {/* 2. 27 NAKSHATRAS MASTER GRID & SEARCH                   */}
       {/* ======================================================== */}
-      <div className="mb-12 space-y-6">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          {/* Search Box */}
-          <div className="relative flex-1 max-w-md">
+      <section className="mt-8 mb-24">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+          <div>
+            <span className="text-xs uppercase font-sans font-bold tracking-[0.2em] text-[#B88E3E] dark:text-[#E5B869] block mb-1">
+              Lunar Mansions Catalog
+            </span>
+            <h2 className="font-cormorant text-3xl sm:text-4xl font-bold tracking-tight text-[#181716] dark:text-white">
+              Explore the lunar mansions
+            </h2>
+            <p className="mt-2 max-w-2xl text-sm sm:text-base text-[#5A5650] dark:text-[#A09D94] leading-relaxed">
+              Discover how your Janma Nakshatra (birth star) shapes your inner mind, spiritual temperament, planetary dasha chronology, and sacred compatibility.
+            </p>
+          </div>
+
+          {/* Clean Search Input */}
+          <div className="relative w-full md:w-80 flex-shrink-0">
             <input
               type="text"
-              placeholder="Search by nakshatra (Rohini, Ashwini, Pushya)..."
+              placeholder="Search by name, deity, or symbol..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-11 pr-10 py-3 rounded-full bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10 text-sm font-sans text-[#181716] dark:text-white placeholder-[#827E76] focus:outline-none focus:border-[#B88E3E] transition-all shadow-xs"
@@ -164,85 +167,23 @@ export const NakshatrasPage: React.FC = () => {
                 type="button"
                 onClick={() => setSearchQuery('')}
                 className="absolute right-3.5 top-2.5 w-6 h-6 rounded-full bg-neutral-100 dark:bg-white/10 flex items-center justify-center text-xs text-[#827E76] hover:text-[#181716] dark:hover:text-white cursor-pointer"
+                title="Clear search"
               >
                 ✕
               </button>
             )}
           </div>
-
-          {/* Result Count Indicator */}
-          <span className="text-xs font-sans text-[#827E76]">
-            Showing <strong className="text-[#181716] dark:text-white">{filteredNakshatras.length}</strong> of 27 lunar mansions
-          </span>
-        </div>
-
-        {/* Filter Rails */}
-        <div className="flex flex-wrap items-center gap-3 pt-2 text-xs font-sans">
-          <span className="font-bold text-[#827E76] uppercase tracking-wider text-[11px] mr-1">Ruler:</span>
-          {rulersList.map((ruler) => (
-            <button
-              key={ruler}
-              type="button"
-              onClick={() => setSelectedRuler(ruler)}
-              className={`px-3.5 py-1.5 rounded-full transition-all cursor-pointer font-medium ${
-                selectedRuler === ruler
-                  ? 'bg-[#181716] text-white dark:bg-white dark:text-[#181716] font-bold shadow-xs'
-                  : 'bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10 text-[#5A5650] dark:text-[#A09D94] hover:border-[#B88E3E]'
-              }`}
-            >
-              {ruler}
-            </button>
-          ))}
-        </div>
-
-        <div className="flex flex-wrap items-center gap-3 text-xs font-sans">
-          <span className="font-bold text-[#827E76] uppercase tracking-wider text-[11px] mr-1">Gana:</span>
-          {ganasList.map((gana) => (
-            <button
-              key={gana}
-              type="button"
-              onClick={() => setSelectedGana(gana)}
-              className={`px-3.5 py-1.5 rounded-full transition-all cursor-pointer font-medium ${
-                selectedGana === gana
-                  ? 'bg-[#B88E3E] text-white font-bold shadow-xs'
-                  : 'bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10 text-[#5A5650] dark:text-[#A09D94] hover:border-[#B88E3E]'
-              }`}
-            >
-              {gana === 'All' ? 'All Ganas' : `${gana} Gana`}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* ======================================================== */}
-      {/* 3. 27 NAKSHATRAS MASTER GRID                            */}
-      {/* ======================================================== */}
-      <section className="mt-8 mb-24">
-        <div className="mb-8">
-          <span className="text-xs uppercase font-sans font-bold tracking-[0.2em] text-[#B88E3E] dark:text-[#E5B869] block mb-1">
-            Lunar Mansions Catalog
-          </span>
-          <h2 className="font-cormorant text-3xl sm:text-4xl font-bold tracking-tight text-[#181716] dark:text-white">
-            Explore the lunar mansions
-          </h2>
-          <p className="mt-2 max-w-3xl text-sm sm:text-base text-[#5A5650] dark:text-[#A09D94] leading-relaxed">
-            Discover how your Janma Nakshatra (birth star) shapes your inner mind, spiritual temperament, planetary dasha chronology, and sacred compatibility.
-          </p>
         </div>
 
         {filteredNakshatras.length === 0 ? (
           <div className="p-12 text-center rounded-3xl bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10">
-            <p className="text-sm text-[#827E76]">No nakshatras found matching your search and filter criteria.</p>
+            <p className="text-sm text-[#827E76]">No nakshatras found matching "{searchQuery}".</p>
             <button
               type="button"
-              onClick={() => {
-                setSearchQuery('');
-                setSelectedRuler('All');
-                setSelectedGana('All');
-              }}
-              className="mt-4 px-5 py-2 rounded-full bg-[#B88E3E] text-white text-xs font-bold uppercase tracking-wider"
+              onClick={() => setSearchQuery('')}
+              className="mt-4 px-5 py-2 rounded-full bg-[#B88E3E] text-white text-xs font-bold uppercase tracking-wider cursor-pointer"
             >
-              Reset Filters
+              Clear Search
             </button>
           </div>
         ) : (
