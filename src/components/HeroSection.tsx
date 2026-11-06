@@ -27,9 +27,9 @@ export const HeroSection: React.FC = () => {
     <section
       id="hero"
       aria-label="Astrowithin Hero"
-      className="relative min-h-[90vh] flex items-center justify-center py-20 sm:py-28 px-6 sm:px-12 border-b border-[#EAE6DF] dark:border-white/10 transition-colors"
+      className="relative min-h-[90vh] flex items-center justify-center py-12 sm:py-28 px-4 sm:px-12 border-b border-[#EAE6DF] dark:border-white/10 transition-colors"
     >
-      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
         
         {/* Left Column: Bold Typography & Narrative (Option 1 Vaya Consumer Tech) */}
         <div className="lg:col-span-7 flex flex-col items-start text-left">
@@ -43,21 +43,21 @@ export const HeroSection: React.FC = () => {
           </div>
 
           {/* Large Commanding Display Headline (Enlarged to match screenshot zoom) */}
-          <h1 className="font-cormorant text-5xl sm:text-6xl lg:text-[4.75rem] font-bold leading-[1.06] tracking-tight mb-6">
+          <h1 className="font-cormorant text-4xl sm:text-6xl lg:text-[4.75rem] font-bold leading-[1.08] tracking-tight mb-6">
             Consult <span className="italic font-normal text-[#B88E3E] dark:text-[#E5B869]">Classically trained</span> <br className="hidden sm:inline" />
             Parashari astrologers.
           </h1>
 
           {/* Subtitle (Readable humanist sans) */}
-          <p className="text-lg sm:text-xl text-[#5A5650] dark:text-[#A09D94] font-normal leading-relaxed max-w-xl mb-10">
+          <p className="text-base sm:text-xl text-[#5A5650] dark:text-[#A09D94] font-normal leading-relaxed max-w-xl mb-8 sm:mb-10">
             Traditional Vedic clarity on marriage, love, career and life timing—derived from genuine birth charts and planetary dashas without superstition.
           </p>
 
           {/* Actions: Pill CTA & Secondary Text Link */}
-          <div className="flex flex-wrap items-center gap-6 mb-12">
+          <div className="flex flex-wrap items-center gap-4 sm:gap-6 mb-10 sm:mb-12">
             <Link
               to="/download"
-              className="px-9 py-4 bg-[#181716] dark:bg-[#F4F1EA] text-white dark:text-[#181716] text-base font-bold tracking-wide rounded-full hover:scale-105 active:scale-95 transition-all shadow-md flex items-center gap-3"
+              className="px-8 sm:px-9 py-3.5 sm:py-4 bg-[#181716] dark:bg-[#F4F1EA] text-white dark:text-[#181716] text-sm sm:text-base font-bold tracking-wide rounded-full hover:scale-105 active:scale-95 transition-all shadow-md flex items-center gap-3"
             >
               <span>Download app</span>
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
@@ -74,9 +74,9 @@ export const HeroSection: React.FC = () => {
           </div>
 
           {/* Prominent Dual Stats (10L+ & 4.5 Stars) */}
-          <div className="pt-8 border-t border-[#EAE6DF] dark:border-white/10 grid grid-cols-2 gap-8 w-full max-w-lg">
+          <div className="pt-8 border-t border-[#EAE6DF] dark:border-white/10 grid grid-cols-2 gap-6 sm:gap-8 w-full max-w-lg">
             <div>
-              <div className="font-cormorant text-5xl sm:text-6xl font-bold text-[#B88E3E] dark:text-[#E5B869] leading-none mb-1.5">
+              <div className="font-cormorant text-4xl sm:text-6xl font-bold text-[#B88E3E] dark:text-[#E5B869] leading-none mb-1.5">
                 {consultations}L+
               </div>
               <div className="text-xs uppercase tracking-widest font-sans font-semibold opacity-70">
@@ -86,7 +86,7 @@ export const HeroSection: React.FC = () => {
 
             <div>
               <div className="flex items-center gap-2 mb-1.5">
-                <span className="font-cormorant text-5xl sm:text-6xl font-bold text-[#B88E3E] dark:text-[#E5B869] leading-none">
+                <span className="font-cormorant text-4xl sm:text-6xl font-bold text-[#B88E3E] dark:text-[#E5B869] leading-none">
                   4.5
                 </span>
                 <div className="flex text-[#B88E3E] dark:text-[#E5B869]">
@@ -105,8 +105,8 @@ export const HeroSection: React.FC = () => {
         </div>
 
         {/* Right Column: Realistic Flagship Smartphone Mockup (Enlarged to match screenshot) */}
-        <div className="lg:col-span-5 flex justify-center">
-          <div className="w-full max-w-[430px] lg:max-w-[460px] rounded-[48px] bg-white dark:bg-[#1A1C20] border-[8px] border-[#222120] dark:border-[#383734] shadow-[0_25px_60px_rgba(0,0,0,0.16)] dark:shadow-[0_25px_60px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col">
+        <div className="lg:col-span-5 flex justify-center w-full">
+          <div className="w-full max-w-[340px] sm:max-w-[430px] lg:max-w-[460px] rounded-[40px] sm:rounded-[48px] bg-white dark:bg-[#1A1C20] border-[6px] sm:border-[8px] border-[#222120] dark:border-[#383734] shadow-[0_25px_60px_rgba(0,0,0,0.16)] dark:shadow-[0_25px_60px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col">
             
             {/* Phone Speaker Notch */}
             <div className="w-28 h-4 bg-[#222120] dark:bg-[#383734] rounded-b-xl mx-auto flex-shrink-0" />

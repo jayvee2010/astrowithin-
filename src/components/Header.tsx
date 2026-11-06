@@ -68,7 +68,7 @@ export const Header: React.FC = () => {
         </nav>
 
         {/* Right: Theme Toggle, Scan to Download QR, and Download CTA */}
-        <div className="flex items-center gap-4 sm:gap-6">
+        <div className="flex items-center gap-2.5 sm:gap-6">
           {/* Light / Dark Mode Toggle Button */}
           <button
             onClick={toggleTheme}
@@ -104,7 +104,7 @@ export const Header: React.FC = () => {
           {/* Download App CTA (Exact Vaya Pill: Download) */}
           <Link
             to="/download"
-            className="px-6 py-2.5 bg-[#181716] dark:bg-[#F4F1EA] text-white dark:text-[#181716] text-xs font-bold uppercase tracking-[0.15em] rounded-full hover:opacity-90 hover:scale-105 active:scale-95 transition-all shadow-sm flex items-center gap-1.5"
+            className="hidden sm:flex px-6 py-2.5 bg-[#181716] dark:bg-[#F4F1EA] text-white dark:text-[#181716] text-xs font-bold uppercase tracking-[0.15em] rounded-full hover:opacity-90 hover:scale-105 active:scale-95 transition-all shadow-sm items-center gap-1.5 whitespace-nowrap"
           >
             <span>Download app</span>
             <span>↓</span>
