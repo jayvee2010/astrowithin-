@@ -1,7 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
-import { CustomCursor } from '../components/CustomCursor';
 
 interface PageLayoutProps {
   title?: string;
@@ -26,7 +26,6 @@ export const PageLayout: React.FC<PageLayoutProps> = ({
 }) => {
   return (
     <div className="relative min-h-screen bg-[#FAF8F5] dark:bg-[#121316] text-[#181716] dark:text-[#F4F1EA] font-sans selection:bg-[#B88E3E]/20 selection:text-[#181716] dark:selection:text-[#F4F1EA] transition-colors duration-300 flex flex-col justify-between">
-      <CustomCursor />
       <Header />
 
       <main className={`relative z-10 pt-28 pb-20 px-4 sm:px-6 lg:px-8 ${maxWidth} mx-auto w-full flex-grow`}>
@@ -39,9 +38,9 @@ export const PageLayout: React.FC<PageLayoutProps> = ({
                   {idx > 0 && <li className="text-[#827E76] dark:text-[#827E76]">/</li>}
                   <li>
                     {crumb.href ? (
-                      <a href={crumb.href} className="text-[#827E76] hover:text-[#181716] dark:hover:text-white transition-colors">
+                      <Link to={crumb.href} className="text-[#827E76] hover:text-[#181716] dark:hover:text-white transition-colors">
                         {crumb.label}
-                      </a>
+                      </Link>
                     ) : (
                       <span className="text-[#181716] dark:text-white font-semibold" aria-current="page">
                         {crumb.label}

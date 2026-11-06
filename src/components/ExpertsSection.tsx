@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { EXPERTS } from '../data/contentData';
 
@@ -6,69 +6,36 @@ export const ExpertsSection: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const [dragStartX, setDragStartX] = useState<number | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   const featuredExperts = EXPERTS.slice(0, 6);
   const totalCards = featuredExperts.length;
   const activeExpert = featuredExperts[activeIndex];
 
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  // Core scheduler: Auto-revolves at 2s by default, or waits 4s when user interacts with a card
-  const scheduleNextRotation = useCallback((delayMs: number = 2000) => {
-    if (timerRef.current) {
-      clearTimeout(timerRef.current);
-      timerRef.current = null;
-    }
-
-    timerRef.current = setTimeout(() => {
-      setIsFlipped(false);
-      setActiveIndex((prev) => (prev + 1) % totalCards);
-      // Once moved to next card, resume standard 2-second auto-revolve
-      scheduleNextRotation(2000);
-    }, delayMs);
-  }, [totalCards]);
-
-  // Start auto-revolve on mount and handle pause on flip
   useEffect(() => {
-    if (isFlipped) {
-      // Pause completely while user is reading the reverse-side methodology
-      if (timerRef.current) {
-        clearTimeout(timerRef.current);
-        timerRef.current = null;
-      }
-      return;
-    }
-
-    // Start / resume auto-revolving
-    scheduleNextRotation(2000);
-
-    return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640);
     };
-  }, [isFlipped, scheduleNextRotation]);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
-  // When user clicks a specific card: Hold on that card for 4 full seconds!
-  const selectCardWithHold = useCallback((newIndex: number) => {
+  const selectCard = useCallback((newIndex: number) => {
     setIsFlipped(false);
     setActiveIndex(newIndex);
-    // User interacted: Stay on this card for 4 seconds before moving to the next one!
-    scheduleNextRotation(4000);
-  }, [scheduleNextRotation]);
+  }, []);
 
   const rotateTo = useCallback((delta: number) => {
     const nextIdx = (activeIndex + delta + totalCards) % totalCards;
-    selectCardWithHold(nextIdx);
-  }, [activeIndex, totalCards, selectCardWithHold]);
+    selectCard(nextIdx);
+  }, [activeIndex, totalCards, selectCard]);
 
-  // Keyboard navigation
+  // Keyboard navigation (Arrow keys only, never hijack Spacebar)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'ArrowLeft') rotateTo(-1);
       if (e.key === 'ArrowRight') rotateTo(1);
-      if (e.key === ' ') {
-        e.preventDefault();
-        setIsFlipped((prev) => !prev);
-      }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
@@ -101,7 +68,7 @@ export const ExpertsSection: React.FC = () => {
     setDragStartX(null);
   };
 
-  // Cylindrical 3D positions for the 6 cards based on offset from activeIndex (Scaled up for commanding presence)
+  // Cylindrical 3D positions for the 6 cards with responsive mobile offsets
   const getCardStyle = (index: number) => {
     let offset = (index - activeIndex + totalCards) % totalCards;
     if (offset > totalCards / 2) offset -= totalCards;
@@ -109,19 +76,24 @@ export const ExpertsSection: React.FC = () => {
     // Center Active Card (facing front)
     if (offset === 0) {
       return {
-        transform: 'translate3d(0, 0, 180px) rotateY(0deg) scale(1.05)',
+        transform: isMobile
+          ? 'translate3d(0, 0, 100px) rotateY(0deg) scale(1)'
+          : 'translate3d(0, 0, 180px) rotateY(0deg) scale(1.05)',
         zIndex: 40,
         opacity: 1,
         pointerEvents: 'auto' as const,
       };
     }
 
+    const flankX = isMobile ? 180 : 370;
+    const farFlankX = isMobile ? 260 : 640;
+
     // Immediate Right Flank
     if (offset === 1) {
       return {
-        transform: 'translate3d(370px, 0, 40px) rotateY(-26deg) scale(0.92)',
+        transform: `translate3d(${flankX}px, 0, 40px) rotateY(-26deg) scale(0.92)`,
         zIndex: 25,
-        opacity: 0.9,
+        opacity: isMobile ? 0.35 : 0.9,
         pointerEvents: 'auto' as const,
       };
     }
@@ -129,9 +101,9 @@ export const ExpertsSection: React.FC = () => {
     // Immediate Left Flank
     if (offset === -1) {
       return {
-        transform: 'translate3d(-370px, 0, 40px) rotateY(26deg) scale(0.92)',
+        transform: `translate3d(-${flankX}px, 0, 40px) rotateY(26deg) scale(0.92)`,
         zIndex: 25,
-        opacity: 0.9,
+        opacity: isMobile ? 0.35 : 0.9,
         pointerEvents: 'auto' as const,
       };
     }
@@ -139,20 +111,20 @@ export const ExpertsSection: React.FC = () => {
     // Far Right Flank
     if (offset === 2) {
       return {
-        transform: 'translate3d(640px, 0, -100px) rotateY(-46deg) scale(0.78)',
+        transform: `translate3d(${farFlankX}px, 0, -100px) rotateY(-46deg) scale(0.78)`,
         zIndex: 15,
-        opacity: 0.5,
-        pointerEvents: 'auto' as const,
+        opacity: isMobile ? 0 : 0.5,
+        pointerEvents: isMobile ? ('none' as const) : ('auto' as const),
       };
     }
 
     // Far Left Flank
     if (offset === -2) {
       return {
-        transform: 'translate3d(-640px, 0, -100px) rotateY(46deg) scale(0.78)',
+        transform: `translate3d(-${farFlankX}px, 0, -100px) rotateY(46deg) scale(0.78)`,
         zIndex: 15,
-        opacity: 0.5,
-        pointerEvents: 'auto' as const,
+        opacity: isMobile ? 0 : 0.5,
+        pointerEvents: isMobile ? ('none' as const) : ('auto' as const),
       };
     }
 
@@ -160,7 +132,7 @@ export const ExpertsSection: React.FC = () => {
     return {
       transform: 'translate3d(0, 0, -260px) rotateY(180deg) scale(0.60)',
       zIndex: 5,
-      opacity: 0.12,
+      opacity: 0,
       pointerEvents: 'none' as const,
     };
   };
@@ -222,7 +194,7 @@ export const ExpertsSection: React.FC = () => {
                     key={expert.id}
                     onClick={() => {
                       if (!isCenter) {
-                        selectCardWithHold(index);
+                        selectCard(index);
                       }
                     }}
                     style={style}
@@ -424,7 +396,7 @@ export const ExpertsSection: React.FC = () => {
                   <button
                     key={exp.id}
                     type="button"
-                    onClick={() => selectCardWithHold(idx)}
+                    onClick={() => selectCard(idx)}
                     className={`transition-all duration-300 rounded-full ${
                       idx === activeIndex
                         ? 'w-8 h-2 bg-[#B88E3E] dark:bg-[#E5B869]'

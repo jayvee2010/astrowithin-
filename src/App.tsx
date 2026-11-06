@@ -1,5 +1,6 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
+import { PageLayout } from './components/PageLayout';
 import { HomePage } from './pages/HomePage';
 import { ToolsIndexPage, ToolCalculatorPage } from './pages/ToolsPages';
 import {
@@ -248,6 +249,31 @@ export const App: React.FC = () => {
             category="iOS & Android"
             body="Experience live consultations, daily personalized Moon horoscopes, full Kundli generation, and Vimshottari dasha tracking in the palm of your hand."
           />
+        }
+      />
+
+      {/* 7. Catch-All 404 Route */}
+      <Route
+        path="*"
+        element={
+          <PageLayout
+            badge="404 Error"
+            title="Page Not Found"
+            subtitle="The celestial coordinate or page you are looking for does not exist in our directory."
+          >
+            <div className="p-8 sm:p-12 text-center rounded-3xl bg-white dark:bg-[#1A1C20] border border-[#EAE6DF] dark:border-white/10 shadow-xs max-w-2xl mx-auto">
+              <p className="text-base text-[#5A5650] dark:text-[#A09D94] mb-8 leading-relaxed">
+                Please check the URL or return to explore our classical Parashari tools, horoscopes, and astrological references.
+              </p>
+              <Link
+                to="/"
+                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#181716] dark:bg-[#F4F1EA] text-white dark:text-[#181716] text-xs font-bold uppercase tracking-wider hover:opacity-90 transition-all shadow-sm"
+              >
+                <span>Return Home</span>
+                <span>→</span>
+              </Link>
+            </div>
+          </PageLayout>
         }
       />
       </Routes>

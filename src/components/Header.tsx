@@ -65,6 +65,20 @@ export const Header: React.FC = () => {
           >
             Nakshatras
           </Link>
+
+          <Link
+            to="/astrology/houses"
+            className="opacity-75 hover:opacity-100 hover:text-[#B88E3E] transition-all"
+          >
+            Houses
+          </Link>
+
+          <Link
+            to="/astrology/planets"
+            className="opacity-75 hover:opacity-100 hover:text-[#B88E3E] transition-all"
+          >
+            Planets
+          </Link>
         </nav>
 
         {/* Right: Theme Toggle, Scan to Download QR, and Download CTA */}
@@ -142,6 +156,12 @@ export const Header: React.FC = () => {
           </Link>
           <Link to="/astrology/nakshatras" onClick={() => setMobileMenuOpen(false)} className="py-2.5 border-b border-black/5 dark:border-white/5 opacity-80 hover:opacity-100">
             Nakshatras
+          </Link>
+          <Link to="/astrology/houses" onClick={() => setMobileMenuOpen(false)} className="py-2.5 border-b border-black/5 dark:border-white/5 opacity-80 hover:opacity-100">
+            Houses
+          </Link>
+          <Link to="/astrology/planets" onClick={() => setMobileMenuOpen(false)} className="py-2.5 border-b border-black/5 dark:border-white/5 opacity-80 hover:opacity-100">
+            Planets
           </Link>
           <Link
             to="/download"
