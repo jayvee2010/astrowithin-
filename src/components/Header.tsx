@@ -4,7 +4,6 @@ import { useTheme } from '../utils/ThemeContext';
 
 export const Header: React.FC = () => {
   const { isDark, toggleTheme } = useTheme();
-  const [showQr, setShowQr] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -102,20 +101,6 @@ export const Header: React.FC = () => {
             )}
           </button>
 
-          {/* "Scan to download" QR Capsule with Popover (Exact Vaya Feature) */}
-          <button
-            onClick={() => setShowQr(!showQr)}
-            className="hidden sm:flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] opacity-75 hover:opacity-100 hover:text-[#B88E3E] transition-all"
-          >
-            <span>Scan to download</span>
-            <svg className="w-3.5 h-3.5 text-[#B88E3E]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <rect x="3" y="3" width="7" height="7" strokeWidth="1.8" />
-              <rect x="14" y="3" width="7" height="7" strokeWidth="1.8" />
-              <rect x="14" y="14" width="7" height="7" strokeWidth="1.8" />
-              <rect x="3" y="14" width="7" height="7" strokeWidth="1.8" />
-            </svg>
-          </button>
-
           {/* Download App CTA (Exact Vaya Pill: Download) */}
           <Link
             to="/download"
@@ -165,45 +150,6 @@ export const Header: React.FC = () => {
           >
             Download App ↓
           </Link>
-        </div>
-      )}
-
-      {/* QR Code Modal */}
-      {showQr && (
-        <div 
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-md p-4"
-          onClick={() => setShowQr(false)}
-        >
-          <div 
-            className="bg-white dark:bg-[#1A1C20] rounded-3xl border border-[#EAE6DF] dark:border-white/10 max-w-sm w-full p-8 text-center relative shadow-[0_20px_50px_rgba(0,0,0,0.18)]"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              onClick={() => setShowQr(false)}
-              className="absolute top-5 right-5 text-xs font-mono opacity-50 hover:opacity-100 p-1"
-            >
-              ✕
-            </button>
-            <div className="w-12 h-12 mx-auto mb-4 border border-[#B88E3E] rounded-xl flex items-center justify-center p-2 bg-[#FAF8F5] dark:bg-white/5">
-              <svg viewBox="0 0 24 24" className="w-6 h-6 text-[#B88E3E] dark:text-[#E5B869]" fill="currentColor">
-                <path d="M12 0L14 9L23 12L14 15L12 24L10 15L1 12L10 9Z"/>
-              </svg>
-            </div>
-            <h3 className="font-cormorant text-3xl font-bold mb-2">Scan to Download</h3>
-            <p className="text-sm text-[#5A5650] dark:text-[#A09D94] font-normal mb-6 leading-relaxed">
-              Access your Janam Kundli, Vimshottari Dashas, and classical consultations on iOS and Android.
-            </p>
-            <div className="bg-white p-4 inline-block rounded-2xl border border-[#EAE6DF] shadow-xs">
-              <img
-                src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://astrowithin.com/download"
-                alt="Astrowithin App QR Code"
-                className="w-40 h-40"
-              />
-            </div>
-            <div className="mt-6 text-xs font-sans uppercase tracking-widest opacity-60 font-semibold">
-              Compatible with iOS 16+ & Android 12+
-            </div>
-          </div>
         </div>
       )}
     </header>
