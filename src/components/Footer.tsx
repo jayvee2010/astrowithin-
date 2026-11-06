@@ -30,7 +30,7 @@ export const Footer: React.FC = () => {
             The authentic Parashari Vedic astrology platform. Traditional wisdom, verified lineage, zero superstition.
           </p>
           <div className="flex items-center gap-3 text-xs font-sans font-semibold tracking-wider text-[#B88E3E] dark:text-[#E5B869]">
-            <span>iOS App</span> · <span>Android App</span> · <span>Web Suite</span>
+            <span>iOS App</span> · <span>Android App</span>
           </div>
         </div>
 
